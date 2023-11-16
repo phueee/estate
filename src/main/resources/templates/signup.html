@@ -1,0 +1,110 @@
+
+<html>
+<head>
+    <title>SignUp Form</title>
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+<body>
+<form action="" method="post">
+    <div style="margin-top: 50px">
+        <div class="con">
+            <header class="head-form">
+                <h2 style="color: #FFFFFF">Sign Up</h2>
+
+                <p style="color: #FFFFFF">sign up here if you don't have an account</p>
+            </header>
+
+            <br>
+            <div class="field-set">
+
+                <span class="input-item">
+           <i class="fa fa-user-circle"></i>
+         </span>
+
+                <input class="form-input" id="txt-input" type="text" placeholder="Name" name="name" required>
+
+                <br>
+                <span class="input-item">
+              <i class="fa-solid fa-envelope" style="color: #0f0f10;"></i>
+                </span>
+
+                <input class="form-input" id="txt-input1" type="text" placeholder="Email" name="email" required>
+
+                <br>
+
+                <span class="input-item">
+                    <i class="fa-solid fa-phone-volume" style="color: #19191a;"></i>
+         </span>
+                <input class="form-input" id="txt-input2" type="text" placeholder="Phone No" name="phone" required>
+
+                <br>
+
+                <span class="input-item">
+    <i class="fa-solid fa-address-card" style="color: #1d1e20;"></i>
+                </span>
+
+                <input class="form-input" id="txt-input3" type="text" placeholder="NRC" name="NRC" required>
+
+                <br>
+
+
+
+                <span class="input-item">
+        <i class="fa-solid fa-key" style="color: #0a0a0b;"></i>
+       </span>
+
+                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
+
+
+                <span>
+        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
+                       <script>
+                        // Get the eye icon and password input element
+                        const eyeIcon = document.getElementById("eye");
+                        const passwordInput = document.getElementById("pwd");
+
+                        // Add click event listener to the eye icon
+                        eyeIcon.addEventListener("click", () => {
+                            // Toggle the type of the password input between "password" and "text"
+                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+                        passwordInput.setAttribute("type", type);
+
+                        // Toggle the eye icon class based on the password input type
+                        if (type === "password") {
+                            eyeIcon.classList.remove("fa-eye");
+                            eyeIcon.classList.add("fa-eye-slash");
+                        } else {
+                            eyeIcon.classList.remove("fa-eye-slash");
+                            eyeIcon.classList.add("fa-eye");
+
+                        }
+                        });
+
+                    </script>
+     </span>
+
+
+                <br>
+                <button type="submit" class="btn btn-danger "style="background: #0d6efd;color:#FFFFFF; " onclick="location.href='/signUp'">Create</button>
+
+            </div>
+
+
+
+
+
+                <button class="to-login" onclick="location.href='/Login'">Do you already have an acc?</button>
+
+
+
+        </div>
+    </div>
+
+</form>
+<script src="https://kit.fontawesome.com/df7b367b21.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
