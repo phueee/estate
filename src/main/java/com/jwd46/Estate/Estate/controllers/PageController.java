@@ -23,4 +23,39 @@ public class PageController {
         model.addAttribute("title", "Appartment");
         return "property/appartment.html";
     }
+    @GetMapping("villa")
+    public String viewVilla(Model model){
+        model.addAttribute("title","Villa");
+        return "property/villa.html";
+    }
+    @GetMapping("home")
+    public String viewHome(Model model){
+        model.addAttribute("title","Home");
+        return "property/home.html";
+    }
+    @GetMapping("office")
+    public String viewOfficd(Model model){
+        model.addAttribute("title","Office");
+        return "property/villa.html";
+    }
+    @GetMapping("building")
+    public String viewBuilding(Model model){
+        model.addAttribute("title","Building");
+        return "property/building.html";
+    }
+    @GetMapping("townhouse")
+    public String viewTownhouse(Model model){
+        model.addAttribute("title","Townhouse");
+        return "property/townhouse.html";
+    }
+    @GetMapping("shop")
+    public String viewShop(Model model){
+        model.addAttribute("title","Shop");
+        return "property/shop.html";
+    }
+    @GetMapping("garage")
+    public String viewGarage(Model model){
+        model.addAttribute("title","Garage");
+        return "property/garage.html";
+    }
 }
