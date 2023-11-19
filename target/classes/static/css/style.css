@@ -440,20 +440,20 @@
 }
 
 
-a {
+z {
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
 }
 
-a:hover {
+z:hover {
     background-color: #ddd;
     color: black;
 }
 
 .previous {
-    background-color: #0b233c;
-    color: white;
+    background-color: #f1f1f1;
+    color: black;
 }
 
 .next {
@@ -464,5 +464,3 @@ a:hover {
 .round {
     border-radius: 50%;
 }
-
-
