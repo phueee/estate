@@ -36,7 +36,7 @@ public class PageController {
     @GetMapping("office")
     public String viewOfficd(Model model){
         model.addAttribute("title","Office");
-        return "property/villa.html";
+        return "property/office.html";
     }
     @GetMapping("building")
     public String viewBuilding(Model model){
@@ -57,5 +57,10 @@ public class PageController {
     public String viewGarage(Model model){
         model.addAttribute("title","Garage");
         return "property/garage.html";
+    }
+    @GetMapping("contact")
+    public  String viewContact(Model model){
+        model.addAttribute("title","Contact");
+        return "contact.html";
     }
 }
