@@ -38,29 +38,15 @@ public class PageController {
         model.addAttribute("title","Office");
         return "property/office.html";
     }
-    @GetMapping("building")
-    public String viewBuilding(Model model){
-        model.addAttribute("title","Building");
-        return "property/building.html";
-    }
-    @GetMapping("townhouse")
-    public String viewTownhouse(Model model){
-        model.addAttribute("title","Townhouse");
-        return "property/townhouse.html";
-    }
-    @GetMapping("shop")
-    public String viewShop(Model model){
-        model.addAttribute("title","Shop");
-        return "property/shop.html";
-    }
-    @GetMapping("garage")
-    public String viewGarage(Model model){
-        model.addAttribute("title","Garage");
-        return "property/garage.html";
-    }
+
     @GetMapping("contact")
     public  String viewContact(Model model){
         model.addAttribute("title","Contact");
         return "contact.html";
+    }
+
+    @GetMapping("villadetail")
+    public String viewVilladetail(Model model){
+        return "property/villadetail";
     }
 }
