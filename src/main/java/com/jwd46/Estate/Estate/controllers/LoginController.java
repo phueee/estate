@@ -19,6 +19,6 @@ public class LoginController {
         model.addAttribute("title","login");
         return "login";
     }
-
+        
 
 }
