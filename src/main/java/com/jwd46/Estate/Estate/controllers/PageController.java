@@ -11,13 +11,11 @@ public class PageController {
         model.addAttribute("title", "Home");
         return "index";
     }
-
     @GetMapping("view")
     public String viewAbout(Model model) {
         model.addAttribute("title", "About");
         return "view.html";
     }
-
     @GetMapping("appartment")
     public String viewAppartment(Model model) {
         model.addAttribute("title", "Appartment");
@@ -33,6 +31,7 @@ public class PageController {
         model.addAttribute("title","Home");
         return "property/home.html";
     }
+
     @GetMapping("office")
     public String viewOfficd(Model model){
         model.addAttribute("title","Office");
