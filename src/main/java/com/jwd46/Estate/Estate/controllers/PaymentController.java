@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PaymentController {
-    @GetMapping("/payment")
+    @GetMapping("payment")
     public String viewPayment(Model model){
         model.addAttribute("title","Payment");
                 return "payment";
