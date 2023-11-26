@@ -9,7 +9,7 @@
 <body>
 
 <div class="overlay">
-    <form action= "/login"  method="post">
+    <form action= ""  method="post">
         <div class="con">
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>
@@ -25,14 +25,14 @@
            <i class="fa fa-user-circle"></i>
          </span>
                 <!--   user name Input-->
-                <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email" value="${user.userEmail}" required>
+                <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email" required>
 
                 <br>
                 <span class="input-item">
         <i class="fa fa-key"></i>
        </span>
 
-                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" value="${user.userPassword}" required>
+                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
 
 
                 <span toggle="#password-field">
@@ -65,16 +65,16 @@
 
 
                 <br>
-                 <button class="log-in" type="submit" onclick="location.href='payment'"> Log In </button>
-            <br>
+                <button class="log-in" type="submit" onclick="location.href='adminView'"> Log In </button>
+                <br>
                 <p style="color: #FFFFFF">if you don't have an account sing up here</p>
-            <button style="color: #FFFFFF" class="btn block sign-up" onclick="location.href='signup'">Sign Up
+                <button style="color: #FFFFFF" class="btn block sign-up" onclick="location.href='signup'">Sign Up
 
-                <i  class="fa fa-user-plus" aria-hidden="true"></i>
-            </button>
+                    <i  class="fa fa-user-plus" aria-hidden="true"></i>
+                </button>
 
+            </div>
         </div>
-</div>
 
     </form>
 

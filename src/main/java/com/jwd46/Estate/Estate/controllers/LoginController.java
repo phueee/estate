@@ -24,7 +24,11 @@ public class LoginController {
         model.addAttribute("title","login");
         return "login";
     }
-
+    @GetMapping("/adminlogin")
+    public String viewadminlogin(Model model){
+        model.addAttribute("title","Adminlogin");
+        return "adminlogin.html";
+    }
 
 
 

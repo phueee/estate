@@ -14,6 +14,7 @@
           <element id="module-output" name="Estate" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.30" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:3.1.5" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-aop:3.1.5" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:6.0.13" />
