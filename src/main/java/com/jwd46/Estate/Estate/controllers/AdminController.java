@@ -15,5 +15,10 @@ import java.util.List;
 @Controller
 
 public class AdminController {
+    @GetMapping("adminView")
+    public String adminView(Model model){
+        model.addAttribute("title","adminView");
+        return "adminView";
+    }
 
 }
