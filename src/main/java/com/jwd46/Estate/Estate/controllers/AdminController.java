@@ -1,24 +1,68 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.daos.AdminDao;
 import com.jwd46.Estate.Estate.daos.HomeDao;
+import com.jwd46.Estate.Estate.daos.UserDao;
+import com.jwd46.Estate.Estate.models.Admin;
 import com.jwd46.Estate.Estate.models.Home;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 
 public class AdminController {
-    @GetMapping("adminView")
-    public String adminView(Model model){
-        model.addAttribute("title","adminView");
+
+
+    @Autowired
+    AdminDao dao;
+
+    @GetMapping("/adminlogin")
+    public String viewadminlogin(Model model) {
+        model.addAttribute("title", "Adminlogin");
+        return "adminlogin";
+    }
+
+
+    @PostMapping("/adminlogin")
+    public String showSignPost(Model model, @RequestParam String email, String password) {
+        Admin admin = new Admin();
+        admin.setEmail(email);
+        admin.setPassword(password);
+        if (admin.getEmail().equals("Phyoke Kya Ml@gmail.com") && admin.getPassword().equals("123123")) {
+            return "adminview";
+        } else {
+            return "adminlogin";
+        }
+
+    }
+
+    @GetMapping("/adminCreate")
+    public String createHome (Model model){
+        model.addAttribute("title", "adminCreate");
+        return "adminCreate";
+    }
+
+    @RequestMapping("adminView")
+    public String adminView (Model model){
+        model.addAttribute("title", "adminView");
         return "adminView";
     }
+
+    @RequestMapping("/homes")
+    public String viewHomes (Model model){
+        model.addAttribute("title", "homes");
+        return "homes";
+    }
+    @RequestMapping("/user")
+    public String viewUsers (Model model){
+        model.addAttribute("title", "users");
+        return "user";
+    }
+
+
 
 }

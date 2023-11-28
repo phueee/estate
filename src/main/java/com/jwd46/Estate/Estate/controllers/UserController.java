@@ -45,4 +45,14 @@ public class UserController {
         model.addAttribute("users",users);
         return "user";
     }
+
+    @PostMapping("/user/all")
+    public String User(Model model, @RequestParam String userName){
+        User user=new User();
+        user.setUserName(userName);
+        dao.save(user);
+        return "redirect:/user/all";
+    }
+
+
 }
