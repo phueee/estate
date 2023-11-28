@@ -9,7 +9,7 @@
 <body>
 
 <div class="overlay">
-    <form action= ""  method="post">
+    <form action= "/login"  method="post">
         <div class="con">
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>
@@ -25,14 +25,14 @@
            <i class="fa fa-user-circle"></i>
          </span>
                 <!--   user name Input-->
-                <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email" required>
+                <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email" value="${user.userEmail}" required>
 
                 <br>
                 <span class="input-item">
         <i class="fa fa-key"></i>
        </span>
 
-                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
+                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" value="${user.userPassword}" required>
 
 
                 <span toggle="#password-field">
