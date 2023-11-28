@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="adminView::header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="adminView::navbar"></div><br>
+<h2 class="col-md-6 offset-md-3">Home Details</h2>
+
+<div class="container">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Home Id</th>
+        <th scope="col">Home No.</th>
+        <th scope="col">No.of.Bedroom</th>
+        <th scope="col">No.of.Bathroom</th>
+        <th scope="col">Home Area</th>
+        <th scope="col">Home Location</th>
+        <th scope="col">Price</th>
+        <th scope="col">Home type</th>
+        <th scope="col">Service</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Create</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="home : ${homes}">
+
+        <td th:text="${home.homeId}"></td>
+        <td th:text="${table.homeNo}"></td>
+        <td th:text="${table.bedRoom}"></td>
+        <td th:text="${table.bathRoom}"></td>
+        <td th:text="${table.area}"></td>
+        <td th:text="${table.location}"></td>
+        <td th:text="${table.price}"></td>
+        <td th:text="${table.property}"></td>
+        <td th:text="${table.service}"></td>
+        <td th:text="${table.photo}"></td>
+        <td><a  ></a>Create</td>
+        <td><a  >Edit</a></td>
+        <td><a  >Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div th:replace="adminView::footer"></div>
+</body>
+</html>

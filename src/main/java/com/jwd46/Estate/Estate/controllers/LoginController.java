@@ -1,6 +1,7 @@
 package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.daos.UserDao;
+import com.jwd46.Estate.Estate.models.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +20,17 @@ public class LoginController {
         model.addAttribute("title","login");
         return "login";
     }
-    @GetMapping("/adminlogin")
-    public String viewadminlogin(Model model){
-        model.addAttribute("title","Adminlogin");
-        return "adminlogin.html";
+    @PostMapping("/login")
+    public String showLoginGet(Model model, @RequestParam String userEmail, String userPassword) {
+        User user = new User();
+        user.setUserEmail(userEmail);
+        user.setUserPassword(userPassword);
+        if (user.getUserEmail().equals("admin@gmail.com") && user.getUserPassword().equals("12334566")) {
+            return "buy";
+        } else {
+            return "login";
+        }
+
     }
 
 }
