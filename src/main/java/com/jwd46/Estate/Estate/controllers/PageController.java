@@ -27,10 +27,10 @@ public class PageController {
         model.addAttribute("title","Villa");
         return "property/villa.html";
     }
-    @GetMapping("home")
+    @GetMapping("propertyhome")
     public String viewHome(Model model){
-        model.addAttribute("title","Home");
-        return "property/homes.html";
+        model.addAttribute("title","Propertyhome");
+        return "property/propertyhome.html";
     }
 
     @GetMapping("office")
