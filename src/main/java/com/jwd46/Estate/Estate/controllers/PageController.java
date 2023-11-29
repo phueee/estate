@@ -30,7 +30,7 @@ public class PageController {
     @GetMapping("home")
     public String viewHome(Model model){
         model.addAttribute("title","Home");
-        return "property/homes.html";
+        return "property/home.html";
     }
 
     @GetMapping("office")
