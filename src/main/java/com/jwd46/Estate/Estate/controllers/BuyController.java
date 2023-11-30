@@ -17,5 +17,10 @@ public class BuyController {
             model.addAttribute("title", "Rent");
             return "rent.html";
         }
+        @GetMapping("rentlogin")
+    public String logi(Model model){
+            model.addAttribute("title", "Rent");
+            return "rentlogin";
+        }
     }
 
