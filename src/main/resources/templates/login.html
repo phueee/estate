@@ -1,7 +1,7 @@
 <link href="css/style.css" rel="stylesheet">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <a href="/" class="previous">&laquo; Home</a>
+    <a th:href="@{/}" class="previous">&laquo; Home</a>
     <title>Login Form</title>
     <link rel="stylesheet" href="css/login.css">
 
@@ -9,7 +9,8 @@
 <body>
 
 <div class="overlay">
-    <form action= "/login"  method="post">
+
+    <form th:action="@{/login}" method="post">
         <div class="con">
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>
@@ -18,21 +19,25 @@
             </header>
 
             <br>
+            <div th:if="${error1}">
+                <div class="alert alert-danger">Invalid Email or Password</div>
+            </div>
             <div class="field-set">
 
                 <!--   user name -->
                 <span class="input-item">
            <i class="fa fa-user-circle"></i>
          </span>
+
                 <!--   user name Input-->
-                <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email" value="${user.userEmail}" required>
+                <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email">
 
                 <br>
                 <span class="input-item">
         <i class="fa fa-key"></i>
        </span>
 
-                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" value="${user.userPassword}" required>
+                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password">
 
 
                 <span toggle="#password-field">

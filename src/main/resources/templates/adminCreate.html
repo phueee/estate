@@ -7,7 +7,7 @@
 <body>
 <div th:replace="adminView::navbar"></div><br>
 <div>
-    <form>
+    <form th:action="@{index}" method="post" enctype="multipart/form-data">
         <div class="container col-md-6 offset-md-3">
             <h2 class="col-md-6 offset-md-3">Admin Create</h2>
 
@@ -43,7 +43,7 @@
                 <label for="inputProperty">Home type</label>
                 <select id="inputProperty" class="form-control">
                     <option selected>Type...</option>
-                    <option>Appartment</option>
+                    <option>Apartment</option>
                     <option>Villa</option>
                     <option>House</option>
                     <option>Office</option>
@@ -54,14 +54,14 @@
                 <label for="inputService">Service</label>
                 <select id="inputService" class="form-control">
                     <option selected>Type...</option>
-                    <option>Sale</option>
+                    <option>Buy</option>
                     <option>Rent</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="exampleFormControlFile1">Photo</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <label for="customFile">Photo</label>
+                <input type="file" name="file" class="form-control-file" id="customFile">
             </div>
 
             <button type="submit" class="btn btn-primary">Create</button>

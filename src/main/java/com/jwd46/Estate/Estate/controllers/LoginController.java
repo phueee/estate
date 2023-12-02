@@ -1,5 +1,6 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.Service.UserService;
 import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.User;
 import jakarta.servlet.http.HttpSession;
@@ -15,22 +16,28 @@ public class LoginController {
 
     @Autowired
     UserDao dao;
+    @Autowired
+    UserService userService;
     @GetMapping("/login")
     public String showLoginGet(Model model){
         model.addAttribute("title","login");
         return "login";
     }
     @PostMapping("/login")
-    public String showLoginGet(Model model, @RequestParam String userEmail, String userPassword) {
-        User user = new User();
-        user.setUserEmail(userEmail);
-        user.setUserPassword(userPassword);
-        if (user.getUserEmail().equals("admin@gmail.com") && user.getUserPassword().equals("12334566")) {
-            return "buy";
-        } else {
+    public String showLoginPost(@RequestParam String email,String password, Model model,HttpSession session){
+        User user = userService.login(email,password);
+
+        if (user == null) {
+            model.addAttribute("error1","error");
             return "login";
         }
+        else {
+            session.setAttribute("userEmail", user.getUserEmail());
 
+            return "index";
+        }
     }
+
+
 
 }
