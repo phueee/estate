@@ -12,4 +12,25 @@ public class PaymentController {
                 return "payment";
     }
 
+
+    @GetMapping("Rpayment")
+    public String viewRPayment(Model model){
+        model.addAttribute("title","RPayment");
+        return "Rpayment";
+    }
+
+
+    @GetMapping("/detail")
+    public String viewDetail(Model model){
+        model.addAttribute("title","Detail");
+        return "details";
+    }
+
+    @GetMapping("/Rdetail")
+    public String viewRDetail(Model model){
+        model.addAttribute("title","RDetail");
+        return "Rdetails";
+    }
+
+
 }
