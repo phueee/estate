@@ -49,4 +49,15 @@ public class PageController {
     public String viewVilladetail(Model model){
         return "property/villadetail";
     }
+
+    @GetMapping("Buy")
+    public String viewBuy(Model model){
+        model.addAttribute("title","Buyview");
+        return "service/Buy.html";
+    }
+    @GetMapping("Rent")
+    public String viewRent(Model model){
+        model.addAttribute("title","Rentview");
+        return "service/Rent.html";
+    }
 }
