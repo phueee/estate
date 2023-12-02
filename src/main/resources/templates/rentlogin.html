@@ -1,0 +1,91 @@
+<link href="css/style.css" rel="stylesheet">
+<html>
+<head>
+    <a href="/" class="previous">&laquo; Home</a>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+<body>
+
+<div class="overlay">
+    <form action= ""  method="post">
+        <div class="con">
+            <header class="head-form">
+                <h2 style="color: #FFFFFF">Log In Here</h2>
+
+                <p style="color: #FFFFFF">Login to your account</p>
+            </header>
+
+            <br>
+            <div class="field-set">
+
+                <!--   user name -->
+                <span class="input-item">
+           <i class="fa fa-user-circle"></i>
+         </span>
+                <!--   user name Input-->
+                <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email" required>
+
+                <br>
+                <span class="input-item">
+        <i class="fa fa-key"></i>
+       </span>
+
+                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
+
+
+                <span toggle="#password-field">
+        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i><script>
+                           });</script>
+                    <script>
+
+                        const eyeIcon = document.getElementById("eye");
+                        const passwordInput = document.getElementById("pwd");
+
+
+                        eyeIcon.addEventListener("click", () => {
+                            // Toggle the type of the password input between "password" and "text"
+                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+                        passwordInput.setAttribute("type", type);
+
+                        // Toggle the eye icon class based on the password input type
+                        if (type === "password") {
+                            eyeIcon.classList.remove("fa-eye");
+                            eyeIcon.classList.add("fa-eye-slash");
+                        } else {
+                            eyeIcon.classList.remove("fa-eye-slash");
+                            eyeIcon.classList.add("fa-eye");
+
+                        }
+                        });
+
+                    </script>
+     </span>
+
+
+                <br>
+                <button class="log-in" type="submit" onclick="location.href='rent'"> Log In </button>
+                <br>
+                <p style="color: #FFFFFF">if you don't have an account sing up here</p>
+                <button style="color: #FFFFFF" class="btn block sign-up" onclick="location.href='signup'">Sign Up
+
+                    <i  class="fa fa-user-plus" aria-hidden="true"></i>
+                </button>
+
+            </div>
+        </div>
+
+    </form>
+
+    <script src="https://kit.fontawesome.com/df7b367b21.js" crossorigin="anonymous"></script>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
