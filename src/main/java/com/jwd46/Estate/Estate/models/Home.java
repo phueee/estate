@@ -10,6 +10,7 @@ public class Home {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int homeId;
+    @Column(name = "home_No")
     private String homeNo;
     private String bedRoom;
     private String bathRoom;
@@ -18,5 +19,7 @@ public class Home {
     private String price;
     private String property;
     private String service;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String photo;
 }
