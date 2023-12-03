@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface UserDao extends JpaRepository<User,Integer> {
 
     @Query(value = "SELECT * FROM users WHERE user_email=?1 AND user_password=?2", nativeQuery = true)
-    User findByEmailAndPassword(String email, String password);
+    User findByEmailAndPassword(String email,String password);
 }
