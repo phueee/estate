@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -43,6 +43,7 @@
 
 
         <!-- Navbar Start -->
+
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
 
@@ -79,7 +80,7 @@
 
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
-                            <div class="dropdown-menu rounded-0 m-0">
+                            <div class="dropdown-menu rounded-0 m-0"/>
 
                                 <a href="signup" class="dropdown-item">User</a>
 
@@ -90,7 +91,7 @@
                     </div>
 
 
-                    <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3">Sign Up</a>
+                    <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
                 </div>
                 <div><a href="/" class="btn btn-primary px-2 d-none d-lg-flex">Log Out</a></div>
             </nav>

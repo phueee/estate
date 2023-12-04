@@ -33,7 +33,6 @@ public class LoginController {
         }
         else {
             session.setAttribute("userEmail", user.getUserEmail());
-
             return "index";
         }
     }
