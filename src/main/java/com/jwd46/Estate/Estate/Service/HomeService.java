@@ -16,20 +16,22 @@ public class HomeService {
     @Autowired
     HomeDao homeDao;
 
-    public void saveHomeToDB(MultipartFile file,String homeNo,String bedRoom,String bathRoom,String area,String location,String price,String property,String service,String photo){
-        Home home=new Home();
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        if(fileName.contains("..")){
-            System.out.println("not a a valid file");
-        }
-        home.setHomeNo(homeNo);
-        home.setBedRoom(bedRoom);
-        home.setBathRoom(bathRoom);
-        home.setArea(area);
-        home.setLocation(location);
-        home.setPrice(price);
-        home.setProperty(property);
-        home.setService(service);
+    public void saveHomeToDB(MultipartFile file,String homeNo,String bedroom,String bathroom,String area,String location,String price,String property,String service,String photo){
+
+       Home home=new Home();
+       System.out.println(homeNo);
+       home.setHomeNo(homeNo);
+       home.setBedRoom(bedroom);
+       home.setBathRoom(bathroom);
+       home.setArea(area);
+       home.setLocation(location);
+       home.setPrice(price);
+       home.setProperty(property);
+       home.setService(service);
+       String fileName=StringUtils.cleanPath(file.getOriginalFilename());
+       if (fileName.contains("..")){
+           System.out.println("not a valid file");
+       }
         try {
             home.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
         } catch (IOException e) {

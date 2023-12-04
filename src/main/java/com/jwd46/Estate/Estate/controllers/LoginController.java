@@ -3,6 +3,8 @@ package com.jwd46.Estate.Estate.controllers;
 import com.jwd46.Estate.Estate.Service.UserService;
 import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,17 +26,17 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/login")
-    public String showLoginPost(@RequestParam String email,String password, Model model,HttpSession session){
+    public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session, HttpServletResponse response){
         User user = userService.login(email,password);
-
         if (user == null) {
             model.addAttribute("error1","error");
             return "login";
         }
         else {
             session.setAttribute("userEmail", user.getUserEmail());
-
-            return "index";
+            Cookie ck=new Cookie("email",email);
+            response.addCookie(ck);
+            return "buy";
         }
     }
 
