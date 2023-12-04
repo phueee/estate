@@ -4,6 +4,7 @@ import com.jwd46.Estate.Estate.daos.AdminDao;
 import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.Service.HomeService;
 import com.jwd46.Estate.Estate.models.Admin;
+import com.jwd46.Estate.Estate.models.Home;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,16 +53,22 @@ public class AdminController {
         model.addAttribute("title", "adminView");
         return "adminView";
     }
+
+
     @GetMapping("/homes")
     public String viewHomes (Model model){
         model.addAttribute("title", "homes");
         return "homes";
     }
-    @PostMapping("/homes")
-    public String viewHomes(Model model, @RequestParam MultipartFile file, String homeNo, String bedRoom, String bathRoom, String area, String location, String price, String property, String service, String photo){
-        homeService.saveHomeToDB(file,homeNo,bedRoom,bathRoom,area,location,price,property,service,photo);
+    @PostMapping("/adminCreate")
+    public String viewHomes(@RequestParam MultipartFile file,String homeNo,String bedroom,String bathroom,String area,String location,String price,String property,String service,String photo,Model model){
+
+        homeService.saveHomeToDB(file,homeNo,bedroom,bathroom,area,location,price,property,service,photo);
+        model.addAttribute("home",new Home());
         return "redirect:/homes";
     }
+
+
     @RequestMapping("/user")
     public String viewUsers (Model model){
         model.addAttribute("title", "users");
