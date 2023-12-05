@@ -10,6 +10,7 @@ public class PageController {
     @GetMapping("/")
     public String viewPage(Model model) {
         model.addAttribute("title", "Home");
+
         return "index";
     }
     @GetMapping("view")
@@ -59,5 +60,11 @@ public class PageController {
     public String viewRent(Model model){
         model.addAttribute("title","Rentview");
         return "service/Rent.html";
+    }
+
+    @GetMapping("userdetail")
+    public String viewUserdetail(Model model){
+        model.addAttribute("title","userdetail");
+        return "userdetail.html";
     }
 }
