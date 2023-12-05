@@ -44,9 +44,9 @@
                 <div class="navbar-nav ms-auto">
                     <a href="/" class="nav-item nav-link" style="color: #0a0a0b">Home</a>
                 </div>
-                <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3">Sign Up</a>
+                <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
             </div>
-            <div><a href="" class="btn btn-primary px-2 d-none d-lg-flex">Log Out</a></div>
+            <div><a href="" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
         </nav>
     </div>
     </div>
@@ -98,7 +98,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/appartment1.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$12,000</h5>
@@ -117,7 +117,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/appartment2.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$8,000</h5>
@@ -136,7 +136,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/appartment3.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,500</h5>
@@ -155,7 +155,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/appartment4.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$15,000</h5>
@@ -174,7 +174,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/appartment5.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$14,500</h5>
@@ -193,7 +193,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/appartment6.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,000</h5>
@@ -219,7 +219,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/home1.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$12,000</h5>
@@ -238,7 +238,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/home2.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">8,000</h5>
@@ -257,7 +257,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/home3.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,500</h5>
@@ -276,7 +276,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/home4.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$15,000</h5>
@@ -295,7 +295,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/home5.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$14,500</h5>
@@ -314,7 +314,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/home6.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,000</h5>
@@ -340,7 +340,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/office1.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$12,000</h5>
@@ -359,7 +359,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/office2.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$8,000</h5>
@@ -378,7 +378,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/office3.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,500</h5>
@@ -397,7 +397,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/office4.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$15,000</h5>
@@ -416,7 +416,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/office5.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$14,500</h5>
@@ -435,7 +435,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/office6.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,000</h5>
@@ -461,7 +461,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href="villadetail"><img class="img-fluid" src="img/villa1.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$12,000</h5>
@@ -480,7 +480,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/villa2.jpg" alt="" ></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$8,000</h5>
@@ -499,7 +499,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/villa3.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,500</h5>
@@ -518,7 +518,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/villa4.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$15,000</h5>
@@ -537,7 +537,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/villa5.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$14,500</h5>
@@ -556,7 +556,7 @@
                     <div class="position-relative overflow-hidden">
                         <a href=""><img class="img-fluid" src="img/villa6.jpg" alt=""></a>
                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                        <a href="login"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
+                        <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" >Buy Now</div></a>
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">$13,000</h5>

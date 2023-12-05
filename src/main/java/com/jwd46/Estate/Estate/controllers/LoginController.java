@@ -37,7 +37,7 @@ public class LoginController {
             Cookie ck=new Cookie("email",email);
             ck.setMaxAge(60*60*24);
             response.addCookie(ck);
-            return "buy";
+            return "index";
         }
     }
 

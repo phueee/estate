@@ -3,7 +3,7 @@ package com.jwd46.Estate.Estate.models;
 import jakarta.persistence.*;
 import lombok.Data;
     @Entity
-    @Table(name = "payments")
+    @Table(name = "Rpayments")
     @Data
     public class RPayment {
         @Id

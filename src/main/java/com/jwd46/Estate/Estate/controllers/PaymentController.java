@@ -1,5 +1,7 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.models.Home;
+import com.jwd46.Estate.Estate.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ public class PaymentController {
     @GetMapping("Rpayment")
     public String viewRPayment(Model model){
         model.addAttribute("title","RPayment");
+        model.addAttribute("User", new User());
         return "Rpayment";
     }
 

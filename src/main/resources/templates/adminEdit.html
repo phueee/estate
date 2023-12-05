@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/html">
 <head th:replace="adminView::header">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,36 +7,36 @@
 <body>
 <div th:replace="adminView::navbar"></div><br>
 <div class="container">
-<form>
+<form:form modelAttribute="Home">
     <div>
         <h2 class="col-md-6 offset-md-3">Admin Edit</h2>
 
         <div class="form-group col-md-6">
             <label for="inputHomeNo">Home No.</label>
-            <input type="text" class="form-control" id="inputHomeNo" th:value="${home.getHomeNo}">
+            <input type="text" class="form-control" id="inputHomeNo" field="homeNo">
         </div>
 
         <div class="form-group col-md-6">
             <label for="inputNo.of.Bedroom">No.of.Bedroom</label>
-            <input type="text" class="form-control" id="inputNo.of.Bedroom" th:value="${home.getBedRoom}">
+            <input type="text" class="form-control" id="inputNo.of.Bedroom" field="bedRoom">
         </div>
         <div class="form-group col-md-6">
             <label for="inputNo.of.Bathroom">No.of.Bathroom</label>
-            <input type="text" class="form-control" id="inputNo.of.Bathroom" th:value="${home.getBathRoom}">
+            <input type="text" class="form-control" id="inputNo.of.Bathroom" field="bathRoom">
         </div>
         <div class="form-group col-md-6">
             <label for="inputArea">Area</label>
-            <input type="text" class="form-control" id="inputArea" th:value="${home.getArea}">
+            <input type="text" class="form-control" id="inputArea" field="area">
         </div>
 
         <div class="form-group col-md-6">
             <label for="inputLocation">Location</label>
-            <input type="text" class="form-control" id="inputLocation" th:value="${home.getLocation}">
+            <input type="text" class="form-control" id="inputLocation" field="location">
         </div>
 
         <div class="form-group col-md-6">
             <label for="inputPrice">Price</label>
-            <input type="text" class="form-control" id="inputPrice" th:value="${home.getPrice}">
+            <input type="text" class="form-control" id="inputPrice" field="price">
         </div>
 
         <div class="form-group col-md-6">
@@ -61,7 +61,7 @@
 
         <div class="form-group">
             <label for="exampleFormControlFile1">Photo</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" th:value="${home.getPhoto}">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" field="photo">
         </div>
 
         <div class="form-group">
@@ -71,7 +71,7 @@
 
         <button type="submit" class="btn btn-primary">Update</button>
     </div>
-</form>
+</form:form>
 </div>
 <div th:replace="adminView::footer"></div>
 </body>

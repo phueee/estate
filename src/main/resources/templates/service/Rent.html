@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -46,9 +46,9 @@
             <div class="navbar-nav ms-auto">
                 <a href="/" class="nav-item nav-link" style="color: #0a0a0b">Home</a>
             </div>
-            <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3">Sign Up</a>
+            <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
         </div>
-        <div><a href="" class="btn btn-primary px-2 d-none d-lg-flex">Log Out</a></div>
+        <div><a href="" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
     </nav>
 </div>
 </div>
