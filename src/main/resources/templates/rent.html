@@ -1,34 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="ISO-8859-1">
-    <title>Estate</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
+<head th:replace="adminView::header">
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <div class="container-col-md-6 offset-md-3">
-    <form action="" method="post">
+    <form:form action="/index" method="post" modelAttribute="Home">
 
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Rent Detail</h2>
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="homeID" class="col-md-2 col-form-label">Home ID</label>
             <div class="col-md-4">
-                <input type="text" class="form-control"  id="homeID" value="${home.getHomeId()}">
+                <input type="text" class="form-control"  id="homeID" field="homeId">
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="homeno" class="col-md-2 col-form-label">Home No.</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeno" value="${home.getHomeNo()}">
+                <input type="text" class="form-control" id="homeno"  field="homeNo">
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="no.ofbedroom" class="col-md-2 col-form-label">No.of Bedroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="no.ofbedroom" value="${home.getBedRoom()}">
+                <input type="text" class="form-control" id="no.ofbedroom" field="bedRoom">
             </div>
         </div>
 
@@ -36,7 +35,7 @@
             <div class="col-md-2"></div>
             <label for="no.ofbathroom" class="col-md-2 col-form-label">No.of Bathroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="no.ofbathroom" value="${home.getBathRoom()}">
+                <input type="text" class="form-control" id="no.ofbathroom" field="bathRoom">
             </div>
         </div>
 
@@ -44,7 +43,7 @@
             <div class="col-md-2"></div>
             <label for="homeArea" class="col-md-2 col-form-label">Area</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeArea" value="${home.getArea()}">
+                <input type="text" class="form-control" id="homeArea" field="area">
             </div>
         </div>
 
@@ -52,7 +51,7 @@
             <div class="col-md-2"></div>
             <label for="homeLocation" class="col-md-2 col-form-label">Location</label>
             <div class="col-md-4">
-                <input type="location" class="form-control" id="homeLocation" value="${home.getLocation()}">
+                <input type="location" class="form-control" id="homeLocation" field="location">
             </div>
         </div>
 
@@ -60,7 +59,7 @@
             <div class="col-md-2"></div>
             <label for="homePrice" class="col-md-2 col-form-label">Price</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homePrice" value="${home.getPrice()}">
+                <input type="text" class="form-control" id="homePrice" field="price">
             </div>
         </div>
 
@@ -85,14 +84,13 @@
             <div class="col-md-4"></div>
 
             <div class="col-md-4">
-                <button type="button" class="btn btn-danger ">Rent</button>
+                <button type="button" class="btn btn-danger "  onclick="location.href='Rpayment'">Rent</button>
             </div>
 
         </div>
 
-    </form>
+    </form:form>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<div th:replace="adminView::footer"></div>
 </body>
 </html>
