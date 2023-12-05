@@ -36,7 +36,7 @@ public class LoginController {
             session.setAttribute("userEmail", user.getUserEmail());
             Cookie ck=new Cookie("email",email);
             response.addCookie(ck);
-            return "buy";
+            return "index";
         }
     }
 

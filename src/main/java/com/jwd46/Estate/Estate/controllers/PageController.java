@@ -61,4 +61,10 @@ public class PageController {
         model.addAttribute("title","Rentview");
         return "service/Rent.html";
     }
+
+    @GetMapping("userdetail")
+    public String viewUserdetail(Model model){
+        model.addAttribute("title","userdetail");
+        return "userdetail.html";
+    }
 }
