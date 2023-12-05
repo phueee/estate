@@ -2,10 +2,14 @@ package com.jwd46.Estate.Estate.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "homes")
 @Data
+@Getter
+@Setter
 public class Home {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

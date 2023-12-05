@@ -32,15 +32,15 @@
     <tr th:each="home : ${homes}">
 
         <td th:text="${home.homeId}"></td>
-        <td th:text="${table.homeNo}"></td>
-        <td th:text="${table.bedRoom}"></td>
-        <td th:text="${table.bathRoom}"></td>
-        <td th:text="${table.area}"></td>
-        <td th:text="${table.location}"></td>
-        <td th:text="${table.price}"></td>
-        <td th:text="${table.property}"></td>
-        <td th:text="${table.service}"></td>
-        <td th:text="${table.photo}"></td>
+        <td th:text="${home.homeNo}"></td>
+        <td th:text="${home.bedRoom}"></td>
+        <td th:text="${home.bathRoom}"></td>
+        <td th:text="${home.area}"></td>
+        <td th:text="${home.location}"></td>
+        <td th:text="${home.price}"></td>
+        <td th:text="${home.property}"></td>
+        <td th:text="${home.service}"></td>
+        <td th:text="${home.photo}"></td>
         <td><a  ></a>Create</td>
         <td><a  >Edit</a></td>
         <td><a  >Delete</a></td>

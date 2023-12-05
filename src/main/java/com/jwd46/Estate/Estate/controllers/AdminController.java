@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Controller
 
 public class AdminController {
@@ -44,6 +46,7 @@ public class AdminController {
 
     @GetMapping("/adminCreate")
     public String createHome (Model model){
+
         model.addAttribute("title", "adminCreate");
         return "adminCreate";
     }
@@ -57,14 +60,25 @@ public class AdminController {
 
     @GetMapping("/homes")
     public String viewHomes (Model model){
-        model.addAttribute("title", "homes");
+        List<Home> homes=homeDao.findAll();
+        model.addAttribute("homes", homes);
         return "homes";
     }
     @PostMapping("/adminCreate")
-    public String viewHomes(@RequestParam MultipartFile file,String homeNo,String bedroom,String bathroom,String area,String location,String price,String property,String service,String photo,Model model){
+    public String viewHomes(@RequestParam MultipartFile file,String inputHomeNo,String inputNo_of_Bedroom,String inputNo_of_Bathroom,String inputArea,String inputLocation,String inputPrice,String inputProperty,String inputService,String photo,Model model){
 
-        homeService.saveHomeToDB(file,homeNo,bedroom,bathroom,area,location,price,property,service,photo);
-        model.addAttribute("home",new Home());
+//        homeService.saveHomeToDB(file,homeNo,bedroom,bathroom,area,location,price,property,service,photo);
+        Home home=new Home();
+        home.setHomeNo(inputHomeNo);
+        home.setBedRoom(inputNo_of_Bedroom);
+        home.setBathRoom(inputNo_of_Bathroom);
+        home.setArea(inputArea);
+        home.setLocation(inputLocation);
+        home.setPrice(inputPrice);
+        home.setProperty(inputProperty);
+        home.setService(inputService);
+        homeDao.save(home);
+//        model.addAttribute("home",new Home());
         return "redirect:/homes";
     }
 

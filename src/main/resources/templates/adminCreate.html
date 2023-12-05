@@ -8,41 +8,41 @@
 <body>
 <div th:replace="adminView::navbar"></div><br>
 <div>
-    <form:form action="/adminCreate" method="post" enctype="multipart/form-data" modelAttribute="home">
+    <form th:action="@{/adminCreate}" method="post" enctype="multipart/form-data" modelAttribute="home">
         <div class="container col-md-6 offset-md-3">
             <h2 class="col-md-6 offset-md-3">Admin Create</h2>
 
             <div class="form-group col-md-6">
-                <label for="inputHomeNo.">Home No.</label>
-                <input type="text" class="form-control" id="inputHomeNo." field="homeNo">
+                <label for="inputHomeNo.">Home Number</label>
+                <input type="text" class="form-control" id="inputHomeNo." name="inputHomeNo">
             </div>
 
             <div class="form-group col-md-6">
-                <label for="inputNo.of.Bedroom">No.of.Bedroom</label>
-                <input type="text" class="form-control" id="inputNo.of.Bedroom" field="bedroom">
+                <label for="inputNo_of_Bedroom">Number of Bedroom</label>
+                <input type="text" class="form-control" id="inputNo_of_Bedroom" name="inputNo_of_Bedroom">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputNo.of.Bathroom">No.of.Bathroom</label>
-                <input type="text" class="form-control" id="inputNo.of.Bathroom" field="bathroom">
+                <label for="inputNo_of_Bathroom">Number of Bathroom</label>
+                <input type="text" class="form-control" id="inputNo_of_Bathroom" name="inputNo_of_Bathroom">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputArea">Area</label>
-                <input type="text" class="form-control" id="inputArea" field="area">
+                <input type="text" class="form-control" id="inputArea" name="inputArea">
             </div>
 
             <div class="form-group col-md-6">
                 <label for="inputLocation">Location</label>
-                <input type="text" class="form-control" id="inputLocation" field="location">
+                <input type="text" class="form-control" id="inputLocation" name="inputLocation">
             </div>
 
             <div class="form-group col-md-6">
                 <label for="inputPrice">Price</label>
-                <input type="text" class="form-control" id="inputPrice" field="price">
+                <input type="text" class="form-control" id="inputPrice" name="inputPrice">
             </div>
 
             <div class="form-group col-md-6">
                 <label for="inputProperty">Home type</label>
-                <select id="inputProperty" class="form-control" field="property">
+                <select id="inputProperty" class="form-control" name="inputProperty">
                     <option selected>Type...</option>
                     <option>Apartment</option>
                     <option>Villa</option>
@@ -53,7 +53,7 @@
 
             <div class="form-group col-md-6">
                 <label for="inputService">Service</label>
-                <select id="inputService" class="form-control" field="service">
+                <select id="inputService" class="form-control" name="inputService">
                     <option selected>Type...</option>
                     <option>Buy</option>
                     <option>Rent</option>
@@ -62,12 +62,12 @@
 
             <div class="form-group">
                 <label for="customFile">Photo</label>
-                <input type="file" name="file" class="form-control-file" id="customFile" field="photo">
+                <input type="file" name="file" class="form-control-file" id="customFile">
             </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
-    </form:form>
+    </form>
 </div>
 
 <div th:replace="adminView::footer"></div>
