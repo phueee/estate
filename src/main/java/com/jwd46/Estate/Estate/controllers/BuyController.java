@@ -1,6 +1,7 @@
 package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.Service.UserService;
+import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,39 @@ public class BuyController {
             model.addAttribute("title", "Rent");
             return "rent.html";
         }
+
+
         @GetMapping("/rentlogin")
     public String login(Model model){
             model.addAttribute("title", "Rent");
             return "rentlogin";
         }
 
+
     @PostMapping("/rentlogin")
     public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session){
+        User user = userService.login(email,password);
+
+        if (user == null) {
+            model.addAttribute("error","error");
+            return "rentlogin";
+        }
+        else {
+            session.setAttribute("userEmail", user.getUserEmail());
+            model.addAttribute("Home", new Home());
+            return "rent";
+        }
+    }
+
+
+    @GetMapping("/buylogin")
+    public String showBuy(Model model){
+        model.addAttribute("title", "Buy");
+        return "buylogin";
+    }
+
+    @PostMapping("/buylogin")
+    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session){
         User user = userService.login(email,password);
 
         if (user == null) {
@@ -41,8 +67,8 @@ public class BuyController {
         }
         else {
             session.setAttribute("userEmail", user.getUserEmail());
-
-            return "rent";
+            model.addAttribute("Home", new Home());
+            return "buy";
         }
     }
 
