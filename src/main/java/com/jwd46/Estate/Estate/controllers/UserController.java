@@ -2,6 +2,8 @@ package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password) {
+    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password, HttpServletResponse response,HttpSession session) {
         User user = new User();
         user.setUserName(name);
         user.setUserEmail(email);
@@ -36,6 +38,10 @@ public class UserController {
             model.addAttribute("error", "Please fill required informations!");
             return "signup";
         } else {
+            session.setAttribute("userEmail", user.getUserEmail());
+            Cookie ck=new Cookie("email",email);
+            ck.setMaxAge(60*60*24);
+            response.addCookie(ck);
             return "index";
         }
     }
@@ -53,6 +59,7 @@ public class UserController {
         user.setUserName(userName);
         dao.save(user);
         return "redirect:/user";
+
     }
 
 
