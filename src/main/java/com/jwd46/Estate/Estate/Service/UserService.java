@@ -14,4 +14,8 @@ public class UserService {
         return userDao.findByEmailAndPassword(email, password);
     }
 
+    public void deleteUser(int userId){
+        userDao.deleteById(userId);
+    }
+
 }

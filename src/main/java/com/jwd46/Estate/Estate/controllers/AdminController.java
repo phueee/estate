@@ -58,12 +58,7 @@ public class AdminController {
     }
 
 
-    @GetMapping("/homes")
-    public String viewHomes (Model model){
-        List<Home> homes=homeDao.findAll();
-        model.addAttribute("homes", homes);
-        return "homes";
-    }
+
     @PostMapping("/adminCreate")
     public String viewHomes(@RequestParam MultipartFile file,String inputHomeNo,String inputNo_of_Bedroom,String inputNo_of_Bathroom,String inputArea,String inputLocation,String inputPrice,String inputProperty,String inputService,String photo,Model model){
 
@@ -89,6 +84,10 @@ public class AdminController {
         return "user";
     }
 
-
+    @RequestMapping("/adminEdit")
+    public String homeEdit(Model model){
+        model.addAttribute("title","adminEdit");
+        return "adminEdit";
+    }
 
 }
