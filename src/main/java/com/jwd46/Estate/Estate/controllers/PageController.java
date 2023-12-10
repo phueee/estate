@@ -1,5 +1,7 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,16 +53,6 @@ public class PageController {
         return "property/villadetail";
     }
 
-    @GetMapping("Buy")
-    public String viewBuy(Model model){
-        model.addAttribute("title","Buyview");
-        return "service/Buy.html";
-    }
-    @GetMapping("Rent")
-    public String viewRent(Model model){
-        model.addAttribute("title","Rentview");
-        return "service/Rent.html";
-    }
 
     @GetMapping("userdetail")
     public String viewUserdetail(Model model){

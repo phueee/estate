@@ -40,20 +40,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user")
-    public String User(Model model){
-        List<User> users=dao.findAll();
-        model.addAttribute("users",users);
-        return "user";
-    }
 
-    @PostMapping("/user")
-    public String User(Model model, @RequestParam String userName){
-        User user=new User();
-        user.setUserName(userName);
-        dao.save(user);
-        return "redirect:/user";
-    }
 
 
 }

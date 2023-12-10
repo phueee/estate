@@ -22,7 +22,6 @@
         <th scope="col">Home type</th>
         <th scope="col">Service</th>
         <th scope="col">Photo</th>
-        <th scope="col">Create</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
 
@@ -40,8 +39,10 @@
         <td th:text="${home.price}"></td>
         <td th:text="${home.property}"></td>
         <td th:text="${home.service}"></td>
-        <td th:text="${home.photo}"></td>
-        <td><a  ></a>Create</td>
+<!--        <td th:text="${home.photo}"></td>-->
+        <td>
+            <img alt="" th:src="*{'data:photo/jpg;base64,'+{home.photo}}">
+        </td>
         <td><a  >Edit</a></td>
         <td><a  >Delete</a></td>
     </tr>
