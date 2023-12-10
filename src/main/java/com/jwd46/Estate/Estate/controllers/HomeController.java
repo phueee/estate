@@ -16,12 +16,12 @@ public class HomeController {
     HomeDao homeDao;
 
 
-    @GetMapping("/homes")
-    public String viewHomes (Model model){
-        List<Home> homes=homeDao.findAll();
-        model.addAttribute("homes", homes);
-        return "homes";
-    }
+//    @GetMapping("/homes")
+//    public String viewHomes (Model model){
+//        List<Home> homes=homeDao.findAll();
+//        model.addAttribute("homes", homes);
+//        return "homes";
+//    }
 
 
     @GetMapping("/delete/home/{homeId}")
@@ -30,8 +30,6 @@ public class HomeController {
         return "redirect:/homes";
 
     }
-
-
 
      @GetMapping("/adminEdit/home/{homeId}")
     public ModelAndView editPage(@PathVariable("homeId") int homeId){
