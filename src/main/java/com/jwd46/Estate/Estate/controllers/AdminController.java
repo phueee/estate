@@ -85,7 +85,7 @@ public class AdminController {
             return "redirect:/";
         } else {
             model.addAttribute("homeList", homes);
-            return "homes";
+            return "redirect:/homes";
         }
     }
 
