@@ -82,7 +82,7 @@ public class AdminController {
         List<Home> homes = homeDao.findAll();
         Admin admin = (Admin) session.getAttribute("admin");
         if (admin != null) {
-            model.addAttribute("homes", homes);
+            model.addAttribute("homes", homes) ;
             return "homes";
         } else {
             return "redirect:/";

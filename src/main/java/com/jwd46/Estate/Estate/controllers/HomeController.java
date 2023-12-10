@@ -33,13 +33,11 @@ public class HomeController {
     }
 
 
-
      @GetMapping("/adminEdit/home/{homeId}")
     public ModelAndView editPage(@PathVariable("homeId") int homeId){
         Home home=homeDao.findById(homeId).orElseThrow();
         return new ModelAndView("adminEdit","homeBean",home);
   }
-
 
 //
 //    @GetMapping("/adminEdit/{homeId}")
