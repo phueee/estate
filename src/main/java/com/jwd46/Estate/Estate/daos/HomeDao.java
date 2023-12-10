@@ -6,8 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface HomeDao extends JpaRepository<Home,Integer> {
 
 
+    List<Home> findAllByProperty(String name);
+
+    List<Home> findByService(String name);
+
+    List<Home> findAllByPropertyByAppartment(String name);
 }
