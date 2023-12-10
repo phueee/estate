@@ -20,6 +20,7 @@ public class HomeController {
     public String viewHomes (Model model){
         List<Home> homes=homeDao.findAll();
         model.addAttribute("homes", homes);
+        System.out.println(homes);
         return "homes";
     }
 
