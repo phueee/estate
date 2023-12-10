@@ -28,7 +28,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="home : ${homes}">
+    <tr th:each="home : ${homeList}">
 
         <td th:text="${home.homeId}"></td>
         <td th:text="${home.homeNo}"></td>
@@ -41,7 +41,7 @@
         <td th:text="${home.service}"></td>
 <!--        <td th:text="${home.photo}"></td>-->
         <td>
-            <img alt="" th:src="*{'data:photo/jpg;base64,'+{home.photo}}">
+            <img alt="" th:src="'data:photo/jpg;base64,'+${home.photo}" size="100px" width="100px">
         </td>
         <td><a  >Edit</a></td>
         <td><a  >Delete</a></td>

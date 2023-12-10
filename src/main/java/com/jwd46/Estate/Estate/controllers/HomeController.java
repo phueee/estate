@@ -16,51 +16,34 @@ public class HomeController {
     HomeDao homeDao;
 
 
-    @GetMapping("/homes")
-    public String viewHomes (Model model){
-        List<Home> homes=homeDao.findAll();
-        model.addAttribute("homes", homes);
-        System.out.println(homes);
-        return "homes";
-    }
-
-
-    @GetMapping("/delete/home/{homeId}")
-    public String deleteHome(@PathVariable("homeId") int homeId){
-        homeDao.deleteById(homeId);
-        return "redirect:/homes";
-
-    }
+//    @GetMapping("/homes")
+//    public String viewHomes (Model model){
+//        List<Home> homes=homeDao.findAll();
+//        model.addAttribute("homes", homes);
+//        System.out.println(homes);
+//        return "home";
+//    }
 
 
 
-     @GetMapping("/adminEdit/home/{homeId}")
-    public ModelAndView editPage(@PathVariable("homeId") int homeId){
-        Home home=homeDao.findById(homeId).orElseThrow();
-        return new ModelAndView("adminEdit","homeBean",home);
-  }
 
 
 //
-//    @GetMapping("/adminEdit/{homeId}")
-//    public ModelAndView editForm(@PathVariable("homeId") int homeId) {
-//        Home home = homeDao.findById(homeId).orElse(null);
-//        ModelAndView modelAndView = new ModelAndView("/adminEdit");
-//        modelAndView.addObject("home", home);
-//        return modelAndView;
-//    }
-//
-//    @PostMapping("/adminEdit")
-//    public String home(@ModelAttribute Home updatedHome) {
-//        homeDao.save(updatedHome);
-//        return "redirect:/homes";
-//    }
+    @GetMapping("/adminEdit/{homeId}")
+    public ModelAndView editForm(@PathVariable("homeId") int homeId) {
+        Home home = homeDao.findById(homeId).orElse(null);
+        ModelAndView modelAndView = new ModelAndView("/adminEdit");
+        modelAndView.addObject("home", home);
+        return modelAndView;
+    }
 
-    @PostMapping("/home/update")
-    public String updateHome(@ModelAttribute("homeBean") Home home){
-        homeDao.save(home);
+    @PostMapping("/adminEdit")
+    public String home(@ModelAttribute Home updatedHome) {
+        homeDao.save(updatedHome);
         return "redirect:/homes";
     }
+
+
 
 
 }
