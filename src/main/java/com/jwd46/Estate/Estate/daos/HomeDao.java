@@ -16,5 +16,4 @@ public interface HomeDao extends JpaRepository<Home,Integer> {
 
     List<Home> findByService(String name);
 
-    List<Home> findAllByPropertyByAppartment(String name);
 }

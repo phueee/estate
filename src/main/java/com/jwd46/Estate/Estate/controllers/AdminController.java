@@ -57,7 +57,7 @@ public class AdminController {
     public String createHome(Model model, HttpSession session) {
         model.addAttribute("title", "adminCreate");
         Admin admin = (Admin) session.getAttribute("admin");
-        if (admin != null) {
+        if (admin == null) {
             return "adminCreate";
         } else {
             return "redirect:/";
@@ -81,11 +81,11 @@ public class AdminController {
     public String viewHomes(HttpSession session,Model model) {
         List<Home> homes = homeDao.findAll();
         Admin admin = (Admin) session.getAttribute("admin");
-        if (admin != null) {
-            model.addAttribute("homes", homes) ;
-            return "homes";
-        } else {
+        if (admin == null) {
             return "redirect:/";
+        } else {
+            model.addAttribute("homeList", homes);
+            return "homes";
         }
     }
 
