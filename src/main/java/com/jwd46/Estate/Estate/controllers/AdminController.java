@@ -57,7 +57,7 @@ public class AdminController {
     public String createHome(Model model, HttpSession session) {
         model.addAttribute("title", "adminCreate");
         Admin admin = (Admin) session.getAttribute("admin");
-        if (admin == null) {
+        if (admin != null) {
             return "adminCreate";
         } else {
             return "redirect:/";
