@@ -1,6 +1,7 @@
 package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.Service.UserService;
+import com.jwd46.Estate.Estate.models.Admin;
 import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
 import jakarta.servlet.http.HttpSession;
@@ -15,41 +16,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BuyController {
     @Autowired
     UserService userService;
-    @GetMapping("buy")
-    public String viewBuy(Model model) {
-        model.addAttribute("title", "Buy");
-        return "buy.html";
-    }
-
-        @GetMapping("rent")
-        public String viewRent(Model model) {
-            model.addAttribute("title", "Rent");
-            return "rent.html";
-        }
 
 
-        @GetMapping("/rentlogin")
-    public String login(Model model){
-            model.addAttribute("title", "Rent");
-            return "rentlogin";
-        }
+
+//    @GetMapping("/rent")
+//    public String viewRent(Model model){
+//        model.addAttribute("title","Rentview");
+//        return "/service/rent";
+//    }
 
 
-    @PostMapping("/rentlogin")
-    public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session){
-        User user = userService.login(email,password);
-
-        if (user == null) {
-            model.addAttribute("error","error");
-            return "rentlogin";
-        }
-        else {
-            session.setAttribute("userEmail", user.getUserEmail());
-            model.addAttribute("Home", new Home());
+    @GetMapping("/rent")
+    public String login(Model model, HttpSession session){
+//            model.addAttribute("title", "Rent");
+           User user= (User) session.getAttribute("userEmail");
+            if(user!=null){
             return "rent";
-        }
+        }else {
+                return "rentlogin";
+            }
     }
 
+    @PostMapping("/rent")
+    public String rentDetail(@RequestParam String homeNo, String bedroom,String bathroom,String homeArea,String homeLocation,String homePrice,String startDate,String endDate, Model model, HttpSession session){
+//        User user = userService.login(email,password);
+//
+//        if (user == null) {
+//            model.addAttribute("error","error");
+//            return "rentlogin";
+//        }
+//        else {
+
+//            session.setAttribute("userEmail", user.getUserEmail());
+          model.addAttribute("Home", new Home());
+          return "Rpayment ";
+
+    }
+    @GetMapping("/buy")
+    public String viewBuy(Model model, HttpSession session){
+//        model.addAttribute("title","Buyview");
+        User user= (User) session.getAttribute("userEmail");
+        if(user != null){
+            return "/service/buy";
+        }else {
+            return "login";
+        }
+    }
 
     @GetMapping("/buylogin")
     public String showBuy(Model model){

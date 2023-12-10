@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Service
@@ -19,30 +16,27 @@ public class HomeService {
     @Autowired
     HomeDao homeDao;
 
-//    public void saveHomeToDB(MultipartFile file,String homeNo,String bedroom,String bathroom,String area,String location,String price,String property,String service,String photo){
-//
-//       Home home=new Home();
-//       System.out.println(homeNo);
-//       home.setHomeNo(homeNo);
-//       home.setBedRoom(bedroom);
-//       home.setBathRoom(bathroom);
-//       home.setArea(area);
-//       home.setLocation(location);
-//       home.setPrice(price);
-//       home.setProperty(property);
-//       home.setService(service);
-//       String fileName=StringUtils.cleanPath(file.getOriginalFilename());
-//       if (fileName.contains("..")){
-//           System.out.println("not a valid file");
-//       }
-//        try {
-//            home.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        homeDao.save(home);
-//    }
-
-
+    public void saveHomeToDB(MultipartFile file, String homeNo, String bedRoom, String bathRoom, String area,String location,String price,String property,String service,String photo) {
+        Home home=new Home();
+        home.setHomeNo(homeNo);
+        home.setBedRoom(bedRoom);
+        home.setBathRoom(bathRoom);
+        home.setArea(area);
+        home.setLocation(location);
+        home.setPrice(price);
+        home.setProperty(property);
+        home.setService(service);
+        String fileName=StringUtils.cleanPath(file.getOriginalFilename());
+        if (fileName.contains("..")){
+            System.out.println("not a valid file");
+        }
+        try {
+            home.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        homeDao.save(home);
+    }
 
 }

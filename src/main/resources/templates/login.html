@@ -14,14 +14,14 @@
         <div class="con">
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>
-
+                <div th:if="${error1}">
+                    <div class="alert alert-danger">Invalid Email or Password</div>
+                </div>
                 <p style="color: #FFFFFF">Login to your account</p>
             </header>
 
             <br>
-            <div th:if="${error1}">
-                <div class="alert alert-danger">Invalid Email or Password</div>
-            </div>
+
             <div class="field-set">
 
                 <!--   user name -->

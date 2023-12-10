@@ -14,8 +14,8 @@
     <tr>
         <th scope="col">Home Id</th>
         <th scope="col">Home No</th>
-        <th scope="col">Number of Bedroom</th>
-        <th scope="col">Number of Bathroom</th>
+        <th scope="col">No.of.Bedroom</th>
+        <th scope="col">No.of.Bathroom</th>
         <th scope="col">Home Area</th>
         <th scope="col">Home Location</th>
         <th scope="col">Price</th>
@@ -39,9 +39,12 @@
         <td th:text="${home.price}"></td>
         <td th:text="${home.property}"></td>
         <td th:text="${home.service}"></td>
-        <td th:text="${home.photo}"></td>
-        <td><a th:href="@{/adminEdit/home/{homeId}(homeId=${home.homeId})}"><button class="btn btn-danger" type="button">Edit</button></a></td>
-        <td><a th:href="@{/delete/home/{homeId}(homeId=${home.homeId})}"><button class="btn btn-danger" type="button">Delete</button></a></td>
+<!--        <td th:text="${home.photo}"></td>-->
+        <td>
+            <img alt="" th:src="*{'data:photo/jpg;base64,'+{home.photo}}">
+        </td>
+        <td><a  >Edit</a></td>
+        <td><a  >Delete</a></td>
     </tr>
     </tbody>
 </table>
