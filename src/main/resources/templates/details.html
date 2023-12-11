@@ -12,6 +12,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th scope="col">Id</th>
             <th scope="col">User Id</th>
             <th scope="col">Home Id</th>
             <th scope="col">Home No</th>
@@ -22,6 +23,17 @@
         </tr>
         </thead>
         <tbody>
+        <tr th:each="payment : ${payments}">
+
+            <td th:text="${payment.Id}"></td>
+            <td th:text="${payment.userId}"></td>
+            <td th:text="${payment.homeId}"></td>
+            <td th:text="${payment.homeNo}"></td>
+            <td th:text="${payment.userName}"></td>
+            <td th:text="${payment.amount}"></td>
+            <td th:text="${payment.date}"></td>
+            <td th:text="${payment.payment}"></td>
+        </tr>
         </tbody>
     </table>
 

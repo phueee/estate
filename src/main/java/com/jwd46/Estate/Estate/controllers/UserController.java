@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -42,12 +43,26 @@ public class UserController {
         }
     }
 
+//    @GetMapping("/user")
+//    public String User(Model model){
+//        List<User> users=dao.findAll();
+//        model.addAttribute("users",users);
+//        return "user";
+//    }
+
     @GetMapping("/user")
-    public String User(Model model){
+    public String User (Model model){
         List<User> users=dao.findAll();
-        model.addAttribute("users",users);
+        List<User> listUser = new ArrayList<>();
+        for (User user : users){
+            if(user.isActive()==true){
+                listUser.add(user);
+            }
+        }
+        model.addAttribute("users",  listUser);
         return "user";
     }
+
 
     @PostMapping("/user")
     public String User(Model model, @RequestParam String userName){
@@ -72,15 +87,22 @@ public class UserController {
 //        return "user";
 //     }
 
+//
+//    @GetMapping("/delete/user/{userId}")
+//    public String deleteUser(@PathVariable("userId") int userId){
+//        dao.deleteById(userId);
+//        return "redirect:/user";
+//
+//    }
+
 
     @GetMapping("/delete/user/{userId}")
-    public String deleteUser(@PathVariable("userId") int userId){
-        dao.deleteById(userId);
+    public String deleteUser(@PathVariable("userId") int userId) {
+        User user = dao.findById(userId).orElseThrow();
+        user.setActive(false);
+        dao.save(user);
         return "redirect:/user";
-
     }
-
-
 
     }
 

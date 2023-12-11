@@ -72,6 +72,7 @@ public class AdminController {
         home.setPrice(inputPrice);
         home.setProperty(inputProperty);
         home.setService(inputService);
+        home.setStatus(1);
         homeDao.save(home);
 //        model.addAttribute("home",new Home());
         return "redirect:/homes";

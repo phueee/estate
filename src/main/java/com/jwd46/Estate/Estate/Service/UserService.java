@@ -5,6 +5,8 @@ import com.jwd46.Estate.Estate.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -18,4 +20,8 @@ public class UserService {
         userDao.deleteById(userId);
     }
 
+
+    public List<User> getActiveUser() {
+        return userDao.findByActiveTrue();
+    }
 }
