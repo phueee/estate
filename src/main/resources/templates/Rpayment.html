@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form:form action="" method="post"  modelAttribute="User">
+<form:form th:action="@{/}" method="post"  modelAttribute="User">
     <div class="container col-md-6 offset-md-3">
         <h2 class="col-md-6 offset-md-3">Payment</h2>
         <div class="form-group col-md-6">
@@ -15,12 +15,12 @@
 
         <div class="form-group col-md-6">
             <label for="inputHomeId" disabled="homeId">HomeId</label>
-            <input type="hidden" class="form-control" id="inputHomeId" field="homeId">
+            <input type="hidden" class="form-control" id="inputHomeId" field="home.homeId">
         </div>
 
         <div class="form-group col-md-6">
             <label for="inputHomeNo.">Home No.</label>
-            <input type="text" class="form-control" id="inputHomeNo." field="homeNo">
+            <input type="text" class="form-control" id="inputHomeNo." field="home.homeNo">
         </div>
 
         <div class="form-group col-md-6">
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputAmount">Price</label>
-            <input type="text" class="form-control" id="inputAmount" field="price">
+            <input type="text" class="form-control" id="inputAmount" field="home.price">
         </div>
         <div class="form-group col-md-6">
             <label for="inputDate1">Start Date</label>
