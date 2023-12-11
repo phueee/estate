@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container-col-md-6 offset-md-3">
-    <form:form action="/index" method="post" modelAttribute="Home">
+    <form:form action="/rent" method="post" modelAttribute="Home">
 
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Rent Detail</h2>
         <div class="row mb-4">
@@ -20,29 +20,29 @@
             <div class="col-md-2"></div>
             <label for="homeID" class="col-md-2 col-form-label">Home ID</label>
             <div class="col-md-4">
-                <input type="text" class="form-control"  id="homeID" field="homeId">
+                <input type="text" class="form-control"  id="homeID" field="homeId" name="homeID">
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="homeno" class="col-md-2 col-form-label">Home No.</label>
+            <label for="homeNo" class="col-md-2 col-form-label">Home Number</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeno"  field="homeNo">
+                <input type="text" class="form-control" id="homeNo"  field="homeNo" name="homeNo">
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="no.ofbedroom" class="col-md-2 col-form-label">No.of Bedroom</label>
+            <label for="bedroom" class="col-md-2 col-form-label">Number of Bedroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="no.ofbedroom" field="bedRoom">
+                <input type="text" class="form-control" id="bedroom" field="bedRoom" name="bedroom">
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="no.ofbathroom" class="col-md-2 col-form-label">No.of Bathroom</label>
+            <label for="bathroom" class="col-md-2 col-form-label">Number of Bathroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="no.ofbathroom" field="bathRoom">
+                <input type="text" class="form-control" id="bathroom" field="bathRoom" name="bathroom">
             </div>
         </div>
 
@@ -50,7 +50,7 @@
             <div class="col-md-2"></div>
             <label for="homeArea" class="col-md-2 col-form-label">Area</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeArea" field="area">
+                <input type="text" class="form-control" id="homeArea" field="area" name="homeArea">
             </div>
         </div>
 
@@ -58,7 +58,7 @@
             <div class="col-md-2"></div>
             <label for="homeLocation" class="col-md-2 col-form-label">Location</label>
             <div class="col-md-4">
-                <input type="location" class="form-control" id="homeLocation" field="location">
+                <input type="location" class="form-control" id="homeLocation" field="location" name="homeLocation">
             </div>
         </div>
 
@@ -66,24 +66,24 @@
             <div class="col-md-2"></div>
             <label for="homePrice" class="col-md-2 col-form-label">Price</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homePrice" field="price">
+                <input type="text" class="form-control" id="homePrice" field="price" homePrice>
             </div>
         </div>
 
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="start date" class="col-md-2 col-form-label">Start Rent Date</label>
+            <label for="startDate" class="col-md-2 col-form-label">Start Rent Date</label>
             <div class="col-md-4">
-                <input type="date" class="form-control" id="start date">
+                <input type="date" class="form-control" id="startDate" name="startDate">
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="end date" class="col-md-2 col-form-label">End Rent Date</label>
+            <label for="endDate" class="col-md-2 col-form-label">End Rent Date</label>
             <div class="col-md-4">
-                <input type="date" class="form-control" id="end date">
+                <input type="date" class="form-control" id="endDate" name="endDate">
             </div>
         </div>
 
@@ -91,7 +91,7 @@
             <div class="col-md-4"></div>
 
             <div class="col-md-4">
-                <button type="button" class="btn btn-danger "  onclick="location.href='Rpayment'">Rent</button>
+                <button type="button" class="btn btn-danger "  onclick="location.href=''">Rent</button>
             </div>
 
         </div>

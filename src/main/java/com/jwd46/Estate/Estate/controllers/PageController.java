@@ -1,12 +1,20 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.daos.HomeDao;
+import com.jwd46.Estate.Estate.models.Home;
+import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class PageController {
-
+@Autowired
+     HomeDao homeDao;
     @GetMapping("/")
     public String viewPage(Model model) {
         model.addAttribute("title", "Home");
@@ -15,8 +23,10 @@ public class PageController {
     }
     @GetMapping("view")
     public String viewAbout(Model model) {
+        List<Home> homes=homeDao.findAll();
+        model.addAttribute("homes", homes);
         model.addAttribute("title", "About");
-        return "view.html";
+        return "view";
     }
     @GetMapping("appartment")
     public String viewAppartment(Model model) {
@@ -51,16 +61,6 @@ public class PageController {
         return "property/villadetail";
     }
 
-    @GetMapping("Buy")
-    public String viewBuy(Model model){
-        model.addAttribute("title","Buyview");
-        return "service/Buy.html";
-    }
-    @GetMapping("Rent")
-    public String viewRent(Model model){
-        model.addAttribute("title","Rentview");
-        return "service/Rent.html";
-    }
 
     @GetMapping("userdetail")
     public String viewUserdetail(Model model){
