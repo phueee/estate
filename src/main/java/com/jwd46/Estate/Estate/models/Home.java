@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "homes")
@@ -23,7 +28,16 @@ public class Home {
     private String price;
     private String property;
     private String service;
+    private int status;
+    private boolean active = true;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String photo;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<User> users;
+
+//    @OneToMany
+//    private Payment payment;
+
 }
