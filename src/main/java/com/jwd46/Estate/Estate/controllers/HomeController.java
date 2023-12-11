@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,34 +17,57 @@ public class HomeController {
     HomeDao homeDao;
 
 
+    @GetMapping("/homes")
+    public String viewHomes (Model model){
+        List<Home> homes=homeDao.findAll();
+        List<Home> listHome = new ArrayList<>();
+        for (Home home : homes){
+            if(home.isActive()==true){
+                listHome.add(home);
+            }
+        }
+        model.addAttribute("homes", listHome);
+        return "homes";
+    }
+
 //    @GetMapping("/homes")
-//    public String viewHomes (Model model){
+//    public String viewHomes(Model model){
 //        List<Home> homes=homeDao.findAll();
 //        model.addAttribute("homes", homes);
-//        System.out.println(homes);
-//        return "home";
+//        return "homes";
 //    }
 
 
-
-
-
 //
-    @GetMapping("/adminEdit/{homeId}")
-    public ModelAndView editForm(@PathVariable("homeId") int homeId) {
-        Home home = homeDao.findById(homeId).orElse(null);
-        ModelAndView modelAndView = new ModelAndView("/adminEdit");
-        modelAndView.addObject("home", home);
-        return modelAndView;
-    }
+//    @GetMapping("/delete/home/{homeId}")
+//    public String deleteHome(@PathVariable("homeId") int homeId){
+//        homeDao.deleteById(homeId);
+//        return "redirect:/homes";
+//
+//    }
 
-    @PostMapping("/adminEdit")
-    public String home(@ModelAttribute Home updatedHome) {
-        homeDao.save(updatedHome);
+    @GetMapping("/delete/home/{homeId}")
+    public String deleteHome(@PathVariable("homeId") int homeId) {
+        Home home = homeDao.findById(homeId).orElseThrow();
+        home.setActive(false);
+        homeDao.save(home);
         return "redirect:/homes";
     }
 
 
+
+     @GetMapping("/adminEdit/home/{homeId}")
+    public ModelAndView editPage(@PathVariable("homeId") int homeId){
+        Home home=homeDao.findById(homeId).orElseThrow();
+        return new ModelAndView("adminEdit","homeBean",home);
+  }
+
+
+    @PostMapping("/home/update")
+    public String updateHome(@ModelAttribute("homeBean") Home home){
+        homeDao.save(home);
+        return "redirect:/homes";
+    }
 
 
 }
