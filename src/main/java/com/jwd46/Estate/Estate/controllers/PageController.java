@@ -17,6 +17,7 @@ public class PageController {
      HomeDao homeDao;
     @GetMapping("/")
     public String viewPage(Model model) {
+
         model.addAttribute("title", "Home");
 
         return "index";
@@ -30,22 +31,30 @@ public class PageController {
     }
     @GetMapping("appartment")
     public String viewAppartment(Model model) {
+        List<Home> homes=homeDao.findAllByProperty("Appartment");
+        model.addAttribute("homes", homes);
         model.addAttribute("title", "Appartment");
         return "property/appartment.html";
     }
     @GetMapping("villa")
     public String viewVilla(Model model){
+        List<Home> homes=homeDao.findAllByProperty("Villa");
+        model.addAttribute("homes", homes);
         model.addAttribute("title","Villa");
         return "property/villa.html";
     }
     @GetMapping("home")
     public String viewHome(Model model){
+        List<Home> homes=homeDao.findAllByProperty("House");
+        model.addAttribute("homes", homes);
         model.addAttribute("title","Home");
         return "property/home.html";
     }
 
     @GetMapping("office")
     public String viewOfficd(Model model){
+        List<Home> homes=homeDao.findAllByProperty("Office");
+        model.addAttribute("homes", homes);
         model.addAttribute("title","Office");
         return "property/office.html";
     }
