@@ -17,7 +17,7 @@ public class PageController {
      HomeDao homeDao;
     @GetMapping("/")
     public String viewPage(Model model) {
-        
+
         model.addAttribute("title", "Home");
 
         return "index";
