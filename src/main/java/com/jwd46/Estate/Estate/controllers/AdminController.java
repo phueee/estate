@@ -7,6 +7,7 @@ import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.Admin;
 import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,12 +41,14 @@ public class AdminController {
     }
 
     @PostMapping("/adminlogin")
-    public String showSignPost(Model model, @RequestParam String email, String password, HttpSession session) {
+    public String showSignPost(Model model, @RequestParam String email, String password, HttpSession session, HttpServletRequest request) {
         Admin admin = new Admin();
         admin.setEmail(email);
         admin.setPassword(password);
         if (admin.getEmail().equals("Phyoke Kya Ml@gmail.com") && admin.getPassword().equals("123123")) {
-            session.setAttribute("admin", admin);
+//            session.setAttribute("admin", admin);
+            request.getSession().setAttribute("admin",admin);
+
             return "adminView";
         } else {
             return "adminlogin";
@@ -54,9 +57,11 @@ public class AdminController {
     }
 
     @GetMapping("/adminCreate")
-    public String createHome(Model model, HttpSession session) {
+    public String createHome(Model model, HttpSession session, HttpServletRequest request) {
         model.addAttribute("title", "adminCreate");
-        Admin admin = (Admin) session.getAttribute("admin");
+//        Admin admin = (Admin) session.getAttribute("admin");
+        Admin admin = (Admin) request.getSession().getAttribute("admin");
+
         if (admin != null) {
             return "adminCreate";
         } else {
@@ -69,6 +74,7 @@ public class AdminController {
     public String adminView(Model model, HttpSession session) {
         model.addAttribute("title", "adminView");
         Admin admin = (Admin) session.getAttribute("admin");
+
         if (admin != null) {
             return "adminView";
         } else {
