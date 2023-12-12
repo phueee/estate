@@ -16,19 +16,19 @@ public class HomeController {
     @Autowired
     HomeDao homeDao;
 
-
-    @GetMapping("/homes")
-    public String viewHomes (Model model){
-        List<Home> homes=homeDao.findAll();
-        List<Home> listHome = new ArrayList<>();
-        for (Home home : homes){
-            if(home.isActive()==true){
-                listHome.add(home);
-            }
-        }
-        model.addAttribute("homes", listHome);
-        return "homes";
-    }
+//
+//    @GetMapping("/homes")
+//    public String viewHomes (Model model){
+//        List<Home> homes=homeDao.findAll();
+//        List<Home> listHome = new ArrayList<>();
+//        for (Home home : homes){
+//            if(home.isActive()==true){
+//                listHome.add(home);
+//            }
+//        }
+//        model.addAttribute("homes", listHome);
+//        return "homes";
+//    }
 
 //    @GetMapping("/homes")
 //    public String viewHomes(Model model){
