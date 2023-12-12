@@ -6,8 +6,7 @@
 </head>
 <body>
 <div th:replace="adminView::navbar"></div><br>
-
-<h2 class="col-md-2 offset-md-3 rounded-3" style="text-align: center;color: #0a0a0b;">Home Details</h2>
+<h2  style="text-align: center;color: #0a0a0b;">Home Details</h2>
 
 <div class="container" >
 <table class="table table-striped" >
@@ -22,6 +21,7 @@
         <th scope="col">Price</th>
         <th scope="col">Type</th>
         <th scope="col">Service</th>
+        <th scope="col">Status</th>
         <th scope="col">Photo</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -29,7 +29,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="home : ${homeList}">
+    <tr th:each="home : ${homes}">
 
         <td th:text="${home.homeId}"></td>
         <td th:text="${home.homeNo}"></td>
@@ -40,12 +40,13 @@
         <td th:text="${home.price}"></td>
         <td th:text="${home.property}"></td>
         <td th:text="${home.service}"></td>
+        <td th:text="${home.status}"></td>
 <!--        <td th:text="${home.photo}"></td>-->
         <td>
             <img alt="" th:src="'data:photo/jpg;base64,'+${home.photo}" size="100px" width="100px">
         </td>
-        <td><a  >Edit</a></td>
-        <td><a  >Delete</a></td>
+        <td><a  th:href="@{adminEdit/home/{homeId}(homeId=${home.homeId})}"><button class="btn btn-primary" type="button">Edit</button></a></td>
+        <td><a  th:href="@{/delete/home/{homeId}(homeId=${home.homeId})}"><button class="btn btn-danger" type="button">Delete</button></a></td>
     </tr>
     </tbody>
 </table>

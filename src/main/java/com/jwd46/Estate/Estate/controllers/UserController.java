@@ -80,20 +80,6 @@ public class UserController {
 
 
 
-//
-//    @DeleteMapping("/delete/{userId}")
-//    public String delete(@PathVariable int userId){
-//        userService.deleteUser(userId);
-//        return "user";
-//     }
-
-//
-//    @GetMapping("/delete/user/{userId}")
-//    public String deleteUser(@PathVariable("userId") int userId){
-//        dao.deleteById(userId);
-//        return "redirect:/user";
-//
-//    }
 
 
     @GetMapping("/delete/user/{userId}")

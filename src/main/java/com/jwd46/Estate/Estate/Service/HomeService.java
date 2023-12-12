@@ -29,6 +29,7 @@ public class HomeService {
        home.setPrice(price);
        home.setProperty(property);
        home.setService(service);
+       home.setStatus(1);
        String fileName=StringUtils.cleanPath(file.getOriginalFilename());
        if (fileName.contains("..")){
            System.out.println("not a valid file");

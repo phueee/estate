@@ -2,9 +2,11 @@ package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.models.Home;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,12 +32,6 @@ public class HomeController {
 //        return "homes";
 //    }
 
-//    @GetMapping("/homes")
-//    public String viewHomes(Model model){
-//        List<Home> homes=homeDao.findAll();
-//        model.addAttribute("homes", homes);
-//        return "homes";
-//    }
 
 
 //
@@ -67,7 +63,10 @@ public class HomeController {
     public String updateHome(@ModelAttribute("homeBean") Home home){
         homeDao.save(home);
         return "redirect:/homes";
+//        return "redirect:/homes/view";
     }
+
+
 
 
 }
