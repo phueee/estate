@@ -65,7 +65,7 @@ public class BuyController {
 
     @GetMapping("/buylogin")
     public String showBuy(Model model){
-        model.addAttribute("title", "Buy");
+        model.addAttribute("Home",new Home());
         return "buylogin";
     }
 
