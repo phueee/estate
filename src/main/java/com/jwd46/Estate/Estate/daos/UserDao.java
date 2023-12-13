@@ -1,5 +1,6 @@
 package com.jwd46.Estate.Estate.daos;
 
+import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,6 @@ public interface  UserDao extends JpaRepository<User,Integer> {
    // User findByUserEmailAndUserPassword(String aaa,String vvv);
 
     List<User> findByActiveTrue();
+
+
 }

@@ -1,5 +1,6 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.Service.HomeService;
 import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.models.Home;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +16,21 @@ import java.util.List;
 public class HomeController {
     @Autowired
     HomeDao homeDao;
+    @Autowired
+    HomeService service;
 
-
-    @GetMapping("/homes")
-    public String viewHomes (Model model){
-        List<Home> homes=homeDao.findAll();
-        List<Home> listHome = new ArrayList<>();
-        for (Home home : homes){
-            if(home.isActive()==true){
-                listHome.add(home);
-            }
-        }
-        model.addAttribute("homes", listHome);
-        return "homes";
-    }
+//    @GetMapping("/homes")
+//    public String viewHomes (Model model){
+//        List<Home> homes=homeDao.findAll();
+//        List<Home> listHome = new ArrayList<>();
+//        for (Home home : homes){
+//            if(home.isActive()==true){
+//                listHome.add(home);
+//            }
+//        }
+//        model.addAttribute("homes", listHome);
+//        return "homes";
+//    }
 
 //    @GetMapping("/homes")
 //    public String viewHomes(Model model){
@@ -68,6 +70,19 @@ public class HomeController {
         homeDao.save(home);
         return "redirect:/homes";
     }
+
+    @GetMapping("/search")
+    public String search(){
+        return "view";
+    }
+
+    @PostMapping("/search")
+    public String searchHome(@RequestParam String property,String location) {
+        service.search(property, location);
+        return "redirect:/view";
+    }
+
+
 
 
 }
