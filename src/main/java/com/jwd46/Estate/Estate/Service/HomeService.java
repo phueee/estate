@@ -28,6 +28,7 @@ public class HomeService {
        home.setPrice(price);
        home.setProperty(property);
        home.setService(service);
+       home.setStatus(1);
        String fileName=StringUtils.cleanPath(file.getOriginalFilename());
        if (fileName.contains("..")){
            System.out.println("not a valid file");
@@ -41,9 +42,9 @@ public class HomeService {
     }
 
 
-//    public List<Home> getActiveHome() {
-//        return homeDao.findByActiveTrue();
-//    }
+    public List<Home> getActiveHome() {
+        return homeDao.findByActiveTrue();
+    }
 
     public Home search(String property,String location){
         return  homeDao.findByPropertyTypeAndLocation(property,location);

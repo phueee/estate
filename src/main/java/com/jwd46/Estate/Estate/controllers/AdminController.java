@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -71,9 +72,9 @@ public class AdminController {
     }
 
     @RequestMapping("adminView")
-    public String adminView(Model model, HttpSession session,HttpServletRequest request) {
+    public String adminView(Model model, HttpSession session) {
         model.addAttribute("title", "adminView");
-        Admin admin = (Admin) request.getSession().getAttribute("admin");
+        Admin admin = (Admin) session.getAttribute("admin");
 
         if (admin != null) {
             return "adminView";
@@ -84,16 +85,27 @@ public class AdminController {
     }
 
     @GetMapping("/homes")
-    public String viewHomes(HttpSession session,Model model,HttpServletRequest request) {
+    public String viewHomes(HttpSession session,Model model) {
         List<Home> homes = homeDao.findAll();
-        Admin admin = (Admin) request.getSession().getAttribute("admin");
-        if (admin == null) {
-            return "redirect:/";
-        } else {
-            model.addAttribute("homeList", homes);
-            return "homes";
+        List<Home> listHome = new ArrayList<>();
+        model.addAttribute("homes", listHome);
+        for (Home home : homes){
+            if(home.isActive()==true){
+                listHome.add(home);
+            }
         }
+        return "homes";
+//        Admin admin = (Admin) session.getAttribute("admin");
+//        if (admin == null) {
+//            return "redirect:/";
+//        } else {
+//
+//            return "homes";
+//        }
     }
+
+
+
 
 
    @PostMapping("/adminCreate")
@@ -101,59 +113,30 @@ public class AdminController {
        homeService.saveHomeToDB(file,homeNo,bedRoom,bathRoom,area,location,price,property,service,photo);
        return "redirect:/homes";
    }
-//        Home home = new Home();
-//        home.setHomeNo(inputHomeNo);
-//        home.setBedRoom(inputNo_of_Bedroom);
-//        home.setBathRoom(inputNo_of_Bathroom);
-//        home.setArea(inputArea);
-//        home.setLocation(inputLocation);
-//        home.setPrice(inputPrice);
-//        home.setProperty(inputProperty);
-//        home.setService(inputService);
-//        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//        if (fileName.contains("..")) {
-//            System.out.println("not a valid file");
-//        }
-//        try {
-//            home.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 //
-//        homeDao.save(home);
-//        model.addAttribute("home", new Home());
-//      Admin admin= (Admin) session.getAttribute("admin");
-//        if(admin!=null)   {
-//
-////        return "redirect:/homes";
-////        }else {
-////           return "redirect:/";
-////        }
+
+//    @RequestMapping("/user")
+//    public String viewUsers(Model model, HttpSession session) {
+//        List<User> users = userDao.findAll();
+//        model.addAttribute("users", users);
+//        Admin admin = (Admin) session.getAttribute("admin");
+//        if (admin != null) {
+//            return "user";
+//        } else {
+//            return "redirect:/";
+//        }
 //    }
-
-
-    @RequestMapping("/user")
-    public String viewUsers(Model model, HttpSession session) {
-        List<User> users = userDao.findAll();
-        model.addAttribute("users", users);
-        Admin admin = (Admin) session.getAttribute("admin");
-        if (admin != null) {
-            return "user";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    @PostMapping("/user")
-    public String User(Model model, @RequestParam String userName, HttpSession session) {
-        User user = new User();
-        user.setUserName(userName);
-        userDao.save(user);
-        Admin admin = (Admin) session.getAttribute("admin");
-        if (admin != null) {
-            return "redirect:/user";
-        } else {
-            return "redirect:/";
-        }
-    }
+//
+//    @PostMapping("/user")
+//    public String User(Model model, @RequestParam String userName, HttpSession session) {
+//        User user = new User();
+//        user.setUserName(userName);
+//        userDao.save(user);
+//        Admin admin = (Admin) session.getAttribute("admin");
+//        if (admin != null) {
+//            return "redirect:/user";
+//        } else {
+//            return "redirect:/";
+//        }
+//    }
 }
