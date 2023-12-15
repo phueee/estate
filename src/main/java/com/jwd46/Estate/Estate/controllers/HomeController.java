@@ -37,21 +37,21 @@ public class HomeController {
 
 
 
-//
-//    @GetMapping("/delete/home/{homeId}")
-//    public String deleteHome(@PathVariable("homeId") int homeId){
-//        homeDao.deleteById(homeId);
-//        return "redirect:/homes";
-//
-//    }
 
     @GetMapping("/delete/home/{homeId}")
-    public String deleteHome(@PathVariable("homeId") int homeId) {
-        Home home = homeDao.findById(homeId).orElseThrow();
-        home.setActive(false);
-        homeDao.save(home);
+    public String deleteHome(@PathVariable("homeId") int homeId){
+        homeDao.deleteById(homeId);
         return "redirect:/homes";
+
     }
+
+//    @GetMapping("/delete/home/{homeId}")
+//    public String deleteHome(@PathVariable("homeId") int homeId) {
+//        Home home = homeDao.findById(homeId).orElseThrow();
+//        home.setActive(false);
+//        homeDao.save(home);
+//        return "redirect:/homes";
+//    }
 
 
 
