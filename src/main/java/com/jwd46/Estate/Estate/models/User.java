@@ -33,25 +33,25 @@ public class User {
     private String userPassword;
     private boolean active = true;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_home",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "home_id")
-    )
-    private List<Home> homes1;
-
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Home> homes=new HashSet<>();
-
-    public Set <Home>getHome(){
-        return homes;
-    }
-
-    public void setHomes(Set<Home>homes){
-        this.homes=homes;
-    }
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_home",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "home_id")
+//    )
+//    private List<Home> homes1;
+//
+//
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private Set<Home> homes=new HashSet<>();
+//
+//    public Set <Home>getHome(){
+//        return homes;
+//    }
+//
+//    public void setHomes(Set<Home>homes){
+//        this.homes=homes;
+//    }
 
 //    @OneToMany
 //    private Payment payment;

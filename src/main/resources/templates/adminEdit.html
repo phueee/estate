@@ -7,7 +7,7 @@
 <body>
 <div th:replace="adminView::navbar"></div><br>
 <div class="col-md-6 offset-md-3">
-<form action="/home/update" method="post" th:object="${homeBean}">
+<form action="/home/update" method="post" th:object="${homeBean}" >
     <div>
         <h2 style="text-align: center">Admin Edit</h2>
         <div class="form-group col-md-6">
@@ -63,8 +63,8 @@
             </select>
         </div>
         <div>
-            <label for="exampleFormControlFile1">Photo</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" th:field="*{photo}">
+            <label for="photo">Photo</label>
+            <input type="file" class="form-control-file" id="photo" th:field="*{photo}">
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>

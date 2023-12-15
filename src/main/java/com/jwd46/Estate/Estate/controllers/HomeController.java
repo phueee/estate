@@ -8,9 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -34,21 +37,21 @@ public class HomeController {
 
 
 
-//
-//    @GetMapping("/delete/home/{homeId}")
-//    public String deleteHome(@PathVariable("homeId") int homeId){
-//        homeDao.deleteById(homeId);
-//        return "redirect:/homes";
-//
-//    }
 
     @GetMapping("/delete/home/{homeId}")
-    public String deleteHome(@PathVariable("homeId") int homeId) {
-        Home home = homeDao.findById(homeId).orElseThrow();
-        home.setActive(false);
-        homeDao.save(home);
+    public String deleteHome(@PathVariable("homeId") int homeId){
+        homeDao.deleteById(homeId);
         return "redirect:/homes";
+
     }
+
+//    @GetMapping("/delete/home/{homeId}")
+//    public String deleteHome(@PathVariable("homeId") int homeId) {
+//        Home home = homeDao.findById(homeId).orElseThrow();
+//        home.setActive(false);
+//        homeDao.save(home);
+//        return "redirect:/homes";
+//    }
 
 
 
@@ -59,14 +62,49 @@ public class HomeController {
   }
 
 
+
+
+
+//    @PostMapping("/home/update")
+//    public String updateHome(@ModelAttribute("homeBean") Home home,
+//                             @RequestParam("file") MultipartFile file) {
+//        if (!file.isEmpty()) {
+//            try {
+//                home.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        homeDao.save(home);
+//        return "redirect:/homes";
+//    }
+
+
+
     @PostMapping("/home/update")
-    public String updateHome(@ModelAttribute("homeBean") Home home){
+    public String updateHome(@ModelAttribute("homeBean") Home home,
+                             @RequestParam String photo){
+        home.setPhoto(photo);
         homeDao.save(home);
         return "redirect:/homes";
 //        return "redirect:/homes/view";
     }
 
-
+//    @PostMapping("/home/update")
+//    public String updateHome(@ModelAttribute("homeBean") Home home) {
+//        MultipartFile file = home.getPhotoFile();
+//        if (file != null && !file.isEmpty()) {
+//            try {
+//                home.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                // Handle the exception appropriately
+//            }
+//        }
+//        homeDao.save(home);
+//        return "redirect:/homes";
+//    }
 
 
 }
