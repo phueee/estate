@@ -20,7 +20,6 @@ public class HomeService {
     public void saveHomeToDB(MultipartFile file,String homeNo,String bedroom,String bathroom,String area,String location,String price,String property,String service,String photo){
 
        Home home=new Home();
-       System.out.println(homeNo);
        home.setHomeNo(homeNo);
        home.setBedRoom(bedroom);
        home.setBathRoom(bathroom);
@@ -46,10 +45,9 @@ public class HomeService {
     public List<Home> getActiveHome() {
         return homeDao.findByActiveTrue();
     }
-//
-//    public Home photo(int homeId ) {
-//
-//        return homeDao.findById(homeId );
-//    }
+
+    public List<Home> search(String property,String location){
+        return homeDao.findByPropertyAndLocation(property,location);
+    }
 
 }

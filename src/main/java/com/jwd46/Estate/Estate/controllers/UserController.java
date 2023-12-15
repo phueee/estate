@@ -2,6 +2,7 @@ package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.Service.UserService;
 import com.jwd46.Estate.Estate.daos.UserDao;
+import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,27 +51,27 @@ public class UserController {
 //        return "user";
 //    }
 
-    @GetMapping("/user")
-    public String User (Model model){
-        List<User> users=dao.findAll();
-        List<User> listUser = new ArrayList<>();
-        for (User user : users){
-            if(user.isActive()==true){
-                listUser.add(user);
-            }
-        }
-        model.addAttribute("users",  listUser);
-        return "user";
-    }
+//    @GetMapping("/user")
+//    public String User (Model model){
+//        List<User> users=dao.findAll();
+//        List<User> listUser = new ArrayList<>();
+//        for (User user : users){
+//            if(user.isActive()==true){
+//                listUser.add(user);
+//            }
+//        }
+//        model.addAttribute("users",  listUser);
+//        return "user";
+//    }
 
 
-    @PostMapping("/user")
-    public String User(Model model, @RequestParam String userName){
-        User user=new User();
-        user.setUserName(userName);
-        dao.save(user);
-        return "redirect:/user";
-    }
+//    @PostMapping("/user")
+//    public String User(Model model, @RequestParam String userName){
+//        User user=new User();
+//        user.setUserName(userName);
+//        dao.save(user);
+//        return "redirect:/user";
+//    }
 
     //@PostMapping("/delete")
     //public String delete(Model model, @RequestParam String userId){
@@ -89,6 +90,8 @@ public class UserController {
         dao.save(user);
         return "redirect:/user";
     }
+
+
 
     }
 
