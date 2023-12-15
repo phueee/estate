@@ -1,5 +1,6 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.Service.HomeService;
 import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
@@ -17,8 +18,29 @@ public class PageController {
      HomeDao homeDao;
     @GetMapping("/")
     public String viewPage(Model model) {
+        List<Home> homes= homeDao.findAll();
+        model.addAttribute("homesList", homes);
+        model.addAttribute("homesCount", homes.size());
+
+
+        List<Home> appartment= homeDao.findAllByProperty("Appartment");
+        model.addAttribute("homesList", appartment);
+        model.addAttribute("appartmentCount", appartment.size());
 
         model.addAttribute("title", "Home");
+
+        List<Home> villa= homeDao.findAllByProperty("Villa");
+        model.addAttribute("homesList", villa);
+        model.addAttribute("villaCount", villa.size());
+
+        List<Home> house= homeDao.findAllByProperty("House");
+        model.addAttribute("homesList", house);
+        model.addAttribute("houseCount", house.size());
+
+        List<Home> office= homeDao.findAllByProperty("Office");
+        model.addAttribute("homesList", office);
+        model.addAttribute("officeCount", office.size());
+
 
         return "index";
     }
@@ -40,6 +62,7 @@ public class PageController {
     public String viewVilla(Model model){
         List<Home> homes=homeDao.findAllByProperty("Villa");
         model.addAttribute("homes", homes);
+        model.addAttribute("villaCount", homes.size());
         model.addAttribute("title","Villa");
         return "property/villa.html";
     }
@@ -47,6 +70,7 @@ public class PageController {
     public String viewHome(Model model){
         List<Home> homes=homeDao.findAllByProperty("House");
         model.addAttribute("homes", homes);
+        model.addAttribute("houseCount", homes.size());
         model.addAttribute("title","Home");
         return "property/home.html";
     }
@@ -55,6 +79,7 @@ public class PageController {
     public String viewOfficd(Model model){
         List<Home> homes=homeDao.findAllByProperty("Office");
         model.addAttribute("homes", homes);
+        model.addAttribute("officeCount", homes.size());
         model.addAttribute("title","Office");
         return "property/office.html";
     }

@@ -30,13 +30,38 @@ public class Home {
     private int status;
     private boolean active = true;
     @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-    private String photo;
+    @Column(name="photo" , columnDefinition = "MEDIUMBLOB")
+//    private String photo;
+        private String photo;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<User> users;
+
+        @Transient
+        private MultipartFile photoFile;
+
+        // ... other methods and properties ...
+
+        public MultipartFile getPhotoFile() {
+            return this.photoFile;
+        }
+
+        public void setPhotoFile(MultipartFile photoFile) {
+            this.photoFile = photoFile;
+        }
+    }
+//    private byte[] photo;
+
+//    public void setPhoto(String encodeToString) {
+//    }
+//
+//    public void setPhoto(byte[] bytes) {
+//    }
+
+    // Other properties...
+
+//        private MultipartFile photo;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<User> users;
 
 //    @OneToMany
 //    private Payment payment;
 
-}
