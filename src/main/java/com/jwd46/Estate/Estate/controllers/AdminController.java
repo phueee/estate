@@ -83,8 +83,8 @@ public class AdminController {
 
     }
 
-    @GetMapping("/homes")
-    public String viewHomes(HttpServletRequest request,Model model) {
+    @PostMapping("/homes")
+    public String viewHomes(Model model) {
         List<Home> homes = homeDao.findAll();
         List<Home> listHome = new ArrayList<>();
         model.addAttribute("homes", listHome);
