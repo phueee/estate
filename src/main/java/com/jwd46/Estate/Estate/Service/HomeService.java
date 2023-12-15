@@ -47,5 +47,5 @@ public class HomeService {
         return homeDao.findByActiveTrue();
     }
 
+    }
 
-}
