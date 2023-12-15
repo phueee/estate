@@ -101,4 +101,22 @@ public class PageController {
         model.addAttribute("title","userdetail");
         return "userdetail.html";
     }
+    @GetMapping("Buy")
+    public String viewBuy(Model model) {
+        List<Home> homes = homeDao.findAllByService("Sale");
+        model.addAttribute("homes", homes);
+        model.addAttribute("villaCount", homes.size());
+        model.addAttribute("title", "Buy");
+        return "service/Buy.html";
+    }
+
+    @GetMapping("Rent")
+    public String viewRent(Model model) {
+        List<Home> homes = homeDao.findAllByService("Rent");
+        model.addAttribute("homes", homes);
+        model.addAttribute("RentCoount", homes.size());
+        model.addAttribute("title", "Rent");
+        return "service/Rent.html";
+    }
+
 }
