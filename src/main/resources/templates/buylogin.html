@@ -1,15 +1,15 @@
 <link href="css/style.css" rel="stylesheet">
-<html>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <a href="/" class="previous">&laquo; Home</a>
     <title>Login Form</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 
 </head>
 <body>
 
 <div class="overlay">
-    <form action= ""  method="post">
+    <form th:action="@{/buylogin/user}" method="post">
         <div class="con">
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>

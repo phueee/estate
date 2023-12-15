@@ -46,6 +46,10 @@ public class HomeService {
     public List<Home> getActiveHome() {
         return homeDao.findByActiveTrue();
     }
-
+//
+//    public Home photo(int homeId ) {
+//
+//        return homeDao.findById(homeId );
+//    }
 
 }

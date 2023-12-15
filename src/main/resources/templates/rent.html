@@ -6,35 +6,28 @@
 </head>
 <body>
 <div class="container-col-md-6 offset-md-3">
-    <form:form action="/rent" method="post" modelAttribute="Home">
+    <form th:action="@{RPayment}" method="post">
 
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Rent Detail</h2>
-        <div class="row mb-4">
-            <div class="col-md-2"></div>
-            <label for="ID" class="col-md-2 col-form-label">ID</label>
-            <div class="col-md-4">
-                <input type="id" class="form-control"  id="ID" field="Id">
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-2"></div>
-            <label for="homeID" class="col-md-2 col-form-label">Home ID</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control"  id="homeID" field="homeId" name="homeID">
-            </div>
-        </div>
+<!--        <div class="row mb-4">-->
+<!--            <div class="col-md-2"></div>-->
+<!--            <label for="ID" class="col-md-2 col-form-label">ID</label>-->
+<!--            <div class="col-md-4">-->
+<!--                <input type="id" class="form-control"  id="ID" field="Id">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="homeNo" class="col-md-2 col-form-label">Home Number</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeNo"  field="homeNo" name="homeNo">
+                <input type="text" class="form-control" id="homeNo"  th:value="${homeNo}" disabled>
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="bedroom" class="col-md-2 col-form-label">Number of Bedroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="bedroom" field="bedRoom" name="bedroom">
+                <input type="text" class="form-control" id="bedroom" th:value="${bedRoom}" disabled>
             </div>
         </div>
 
@@ -42,7 +35,7 @@
             <div class="col-md-2"></div>
             <label for="bathroom" class="col-md-2 col-form-label">Number of Bathroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="bathroom" field="bathRoom" name="bathroom">
+                <input type="text" class="form-control" id="bathroom" th:value="${bathRoom}" disabled>
             </div>
         </div>
 
@@ -50,7 +43,7 @@
             <div class="col-md-2"></div>
             <label for="homeArea" class="col-md-2 col-form-label">Area</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeArea" field="area" name="homeArea">
+                <input type="text" class="form-control" id="homeArea" th:value="${area}" disabled>
             </div>
         </div>
 
@@ -58,7 +51,7 @@
             <div class="col-md-2"></div>
             <label for="homeLocation" class="col-md-2 col-form-label">Location</label>
             <div class="col-md-4">
-                <input type="location" class="form-control" id="homeLocation" field="location" name="homeLocation">
+                <input type="location" class="form-control" id="homeLocation" th:value="${location}" disabled>
             </div>
         </div>
 
@@ -66,7 +59,7 @@
             <div class="col-md-2"></div>
             <label for="homePrice" class="col-md-2 col-form-label">Price</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homePrice" field="price" homePrice>
+                <input type="text" class="form-control" id="homePrice" th:value="${price}" disabled>
             </div>
         </div>
 
@@ -75,7 +68,7 @@
             <div class="col-md-2"></div>
             <label for="startDate" class="col-md-2 col-form-label">Start Rent Date</label>
             <div class="col-md-4">
-                <input type="date" class="form-control" id="startDate" name="startDate">
+                <input type="date" class="form-control" id="startDate" th:value="${currentDate}" disabled>
             </div>
         </div>
 
@@ -83,7 +76,7 @@
             <div class="col-md-2"></div>
             <label for="endDate" class="col-md-2 col-form-label">End Rent Date</label>
             <div class="col-md-4">
-                <input type="date" class="form-control" id="endDate" name="endDate">
+                <input type="date" class="form-control" id="endDate" name="endDate" th:value="${dateThreeMonthsLater}" >
             </div>
         </div>
 
@@ -96,7 +89,7 @@
 
         </div>
 
-    </form:form>
+    </form>
 </div>
 <div th:replace="adminView::footer"></div>
 </body>
