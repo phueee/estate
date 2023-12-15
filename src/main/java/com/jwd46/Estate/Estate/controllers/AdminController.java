@@ -58,9 +58,8 @@ public class AdminController {
     }
 
     @GetMapping("/adminCreate")
-    public String createHome(Model model, HttpSession session, HttpServletRequest request) {
+    public String createHome(Model model, HttpServletRequest request) {
         model.addAttribute("title", "adminCreate");
-//        Admin admin = (Admin) session.getAttribute("admin");
         Admin admin = (Admin) request.getSession().getAttribute("admin");
 
         if (admin != null) {
@@ -72,9 +71,9 @@ public class AdminController {
     }
 
     @RequestMapping("adminView")
-    public String adminView(Model model, HttpSession session) {
+    public String adminView(Model model, HttpServletRequest request) {
         model.addAttribute("title", "adminView");
-        Admin admin = (Admin) session.getAttribute("admin");
+        Admin admin= (Admin) request.getSession().getAttribute("admin");
 
         if (admin != null) {
             return "adminView";
@@ -85,7 +84,7 @@ public class AdminController {
     }
 
     @GetMapping("/homes")
-    public String viewHomes(HttpSession session,Model model) {
+    public String viewHomes(HttpServletRequest request,Model model) {
         List<Home> homes = homeDao.findAll();
         List<Home> listHome = new ArrayList<>();
         model.addAttribute("homes", listHome);

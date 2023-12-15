@@ -1,7 +1,9 @@
 package com.jwd46.Estate.Estate.controllers;
 
+import com.jwd46.Estate.Estate.Service.HomeService;
 import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.models.Home;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,8 @@ import java.util.List;
 public class HomeController {
     @Autowired
     HomeDao homeDao;
-
+    @Autowired
+    HomeService service;
 //
 //    @GetMapping("/homes")
 //    public String viewHomes (Model model){
@@ -66,7 +69,15 @@ public class HomeController {
 //        return "redirect:/homes/view";
     }
 
+    @GetMapping("/search")
+    public String searchHomes(){
+        return "view";
+    }
 
-
-
+    @PostMapping("/search")
+    public String searchHomes(@RequestParam String property,String location,Model model){
+        List<Home> homeList=service.search(property, location);
+        model.addAttribute("homes", homeList);
+      return "view";
+    }
 }

@@ -46,8 +46,8 @@ public class HomeService {
         return homeDao.findByActiveTrue();
     }
 
-    public Home search(String property,String location){
-        return  homeDao.findByPropertyTypeAndLocation(property,location);
+    public List<Home> search(String property,String location){
+        return homeDao.findByPropertyAndLocation(property,location);
     }
 
 }

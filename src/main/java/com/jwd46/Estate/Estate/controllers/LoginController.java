@@ -27,19 +27,18 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/login")
-    public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session, HttpServletResponse response, HttpServletRequest request){
+    public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request){
         User user = userService.login(email,password);
         if (user == null) {
             model.addAttribute("error1","error");
             return "login";
         }
         else {
-             session.setAttribute("userEmail",user.getUserEmail());
+            request.getSession().setAttribute("userEmail",user.getUserEmail());
+//             session.setAttribute("userEmail",user.getUserEmail());
 //           Cookie loginCookie= new Cookie("userEmail",email);
-
 //           loginCookie.setMaxAge(30*60);
 //           response.addCookie(loginCookie);
-
             return "index";
         }
     }
