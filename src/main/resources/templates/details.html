@@ -13,6 +13,7 @@
         <thead>
         <tr>
             <th scope="col">No</th>
+
             <th scope="col">Home No</th>
             <th scope="col">User Name</th>
             <th scope="col">Amount</th>
@@ -23,6 +24,7 @@
         <tbody>
         <tr th:each="payment,itetstat:${payments}">
             <td> <span th:text="${itetstat.index+1}"></span></td>
+
             <td th:text="${payment.homeNo}"></td>
             <td th:text="${payment.userName}"></td>
             <td th:text="${payment.amount}"></td>

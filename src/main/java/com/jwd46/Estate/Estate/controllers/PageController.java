@@ -10,16 +10,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PageController {
 @Autowired
      HomeDao homeDao;
+
     @GetMapping("/")
+    public  String homePage(){
+        return "redirect:/index";
+    }
+
+    @GetMapping("/index")
     public String viewPage(Model model) {
         List<Home> homes= homeDao.findAll();
-        model.addAttribute("homesList", homes);
+        List<Home> homePreviews = new ArrayList<Home>();
+        if (homes.size() > 6) {
+            for (int i = 0;i < 6;i++){
+                homePreviews.add(homes.get(i));
+            }
+        } else {
+            homePreviews = homes;
+        }
+        model.addAttribute("homesPreview", homePreviews);
         model.addAttribute("homesCount", homes.size());
 
 
@@ -114,7 +129,7 @@ public class PageController {
     public String viewRent(Model model) {
         List<Home> homes = homeDao.findAllByService("Rent");
         model.addAttribute("homes", homes);
-        model.addAttribute("RentCoount", homes.size());
+        model.addAttribute("RentCount", homes.size());
         model.addAttribute("title", "Rent");
         return "service/Rent.html";
     }

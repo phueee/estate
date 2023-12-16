@@ -49,5 +49,11 @@ public class HomeService {
     public List<Home> search(String property,String location){
         return homeDao.findByPropertyAndLocation(property,location);
     }
+    public List<Home> searchByProperty(String property){
+        return homeDao.findByProperty(property);
+    }
+    public List<Home> searchByLocation(String location){
+        return homeDao.findByLocation(location);
+    }
 
 }

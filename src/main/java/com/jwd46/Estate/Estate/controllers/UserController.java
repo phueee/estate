@@ -40,7 +40,7 @@ public class UserController {
             model.addAttribute("error", "Please fill required informations!");
             return "signup";
         } else {
-            return "index";
+            return "login";
         }
     }
 

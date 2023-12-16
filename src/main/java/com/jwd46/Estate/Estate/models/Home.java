@@ -30,23 +30,23 @@ public class Home {
     private int status;
     private boolean active = true;
     @Lob
-    @Column(name="photo" , columnDefinition = "MEDIUMBLOB")
+    @Column(name = "photo", columnDefinition = "MEDIUMBLOB")
 //    private String photo;
-        private String photo;
+    private String photo;
 
 
-        @Transient
-        private MultipartFile photoFile;
+    @Transient
+    private MultipartFile photoFile;
 
-        // ... other methods and properties ...
+    // ... other methods and properties ...
 
-        public MultipartFile getPhotoFile() {
-            return this.photoFile;
-        }
+    public MultipartFile getPhotoFile() {
+        return this.photoFile;
+    }
 
-        public void setPhotoFile(MultipartFile photoFile) {
-            this.photoFile = photoFile;
-        }
+    public void setPhotoFile(MultipartFile photoFile) {
+        this.photoFile = photoFile;
+    }
 
 //    private byte[] photo;
 
@@ -59,18 +59,22 @@ public class Home {
     // Other properties...
 
 //        private MultipartFile photo;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<User> users=new HashSet<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<User> users;
 
-    public Set <User>getUser(){
+    //    @OneToMany
+//    private Payment payment;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<User> users = new HashSet<>();
+
+    public Set<User> getUser() {
         return users;
     }
 
-    public void setHomes(Set<User>users){
-        this.users=users;
+    public void setHomes(Set<User> users) {
+        this.users = users;
     }
+
+    @OneToMany
+    private Set<Payment> payment = new HashSet<>();
 }
-
-//    @OneToMany
-//    private Payment payment;
-

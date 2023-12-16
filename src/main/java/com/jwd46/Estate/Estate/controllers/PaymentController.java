@@ -23,13 +23,13 @@ import java.util.List;
 @Controller
 public class PaymentController {
     @Autowired
-    PaymentDao paymentDao;
-    @Autowired
-    RPaymentDao rPaymentDao;
+    HomeDao homeDao;
     @Autowired
     UserDao userDao;
     @Autowired
-    HomeDao homeDao;
+    PaymentDao paymentDao;
+    @Autowired
+    RPaymentDao rPaymentDao;
 
     @GetMapping("payment")
     public String viewPayment(Model model, @PathVariable("userId") int userId, @PathVariable("homeId") int homeId, HttpSession session, Payment payment, HttpServletRequest request){
@@ -41,35 +41,15 @@ public class PaymentController {
         model.addAttribute("Payment",new Payment());
         request.getSession().getAttribute("userId");
         paymentDao.save(payment);
-                return "payment";
+        return "payment";
     }
 
-
-
-
-
-    @GetMapping("/Rpayment")
-    public String viewRPayment(Model model, HttpSession session){
-        model.addAttribute("User","user");
+    @GetMapping("Rpayment")
+    public String viewRPayment(Model model){
+        model.addAttribute("title","RPayment");
+        model.addAttribute("User", new User());
         return "Rpayment";
     }
-
-
-//    @PostMapping("/RPayment")
-//    public String viewRPayment(@RequestParam("inputDate1") String startDate,
-//                               @RequestParam("inputDate2") String endDate,
-//                               @RequestParam("inputPayment") String paymentType,
-//                               Model model){
-//        double paymentResult = calculatePayment(startDate, endDate, paymentType);
-//        model.addAttribute("paymentResult", paymentResult);
-//    return "Rpayment";
-//    }
-
-
-//    private double calculatePayment(String startDate, String endDate, String paymentType) {
-//        return 100.0;
-//    }
-
 
     @GetMapping("/detail")
     public String viewDetail(Model model){

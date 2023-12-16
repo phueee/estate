@@ -40,9 +40,15 @@ public class LoginController {
 //           Cookie loginCookie= new Cookie("userEmail",email);
 //           loginCookie.setMaxAge(30*60);
 //           response.addCookie(loginCookie);
-            return "index";
+            return "redirect:/index";
         }
     }
-
-
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // Invalidate the current session
+        return "redirect:/"; // Redirect to the login page
+    }
 }
+
+
+
