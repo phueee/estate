@@ -12,7 +12,7 @@
 <table class="table table-striped" >
     <thead style="background: #081c30;color:white;">
     <tr>
-        <th scope="col" >Home Id</th>
+        <th scope="col" >No</th>
         <th scope="col">Home No</th>
         <th scope="col">No.of.Bedroom</th>
         <th scope="col">No.of.Bathroom</th>
@@ -29,9 +29,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="home : ${homes}">
+    <tr th:each="home, itetstat:${homes}">
 
-        <td th:text="${home.homeId}"></td>
+        <td> <span th:text="${itetstat.index+1}"></span></td>
         <td th:text="${home.homeNo}"></td>
         <td th:text="${home.bedRoom}"></td>
         <td th:text="${home.bathRoom}"></td>

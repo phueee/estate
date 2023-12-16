@@ -102,7 +102,7 @@
                     <a href="" th:unless="${list.status==1}"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Sold Out</div></a>
                 </div>
                 <div class="p-4 pb-0">
-                    <h5 class="text-primary mb-3" th:text="${itetstat.index+1}"></h5>
+                    <h5 class="text-primary mb-3" th:text="${itetstat.index+1}" hidden></h5>
                     <h5 class="text-primary mb-3" th:text="${list.price}"></h5>
 
                     <a class="d-block h5 mb-2" href="" th:text="${list.property}" ></a>
