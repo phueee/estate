@@ -5,8 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+<div class="img-container" style="background: url('/img/rent.jpg') center center / cover no-repeat; height: 90vh; position: relative;">
 <div class="container-col-md-6 offset-md-3">
-    <form th:action="@{RPayment}" method="post">
+    <form th:action="@{/Rpayment}" method="post">
 
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Rent Detail</h2>
 <!--        <div class="row mb-4">-->
@@ -90,6 +91,7 @@
         </div>
 
     </form>
+</div>
 </div>
 <div th:replace="adminView::footer"></div>
 </body>

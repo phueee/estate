@@ -24,11 +24,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="rpayment : ${rPayments}">
-
-            <td th:text="${rpayment.Id}"></td>
-            <td th:text="${rpayment.userId}"></td>
-            <td th:text="${rpayment.homeId}"></td>
+        <tr th:each="rpayment ,itetstat:${rPayments}">
+            <td> <span th:text="${itetstat.index+1}"></span></td>
             <td th:text="${rpayment.homeNo}"></td>
             <td th:text="${rpayment.userName}"></td>
             <td th:text="${rpayment.amount}"></td>

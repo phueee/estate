@@ -47,7 +47,7 @@ public class Home {
         public void setPhotoFile(MultipartFile photoFile) {
             this.photoFile = photoFile;
         }
-    }
+
 //    private byte[] photo;
 
 //    public void setPhoto(String encodeToString) {
@@ -59,8 +59,17 @@ public class Home {
     // Other properties...
 
 //        private MultipartFile photo;
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    private List<User> users;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<User> users=new HashSet<>();
+
+    public Set <User>getUser(){
+        return users;
+    }
+
+    public void setHomes(Set<User>users){
+        this.users=users;
+    }
+}
 
 //    @OneToMany
 //    private Payment payment;

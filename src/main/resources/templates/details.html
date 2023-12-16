@@ -12,9 +12,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">User Id</th>
-            <th scope="col">Home Id</th>
+            <th scope="col">No</th>
             <th scope="col">Home No</th>
             <th scope="col">User Name</th>
             <th scope="col">Amount</th>
@@ -23,11 +21,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="payment : ${payments}">
-
-            <td th:text="${payment.Id}"></td>
-            <td th:text="${payment.userId}"></td>
-            <td th:text="${payment.homeId}"></td>
+        <tr th:each="payment,itetstat:${payments}">
+            <td> <span th:text="${itetstat.index+1}"></span></td>
             <td th:text="${payment.homeNo}"></td>
             <td th:text="${payment.userName}"></td>
             <td th:text="${payment.amount}"></td>

@@ -35,6 +35,7 @@ public class LoginController {
         }
         else {
             request.getSession().setAttribute("userEmail",user.getUserEmail());
+            request.getSession().setAttribute("userId",user.getUserId());
 //             session.setAttribute("userEmail",user.getUserEmail());
 //           Cookie loginCookie= new Cookie("userEmail",email);
 //           loginCookie.setMaxAge(30*60);
