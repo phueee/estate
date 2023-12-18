@@ -8,11 +8,11 @@
 </head>
 <body>
 <div th:replace="adminView::navbar"></div><br>
-<h2 class="col-md-6 offset-md-3">Rent Detail</h2>
+<h2 class="col-md-6 offset-md-3" style="text-align: center;font-size: 50px">Rent Detail</h2>
 
 <div class="container">
     <table class="table table-striped">
-        <thead>
+        <thead style="font-size: 18px;background-color: #081c30;color: #FFFFFF">
         <tr>
             <th scope="col">No</th>
 
@@ -25,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="rpayment ,itetstat:${rPayments}">
+        <tr th:each="rpayment ,itetstat:${rPayments}" style="font-size: 16px;color: #0a0a0b">
             <td> <span th:text="${itetstat.index+1}"></span></td>
             <td th:text="${rpayment.homeNo}"></td>
             <td th:text="${rpayment.userName}"></td>

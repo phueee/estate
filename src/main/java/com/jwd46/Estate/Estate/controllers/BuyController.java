@@ -128,10 +128,10 @@ public class BuyController {
 
     }
 
-    @GetMapping("/login/signup/{homeId}")
-    public String buyPage(@PathVariable("homeId") int homeId,HttpSession session){
-        session.setAttribute("home456",homeId);
-        return "buy";
-    }
+//    @GetMapping("/login/signup/{homeId}")
+//    public String buyPage(@PathVariable("homeId") int homeId,HttpSession session){
+//        session.setAttribute("home456",homeId);
+//        return "buy";
+//    }
 
 }

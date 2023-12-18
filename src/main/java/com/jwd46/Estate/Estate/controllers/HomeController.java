@@ -10,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -60,9 +63,14 @@ public class HomeController {
 
 
     @PostMapping("/home/update")
-    public String updateHome(@ModelAttribute("homeBean") Home home) {
+    public String updateHome(Model model,@RequestParam ("file")MultipartFile  file,
+                             @ModelAttribute("homeBean") Home home) throws IOException {
         home.setStatus(1);
+        byte[] bytes=file.getBytes();
+        String enodedString= Base64.getEncoder().encodeToString(bytes);
+        home.setPhoto(enodedString);
         homeDao.save(home);
+        model.addAttribute("fileName",enodedString);
         return "redirect:/homes";
 //        return "redirect:/homes/view";
     }

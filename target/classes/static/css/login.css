@@ -8,7 +8,8 @@
     box-sizing: border-box;
 }
 /* End Global rules */
-
+/*https://g.co/kgs/mJvtpV*/
+/*https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur*/
 /* Start body rules */
 body {
 
@@ -18,7 +19,8 @@ body {
     opacity: 0.6;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-6qww0aYiXH4qrF8o-MMRkb-DTSTnX_U_w&usqp=CAU?w=740");
+
+    background-image: url("https://img.freepik.com/premium-photo/gray-armchair-blue-living-room-with-copy-space_43614-717.jpg");
     font-family: 'Vibur', cursive;
     /*   the main font */
     font-family: 'Abel', sans-serif;
@@ -99,7 +101,7 @@ header p {letter-spacing: 0.05em;}
     background: #fff;
     color: #111;
 
-    margin: 5.9px 0 0 0;
+    margin: 5.8px 0 0 0;
     margin-left: -20px;
     padding: 15px 9px 19px 0px;
     border-radius: 0px 5px 5px 0px;
