@@ -13,10 +13,6 @@ import java.util.Set;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
-        private int userId;
-        private int homeId;
-        private String homeNo;
-        private String userName;
         private String amount;
         private String startdate;
         private String enddate;
