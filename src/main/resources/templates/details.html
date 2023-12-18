@@ -6,15 +6,14 @@
 </head>
 <body>
 <div th:replace="adminView::navbar"></div><br>
-<h2 class="col-md-6 offset-md-3">Buy Detail</h2>
+<h2 class="col-md-6 offset-md-3" style="font-size: 50px;text-align: center">Buy Detail</h2>
 
 <div class="container">
     <table class="table table-striped">
-        <thead>
+        <thead style="background-color: #081c30;font-size: 18px;color: #FFFFFF">
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">User Id</th>
-            <th scope="col">Home Id</th>
+            <th scope="col">No</th>
+
             <th scope="col">Home No</th>
             <th scope="col">User Name</th>
             <th scope="col">Amount</th>
@@ -23,11 +22,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="payment : ${payments}">
+        <tr th:each="payment,itetstat:${payments}" style="font-size: 16px;color: #0a0a0b">
+            <td> <span th:text="${itetstat.index+1}"></span></td>
 
-            <td th:text="${payment.Id}"></td>
-            <td th:text="${payment.userId}"></td>
-            <td th:text="${payment.homeId}"></td>
             <td th:text="${payment.homeNo}"></td>
             <td th:text="${payment.userName}"></td>
             <td th:text="${payment.amount}"></td>

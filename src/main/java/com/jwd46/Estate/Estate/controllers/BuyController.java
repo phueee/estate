@@ -5,7 +5,6 @@ import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.models.Admin;
 import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,32 +30,40 @@ public class BuyController {
 //    }
 
 
-//    @GetMapping("/buy")
-//    public String viewBuy(Model model, HttpSession session){
-////        model.addAttribute("title","Buyview");
-//        User user= (User) session.getAttribute("userEmail");
-//        if(user != null){
-//            return "/service/buy";
-//        }else {
-//            return "login";
-//        }
-//    }
+    @GetMapping("/buy")
+    public String viewBuy(Model model, HttpSession session){
+//        model.addAttribute("title","Buyview");
+        User user= (User) session.getAttribute("userEmail");
+        if(user != null){
+            return "/service/buy";
+        }else {
+            return "login";
+        }
+    }
 
 
 
-
+    @GetMapping("/rent")
+    public String viewRent(Model model, HttpSession session){
+        User user= (User) session.getAttribute("userEmail");
+        if(user != null){
+            return "/service/rent";
+        }else {
+            return "login";
+        }
+    }
 
     @GetMapping("/rentlogin/{homeId}")
-    public String showRent(Model model,@PathVariable("homeId") int homeId,HttpServletRequest request){
+    public String showRent(Model model,@PathVariable("homeId") int homeId,HttpSession session){
         Home home=homeDao.findByHomeId(homeId);
-//        session.setAttribute("home45",home);
-         request.getSession().setAttribute("home45",home);
+        session.setAttribute("home45",home);
         return "rentlogin";
     }
 
 
+
     @PostMapping("/rentlogin/user")
-    public String showRent(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request){
+    public String showRent(@RequestParam String email, String password, Model model, HttpSession session){
         User user = userService.login(email,password);
 
         if (user == null) {
@@ -64,9 +71,8 @@ public class BuyController {
             return "rentlogin";
         }
         else {
-            request.getSession().getAttribute("userEmail");
-//            Home home=(Home) session.getAttribute("home45");
-            Home home= (Home) request.getSession().getAttribute("home45");
+            session.setAttribute("userEmail", user.getUserEmail());
+            Home home=(Home) session.getAttribute("home45");
             model.addAttribute("homeNo",home.getHomeNo());
             model.addAttribute("bedRoom",home.getBedRoom());
             model.addAttribute("bathRoom",home.getBathRoom());
@@ -90,26 +96,25 @@ public class BuyController {
 
 
     @GetMapping("/buylogin/{homeId}")
-    public String showBuy(Model model,@PathVariable("homeId") int homeId,HttpSession session,HttpServletRequest request){
+    public String showBuy(Model model,@PathVariable("homeId") int homeId,HttpSession session){
+//        System.out.println(homeId);
         Home home=homeDao.findByHomeId(homeId);
-//        session.setAttribute("home45",home);
-        request.getSession().setAttribute("home45",home);
-
+//        System.out.println(home.getHomeId());
+        session.setAttribute("home45",home);
         return "buylogin";
     }
 
     @PostMapping("/buylogin/user")
-    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request){
+    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session){
         User user = userService.login(email,password);
-        if (user == null ) {
+
+        if (user == null) {
             model.addAttribute("error","error");
             return "buylogin";
         }
         else {
-
-//            session.setAttribute("userEmail", user.getUserEmail());
-//            Home home=(Home) session.getAttribute("home45");
-            Home home= (Home) request.getSession().getAttribute("home45");
+            session.setAttribute("userEmail", user.getUserEmail());
+            Home home=(Home) session.getAttribute("home45");
             model.addAttribute("homeNo",home.getHomeNo());
             model.addAttribute("bedRoom",home.getBedRoom());
             model.addAttribute("bathRoom",home.getBathRoom());
@@ -122,4 +127,11 @@ public class BuyController {
 
 
     }
+
+//    @GetMapping("/login/signup/{homeId}")
+//    public String buyPage(@PathVariable("homeId") int homeId,HttpSession session){
+//        session.setAttribute("home456",homeId);
+//        return "buy";
+//    }
+
 }

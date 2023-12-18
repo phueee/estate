@@ -30,8 +30,8 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
-
 <!-- Navbar Start -->
+
 <div class="container-fluid nav-bar bg-transparent">
     <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
 
@@ -44,14 +44,50 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
-                <a href="/" class="nav-item nav-link" style="color: #0a0a0b">Home</a>
+                <a href="/" class="nav-item nav-link ">Home</a>
+                <a href="view" class="nav-item nav-link">View</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="appartment" class="dropdown-item">Appartment</a>
+                        <a href="villa" class="dropdown-item">Villa</a>
+                        <a href="home" class="dropdown-item">Home</a>
+                        <a href="office" class="dropdown-item">Office</a>
+
+                    </div>
                 </div>
-            <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >Service</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="Buy" class="dropdown-item">Buy</a>
+                        <a href="Rent" class="dropdown-item">Rent</a>
+                    </div>
+                </div>
+
+                <a href="contact" class="nav-item nav-link">Contact</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
+                    <div class="dropdown-menu rounded-0 m-0"/>
+
+                    <a href="signup" class="dropdown-item" th:if="${session.userEmail!=null}" ><a th:text="${session.userEmail}" onclick="location.href='userdetail'"></a></a>
+
+                </div>
+            </div>
+
+
         </div>
-        <div><a href="" class="btn btn-primary px-2 d-none d-lg-flex">Log Out</a></div>
+
+
+        <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
+
+        <div><a href="/logout" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
     </nav>
 </div>
-</div>
+</head>
+<!-- Navbar End -->
+
+<
 
 
 
@@ -59,32 +95,37 @@
 
 <div id="tab-1" class="tab-pane fade show p-0 active" >
     <div class="row g-4" >
-        <div class="col-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" th:each="list:${homes}">
+        <div class="col-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" th:each="list, itetstat:${homes}">
             <div class="property-item rounded overflow-hidden">
                 <div class="position-relative overflow-hidden">
                     <a href=""> <img alt="" th:src="'data:photo/jpg;base64,'+${list.photo}" height="300px" width="600px"></a>
                     <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3" th:text="${list.service}"></div>
-                    <a href="buylogin"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Buy Now</div></a>
+                    <a th:if="${list.service=='Sale'}" th:href="@{/buylogin/{homeId}(homeId=${list.homeId})}"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Buy Now</div></a>
                     <!-- <a href=""> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" th:else>Sold Out</div></a> -->
+                    <a th:href="@{/rentlogin/{homeId}(homeId=${list.homeId})}" th:unless="${list.service=='Sale'}" > <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Rent Now</div></a>
+                    <a href="" th:unless="${list.status==1}"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Sold Out</div></a>
                 </div>
                 <div class="p-4 pb-0">
+                    <h5 class="text-primary mb-3" th:text="${itetstat.index+1}" hidden></h5>
                     <h5 class="text-primary mb-3" th:text="${list.price}"></h5>
 
                     <a class="d-block h5 mb-2" href="" th:text="${list.property}" ></a>
                     <p><i class="fa fa-map-marker-alt text-primary me-2"><span th:text="${list.location}" ></span></i></p>
                 </div>
                 <div class="d-flex border-top">
-                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2" th:text="${list.area}"></i></small>
-                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2" th:text="${list.bedRoom}"></i></small>
-                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2" th:text="${list.bathRoom}"></i></small>
+                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-black-50 me-2" th:text="${list.area}"></i></small>
+                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-black-50 me-2" th:text="${list.bedRoom}+Bed"></i></small>
+                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-black-50 me-2" th:text="${list.bathRoom}+Bath"></i></small>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-    <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-        <a class="btn btn-primary py-3 px-5" href="appartment"> ^ Up ^</a>
+
+
+<div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+        <a class="btn btn-primary py-3 px-5" href="appartment">  Up </a>
     </div>
 </div> <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

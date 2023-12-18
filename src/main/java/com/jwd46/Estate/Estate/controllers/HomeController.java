@@ -10,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -36,10 +39,8 @@ public class HomeController {
 //    }
 
 
-
-
     @GetMapping("/delete/home/{homeId}")
-    public String deleteHome(@PathVariable("homeId") int homeId){
+    public String deleteHome(@PathVariable("homeId") int homeId) {
         homeDao.deleteById(homeId);
         return "redirect:/homes";
 
@@ -54,40 +55,44 @@ public class HomeController {
 //    }
 
 
-
-     @GetMapping("/adminEdit/home/{homeId}")
-    public ModelAndView editPage(@PathVariable("homeId") int homeId){
-        Home home=homeDao.findById(homeId).orElseThrow();
-        return new ModelAndView("adminEdit","homeBean",home);
-  }
+    @GetMapping("/adminEdit/home/{homeId}")
+    public ModelAndView editPage(@PathVariable("homeId") int homeId) {
+        Home home = homeDao.findById(homeId).orElseThrow();
+        return new ModelAndView("adminEdit", "homeBean", home);
+    }
 
 
     @PostMapping("/home/update")
-    public String updateHome(@ModelAttribute("homeBean") Home home){
+    public String updateHome(Model model,@RequestParam ("file")MultipartFile  file,
+                             @ModelAttribute("homeBean") Home home) throws IOException {
+        home.setStatus(1);
+        byte[] bytes=file.getBytes();
+        String enodedString= Base64.getEncoder().encodeToString(bytes);
+        home.setPhoto(enodedString);
         homeDao.save(home);
+        model.addAttribute("fileName",enodedString);
         return "redirect:/homes";
 //        return "redirect:/homes/view";
     }
 
     @GetMapping("/search")
-    public String searchHomes(){
+    public String searchHomes() {
         return "view";
     }
 
     @PostMapping("/search")
-    public String searchHomes(@RequestParam String property,String location,Model model){
+    public String searchHomes(@RequestParam String property, String location, Model model) {
         List<Home> homeList;
         if (!property.trim().equals("Property Type") && !location.trim().equals("Location")) {
             homeList = service.search(property, location);
-        } else if(!property.trim().equals("Property Type")) {
+        } else if (!property.trim().equals("Property Type")) {
             homeList = service.searchByProperty(property);
-            System.out.println(property);
+//            System.out.println(property);
         } else {
             homeList = service.searchByLocation(location);
-            System.out.println(location);
+//            System.out.println(location);
         }
         model.addAttribute("homes", homeList);
-      return "view";
+        return "view";
     }
-
 }

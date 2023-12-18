@@ -34,6 +34,7 @@
 
 
 <!-- Navbar Start -->
+
 <div class="container-fluid nav-bar bg-transparent">
     <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
 
@@ -46,14 +47,48 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
-                <a href="/" class="nav-item nav-link" style="color: #0a0a0b">Home</a>
+                <a href="/" class="nav-item nav-link ">Home</a>
+                <a href="view" class="nav-item nav-link">View</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="appartment" class="dropdown-item">Appartment</a>
+                        <a href="villa" class="dropdown-item">Villa</a>
+                        <a href="home" class="dropdown-item">Home</a>
+                        <a href="office" class="dropdown-item">Office</a>
+
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >Service</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="Buy" class="dropdown-item">Buy</a>
+                        <a href="Rent" class="dropdown-item">Rent</a>
+                    </div>
+                </div>
+
+                <a href="contact" class="nav-item nav-link">Contact</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
+                    <div class="dropdown-menu rounded-0 m-0"/>
+
+                    <a href="signup" class="dropdown-item" th:if="${session.userEmail!=null}" ><a th:text="${session.userEmail}" onclick="location.href='userdetail'"></a></a>
+
+                </div>
             </div>
-            <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
+
+
         </div>
-        <div><a href="" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
+
+
+        <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
+
+        <div><a href="/logout" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
     </nav>
 </div>
-</div>
+</head>
+<!-- Navbar End -->
 
 <!-- Call to Action Start -->
 <div class="container-xxl py-5">
