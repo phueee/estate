@@ -76,8 +76,18 @@ public class HomeController {
 
     @PostMapping("/search")
     public String searchHomes(@RequestParam String property,String location,Model model){
-        List<Home> homeList=service.search(property, location);
+        List<Home> homeList;
+        if (!property.trim().equals("Property Type") && !location.trim().equals("Location")) {
+            homeList = service.search(property, location);
+        } else if(!property.trim().equals("Property Type")) {
+            homeList = service.searchByProperty(property);
+            System.out.println(property);
+        } else {
+            homeList = service.searchByLocation(location);
+            System.out.println(location);
+        }
         model.addAttribute("homes", homeList);
       return "view";
     }
+
 }

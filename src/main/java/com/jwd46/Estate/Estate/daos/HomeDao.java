@@ -22,7 +22,9 @@ public interface HomeDao extends JpaRepository<Home,Integer> {
 
     List<Home> findByPropertyAndLocation(String property,String location);
 
-
     Home findByHomeId(int homeId);
 
+    List<Home> findByProperty(String property);
+
+    List<Home> findByLocation(String location);
 }

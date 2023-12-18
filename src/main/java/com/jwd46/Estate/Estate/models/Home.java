@@ -31,7 +31,7 @@ public class Home {
     private boolean active = true;
     @Lob
     @Column(name="photo" , columnDefinition = "MEDIUMBLOB")
-//    private String photo;
+
         private String photo;
 
 
