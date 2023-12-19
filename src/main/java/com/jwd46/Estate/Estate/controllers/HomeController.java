@@ -38,9 +38,8 @@ public class HomeController {
 //        return "homes";
 //    }
 
-
-    @GetMapping("/delete/home/{homeId}")
-    public String deleteHome(@PathVariable("homeId") int homeId) {
+    @PostMapping("/delete/home")
+    public String deleteHome(@RequestParam int homeId) {
         homeDao.deleteById(homeId);
         return "redirect:/homes";
 

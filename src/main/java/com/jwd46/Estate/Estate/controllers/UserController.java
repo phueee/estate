@@ -83,8 +83,8 @@ public class UserController {
 
 
 
-    @GetMapping("/delete/user/{userId}")
-    public String deleteUser(@PathVariable("userId") int userId) {
+    @PostMapping("/delete/user")
+    public String deleteUser(@RequestParam int userId) {
         User user = dao.findById(userId).orElseThrow();
         user.setActive(false);
         dao.save(user);
@@ -92,7 +92,6 @@ public class UserController {
     }
 
 
-
-    }
+}
 
 
