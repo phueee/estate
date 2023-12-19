@@ -13,7 +13,7 @@ import java.util.Set;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
-        private String amount;
+        private String price;
         private String startdate;
         private String enddate;
         private String payment;

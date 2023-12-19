@@ -10,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +39,13 @@ public class HomeController {
 //    }
 
 
-    @GetMapping("/delete/home/{homeId}")
-    public String deleteHome(@PathVariable("homeId") int homeId) {
+    @PostMapping("/delete/home")
+    public String deleteHome(@RequestParam int homeId) {
         homeDao.deleteById(homeId);
         return "redirect:/homes";
 
     }
+
 
 //    @GetMapping("/delete/home/{homeId}")
 //    public String deleteHome(@PathVariable("homeId") int homeId) {
@@ -60,12 +64,15 @@ public class HomeController {
 
 
     @PostMapping("/home/update")
-    public String updateHome(@ModelAttribute("homeBean") Home home) {
+    public String updateHome(@ModelAttribute("homeBean")  Home home,@RequestParam("photo") String photo) throws IOException {
         home.setStatus(1);
+        String photoString = new String(photo.getBytes(), StandardCharsets.UTF_8);
+        home.setPhoto(photoString);
+//        homeDao.save(home,photoFile);
         homeDao.save(home);
         return "redirect:/homes";
-//        return "redirect:/homes/view";
     }
+
 
     @GetMapping("/search")
     public String searchHomes() {

@@ -30,12 +30,58 @@
             <td th:text="${user.userNrc}"></td>
 <!--            <td th:text="${user.active}"></td>-->
 <!--            <td><a th:href="@{/delete/{userId}(userId=${user.userId})}">Delete</a></td>-->
-            <td><a th:href="@{/delete/user/{userId}(userId=${user.userId})}"><button class="btn btn-danger" type="button">Delete</button></a></td>
+            <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"    th:attr="onclick=|deleteId('${user.userId}')|"  >Delete</button>
+            </td>
         </tr>
         </tbody>
     </table>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/delete/user}" method="post">
+                    <div class="form-group">
+                        <h3>Are you sure want to delete!</h3>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="userId" name="userId">
+                    </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function deleteId(value) {
+        document.getElementById('userId').value = value;
+    }
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var recipient = button.data('whatever'); // Extract info from data-* attributes
+        var modal = $(this);
+        modal.find('.modal-title').text(' Warning !!! ');
+        modal.find('.modal-body #recipient-name').val(recipient);
+    });
+</script>
 
 
 <div th:replace="adminView::footer"></div>

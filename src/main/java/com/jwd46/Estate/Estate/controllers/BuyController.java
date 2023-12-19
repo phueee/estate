@@ -23,36 +23,6 @@ public class BuyController {
     HomeDao homeDao;
 
 
-//    @GetMapping("/rent")
-//    public String viewRent(Model model){
-//        model.addAttribute("title","Rentview");
-//        return "/service/rent";
-//    }
-
-
-    @GetMapping("/buy")
-    public String viewBuy(Model model, HttpSession session){
-//        model.addAttribute("title","Buyview");
-        User user= (User) session.getAttribute("userEmail");
-        if(user != null){
-            return "/service/buy";
-        }else {
-            return "login";
-        }
-    }
-
-
-
-    @GetMapping("/rent")
-    public String viewRent(Model model, HttpSession session){
-        User user= (User) session.getAttribute("userEmail");
-        if(user != null){
-            return "/service/rent";
-        }else {
-            return "login";
-        }
-    }
-
     @GetMapping("/rentlogin/{homeId}")
     public String showRent(Model model,@PathVariable("homeId") int homeId,HttpSession session){
         Home home=homeDao.findByHomeId(homeId);

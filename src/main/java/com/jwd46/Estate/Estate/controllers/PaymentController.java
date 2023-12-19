@@ -8,6 +8,7 @@ import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.Payment;
 import com.jwd46.Estate.Estate.models.RPayment;
 import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class PaymentController {
     @Autowired
     RPaymentDao rPaymentDao;
 
-    @GetMapping("payment")
-    public String viewPayment(Model model, @PathVariable("userId") int userId, @PathVariable("homeId") int homeId, HttpSession session, Payment payment, HttpServletRequest request){
+    @PostMapping("/payment")
+    public String viewPayment(Model model, @RequestParam("userId") int userId, @PathVariable("homeId") int homeId, HttpSession session, Payment payment, HttpServletRequest request){
         model.addAttribute("title","Payment");
         User user=userDao.findByUserId(userId);
         payment.setUser(user);
@@ -41,8 +42,39 @@ public class PaymentController {
         model.addAttribute("Payment",new Payment());
         request.getSession().getAttribute("userId");
         paymentDao.save(payment);
-        return "payment";
+        return "redirect:/payment";
     }
+    @GetMapping("/payment/{userId}/{homeId}")
+    public String showPayment(Model model,@PathVariable("homeId") int homeId,@PathVariable("userId") int userId,HttpSession session){
+        System.out.println(homeId);
+        int id = Integer.parseInt("homeId");
+        System.out.println(id);
+        System.out.print("This is output here");
+        Home home=homeDao.findByHomeId(homeId);
+        session.setAttribute("home45",home);
+        System.out.println(userId);
+        User user=userDao.findByUserId(userId);
+        session.setAttribute("user12",user);
+        return "redirect:/payment";
+    }
+    @PostMapping("/payment/user")
+    public String showPayment( Model model, HttpSession session,Payment payment,HttpServletRequest request){
+        Home home=(Home) session.getAttribute("home45");
+        model.addAttribute("homeId",home.getHomeId());
+        model.addAttribute("homeNo",home.getHomeNo());
+        model.addAttribute("price",home.getPrice());
+        User user=(User) session.getAttribute("user12");
+        model.addAttribute("userId",user.getUserId());
+        model.addAttribute("name",user.getUserName());
+        payment.setUser(user);
+        payment.setHome(home);
+        request.getSession().getAttribute("userId");
+        model.addAttribute("Payment",new Payment());
+        paymentDao.save(payment);
+        return "/index" ;
+    }
+
+
 
     @GetMapping("Rpayment")
     public String viewRPayment(Model model){

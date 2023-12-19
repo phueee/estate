@@ -14,7 +14,7 @@ public class Payment {
 //    private int homeId;
 //    private String homeNo;
 //    private String userName;
-    private String amount;
+    private String price;
     private String date;
     private String payment;
 //    @OneToOne
