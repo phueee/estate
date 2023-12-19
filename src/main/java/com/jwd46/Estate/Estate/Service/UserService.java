@@ -1,8 +1,6 @@
 package com.jwd46.Estate.Estate.Service;
 
-import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.daos.UserDao;
-import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +24,13 @@ public class UserService {
     public List<User> getActiveUser() {
         return userDao.findByActiveTrue();
     }
+
+
+    public void findByEmail(String email) {
+        // Implement logic to retrieve user by email from your data source
+        // ...
+    }
+
 
 
 }

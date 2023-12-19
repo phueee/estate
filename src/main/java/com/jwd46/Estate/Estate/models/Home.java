@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "homes")
 @Data
 public class Home {
@@ -33,6 +34,8 @@ public class Home {
     @Column(name = "photo", columnDefinition = "MEDIUMBLOB")
 //    private String photo;
     private String photo;
+//    @OneToMany(mappedBy = "home", fetch = FetchType.EAGER)
+//    private Set<User> users;
 
 
     @Transient

@@ -4,33 +4,47 @@
     <meta charset="ISO-8859-1">
     <title>Estate</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+
+<!--    <style>-->
+<!--        body {-->
+<!--            background-image: url('https://g.co/kgs/mJvtpV'); /* Replace with the path to your image */-->
+<!--            background-size: cover; /* Adjust as needed */-->
+<!--        }-->
+<!--        </style>-->
+
+<!--    <link href="css/bootstrap.min.css" rel="stylesheet">-->
+
+<!--    &lt;!&ndash; Template Stylesheet &ndash;&gt;-->
+<!--    <link href="css/style.css" rel="stylesheet">-->
 </head>
 <body>
 
-<h2 class="col-md-6 offset-md-3">Admin View</h2>
+<h2 class="col-md-6 offset-md-3" style="font-style: unset;color: #0a0a0b;font-size: 60px;text-align: center" >Admin View</h2>
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Phyoke Kya Ml</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+        <a class="navbar-brand" href="#" style="font-size: 30px">Phyoke Kya Ml</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/homes">Home Details <span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/homes" style="font-size: 18px">Home Details <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/user">User Details <span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/user" style="font-size: 18px">User Details <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/detail">Buy Details <span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/detail" style="font-size: 18px">Buy Details <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Rdetail">Rent Details <span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/Rdetail" style="font-size: 18px">Rent Details <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active" >
-                    <a class="nav-link" href="/adminCreate">Home Create<span class="sr-only">(current)</span></a>
-                </li>
+                <li class="nav-item " >
+                    <a class="nav-link" href="/adminCreate" style="font-size: 18px">Home Create<span class="sr-only">(current)</span></a>
+                </li >
+                <li class="nav-item  " ><a href="/" class="btn btn-primary px-2 d-none d-lg-flex " style="font-size: 18px">Log Out</a></li>
 
             </ul>
         </div>

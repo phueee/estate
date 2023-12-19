@@ -14,8 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -38,14 +38,12 @@ public class HomeController {
 //        return "homes";
 //    }
 
-
     @PostMapping("/delete/home")
     public String deleteHome(@RequestParam int homeId) {
         homeDao.deleteById(homeId);
         return "redirect:/homes";
 
     }
-
 
 //    @GetMapping("/delete/home/{homeId}")
 //    public String deleteHome(@PathVariable("homeId") int homeId) {
@@ -64,15 +62,17 @@ public class HomeController {
 
 
     @PostMapping("/home/update")
-    public String updateHome(@ModelAttribute("homeBean")  Home home,@RequestParam("photo") String photo) throws IOException {
+    public String updateHome(Model model,@RequestParam ("file")MultipartFile  file,
+                             @ModelAttribute("homeBean") Home home) throws IOException {
         home.setStatus(1);
-        String photoString = new String(photo.getBytes(), StandardCharsets.UTF_8);
-        home.setPhoto(photoString);
-//        homeDao.save(home,photoFile);
+        byte[] bytes=file.getBytes();
+        String enodedString= Base64.getEncoder().encodeToString(bytes);
+        home.setPhoto(enodedString);
         homeDao.save(home);
+        model.addAttribute("fileName",enodedString);
         return "redirect:/homes";
+//        return "redirect:/homes/view";
     }
-
 
     @GetMapping("/search")
     public String searchHomes() {
