@@ -31,7 +31,6 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-
 <body>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -83,7 +82,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
                             <div class="dropdown-menu rounded-0 m-0"/>
 
-                                <a href="signup" class="dropdown-item" th:if="${session.userEmail!=null}" ><a th:text="${session.userEmail}" onclick="location.href='userdetail'"></a></a>
+                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" ><a th:text="${session.userEmail}" href="userdetail"></a></a>
 
                             </div>
                         </div>
@@ -519,9 +518,7 @@
                         </div>
                     </div>
                 </div>
-
-
-                <!-- JavaScript Libraries -->
+    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
@@ -531,7 +528,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
                 <!-- Include Bootstrap JS and Popper.js -->
                 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

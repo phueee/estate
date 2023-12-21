@@ -59,32 +59,6 @@ public class HomeService {
         return homeDao.findByLocation(location);
     }
 
-    public void updateHome(Home home, MultipartFile photoFile) {
-        Home existingHome = homeDao.findById(home.getHomeId())
-                .orElseThrow(() -> new RuntimeException("Home not found"));
-
-        // Update other fields
-        home.setBedRoom(existingHome.getBedRoom());
-        home.setBathRoom(existingHome.getBathRoom());
-        home.setArea(existingHome.getArea());
-        home.setLocation(existingHome.getLocation());
-        home.setPrice(existingHome.getPrice());
-        home.setProperty(existingHome.getProperty());
-        home.setService(existingHome.getService());
-
-        // Update photo only if a new file is provided
-        if (photoFile != null && !photoFile.isEmpty()) {
-            try {
-                String photoBase64 = Base64.getEncoder().encodeToString(photoFile.getBytes());
-                home.setPhoto(photoBase64);
-            } catch (IOException e) {
-                // Log the exception or handle it more gracefully
-                throw new RuntimeException("Error processing photo file", e);
-            }
-        }
-
-        homeDao.save(home);
-    }
 }
 
 

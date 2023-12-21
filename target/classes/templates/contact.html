@@ -29,66 +29,65 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 </head>
-
-
-
-<!-- Navbar Start -->
-
-<div class="container-fluid nav-bar bg-transparent">
-    <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-
-        <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
-
-        <h1 class="m-0 text-primary">Contact</h1>
-
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto">
-                <a href="/" class="nav-item nav-link ">Home</a>
-                <a href="view" class="nav-item nav-link">View</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="appartment" class="dropdown-item">Appartment</a>
-                        <a href="villa" class="dropdown-item">Villa</a>
-                        <a href="home" class="dropdown-item">Home</a>
-                        <a href="office" class="dropdown-item">Office</a>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 >Hotline</h1><br/>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="text1" class="col-md-2 col-form-label" style="font-size: 14px;color: #0a0a0b">Phone</label>
+                        <input type="text1" class="form-control" id="text1" value="09965770568" readonly>
                     </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >Service</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="Buy" class="dropdown-item">Buy</a>
-                        <a href="Rent" class="dropdown-item">Rent</a>
+                    <div class="form-group">
+                        <label for="text2" class="col-md-2 col-form-label" style="font-size: 14px;color: #0a0a0b">Phone</label>
+                        <input type="text2" class="form-control" id="text2" value="09252057552" readonly>
                     </div>
-                </div>
 
-                <a href="contact" class="nav-item nav-link">Contact</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
-                    <div class="dropdown-menu rounded-0 m-0"/>
-
-                    <a href="signup" class="dropdown-item" th:if="${session.userEmail!=null}" ><a th:text="${session.userEmail}" onclick="location.href='userdetail'"></a></a>
-
-                </div>
+                    <div class="form-group">
+                        <label for="text3" class="col-md-2 col-form-label" style="font-size: 14px;color: #0a0a0b">Phone</label>
+                        <input type="text3" class="form-control" id="text3" value="09957307178" readonly>
+                    </div>
+                </form>
             </div>
 
 
+            <div class="modal-footer">
+                <button type="button" class="btn " data-dismiss="modal" style="background-color: green;color: #d8d8d8">Close</button>
+            </div>
         </div>
-
-
-        <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
-
-        <div><a href="/logout" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
-    </nav>
+    </div>
 </div>
-</head>
-<!-- Navbar End -->
+
+
+<!--&lt;!&ndash; Navbar Start &ndash;&gt;-->
+<!--<div class="container-fluid nav-bar bg-transparent">-->
+<!--    <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">-->
+
+<!--        <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">-->
+
+<!--        <h1 class="m-0 text-primary">Contact</h1>-->
+
+<!--        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--            <div class="navbar-nav ms-auto">-->
+<!--                <a href="/" class="nav-item nav-link" style="color: #0a0a0b">Home</a>-->
+<!--            </div>-->
+<!--            <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>-->
+<!--        </div>-->
+<!--        <div><a href="" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>-->
+<!--    </nav>-->
+<!--</div>-->
+<!--</div>-->
 
 <!-- Call to Action Start -->
 <div class="container-xxl py-5">
@@ -105,9 +104,8 @@
                             <p>We always ready to help by providing the best service for you.</p>
                             <p>We believe a good place to live can make your life better.</p>
                         </div>
-                        <a href="https://www.zinnia959704@gmail.com" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
-                        <a href="contact/appoinment" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
-                    </div>
+                        <button type="button" class="btn btn-primary py-3 px-4 me-2" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-phone-alt me-2"></i>Call Now</button>
+                        <button type="button" class="btn btn-primary py-3 px-4 me-2" data-toggle="modal" data-target="#appoinment" ><i class="fa fa-phone-alt me-2"></i>Get Appoinment</button>                    </div>
                 </div>
             </div>
         </div>
@@ -133,8 +131,7 @@
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                    <div class="text-center p-4 mt-3">
-                        <h5 class="fw-bold mb-0">Phue Sone</h5>
+                    <div class="text-center p-4 mt-3"><h5 class="fw-bold mb-0">Phue Sone</h5>
                         <small>Designation</small>
                     </div>
                 </div>
@@ -210,4 +207,38 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="appoinment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/getAppoinment}">
+                    <div class="form-group">
+                        <h3>Are you sure want to appoinment!</h3>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="userId" name="userId">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- Include Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
 </html>

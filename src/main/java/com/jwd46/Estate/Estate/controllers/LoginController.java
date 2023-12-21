@@ -26,24 +26,24 @@ public class LoginController {
         model.addAttribute("title","login");
         return "login";
     }
-    @PostMapping("/login")
-    public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request){
-        User user = userService.login(email,password);
-        if (user == null) {
-            model.addAttribute("error1","error");
-            return "login";
-        }
-        else {
-            request.getSession().setAttribute("userId",user);
-            request.getSession().setAttribute("userEmail",user.getUserEmail());
-            request.getSession().setAttribute("userId",user.getUserId());
-//             session.setAttribute("userEmail",user.getUserEmail());
-//           Cookie loginCookie= new Cookie("userEmail",email);
-//           loginCookie.setMaxAge(30*60);
-//           response.addCookie(loginCookie);
-            return "redirect:/index";
-        }
-    }
+//    @PostMapping("/login")
+//    public String showLoginPost(@RequestParam String userEmail, String userPassword, Model model, HttpSession session,HttpServletRequest request){
+//        if (userEmail.equals("") && !userPassword.equals("")) {
+//           User user=dao.getUserByuserEmail(userEmail);
+//
+//
+//        }
+//        else {
+//            request.getSession().setAttribute("userId",user);
+//            request.getSession().setAttribute("userEmail",user.getUserEmail());
+//            request.getSession().setAttribute("userId",user.getUserId());
+////             session.setAttribute("userEmail",user.getUserEmail());
+////           Cookie loginCookie= new Cookie("userEmail",email);
+////           loginCookie.setMaxAge(30*60);
+////           response.addCookie(loginCookie);
+//            return "redirect:/index";
+//        }
+//    }
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // Invalidate the current session

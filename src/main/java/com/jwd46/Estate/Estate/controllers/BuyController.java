@@ -5,6 +5,7 @@ import com.jwd46.Estate.Estate.daos.HomeDao;
 import com.jwd46.Estate.Estate.models.Admin;
 import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,31 +25,10 @@ public class BuyController {
 
 
     @GetMapping("/rentlogin/{homeId}")
-    public String showRent(Model model,@PathVariable("homeId") int homeId,HttpSession session){
-        Home home=homeDao.findByHomeId(homeId);
-        session.setAttribute("home45",home);
-        return "rentlogin";
-    }
-
-
-
-    @PostMapping("/rentlogin/user")
-    public String showRent(@RequestParam String email, String password, Model model, HttpSession session){
-        User user = userService.login(email,password);
-
-        if (user == null) {
-            model.addAttribute("error","error");
-            return "rentlogin";
-        }
-        else {
-            session.setAttribute("userEmail", user.getUserEmail());
-            Home home=(Home) session.getAttribute("home45");
-            model.addAttribute("homeNo",home.getHomeNo());
-            model.addAttribute("bedRoom",home.getBedRoom());
-            model.addAttribute("bathRoom",home.getBathRoom());
-            model.addAttribute("area",home.getArea());
-            model.addAttribute("location",home.getLocation());
-            model.addAttribute("price",home.getPrice());
+    public String showRent(Model model, @PathVariable("homeId") int homeId, HttpSession session, HttpServletRequest request) {
+        if (session.getAttribute("userEmail") != null) {
+            Home home = homeDao.findByHomeId(homeId);
+            model.addAttribute("home45", home);
             model.addAttribute("currentDate", LocalDate.now());
             LocalDate currentDate = LocalDate.now();
             LocalDate dateThreeMonthsLater = currentDate.plusMonths(3);
@@ -58,50 +38,59 @@ public class BuyController {
             model.addAttribute("dateThreeMonthsLater", formattedDate);
 
             return "rent";
+        } else {
+            return "rentlogin";
         }
-
-
     }
+
+    @PostMapping("/rentlogin/user")
+    public String showRent(@RequestParam String email, String password, Model model, HttpSession session) {
+        User user = userService.login(email, password);
+        if (user == null) {
+            model.addAttribute("error","error");
+            return "rentlogin";
+        }
+        else {
+
+            session.setAttribute("userEmail", user.getUserEmail());
+            session.setAttribute("userId", user.getUserId());
+            return "redirect:/view";
+
+        }
+    }
+
 
 
 
     @GetMapping("/buylogin/{homeId}")
-    public String showBuy(Model model,@PathVariable("homeId") int homeId,HttpSession session){
-//        System.out.println(homeId);
-        Home home=homeDao.findByHomeId(homeId);
-//        System.out.println(home.getHomeId());
-        session.setAttribute("home45",home);
-        return "buylogin";
+    public String showBuy(Model model, @PathVariable("homeId") int homeId, HttpSession session, HttpServletRequest request) {
+        if (session.getAttribute("userEmail") != null) {
+            Home home = homeDao.findByHomeId(homeId);
+            model.addAttribute("home45", home);
+            model.addAttribute("currentDate", LocalDate.now());
+
+            return "buy";
+        } else {
+            return "buylogin";
+        }
     }
 
-    @PostMapping("/buylogin/user")
-    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session){
-        User user = userService.login(email,password);
 
+
+    @PostMapping("/buylogin/user")
+    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session) {
+        User user = userService.login(email, password);
         if (user == null) {
             model.addAttribute("error","error");
             return "buylogin";
         }
         else {
+
             session.setAttribute("userEmail", user.getUserEmail());
-            Home home=(Home) session.getAttribute("home45");
-            model.addAttribute("homeNo",home.getHomeNo());
-            model.addAttribute("bedRoom",home.getBedRoom());
-            model.addAttribute("bathRoom",home.getBathRoom());
-            model.addAttribute("area",home.getArea());
-            model.addAttribute("location",home.getLocation());
-            model.addAttribute("price",home.getPrice());
-            model.addAttribute("currentDate", LocalDate.now());
-            return "buy";
+            session.setAttribute("userId", user.getUserId());
+            return "redirect:/view";
+
         }
-
-
     }
-
-//    @GetMapping("/login/signup/{homeId}")
-//    public String buyPage(@PathVariable("homeId") int homeId,HttpSession session){
-//        session.setAttribute("home456",homeId);
-//        return "buy";
-//    }
 
 }

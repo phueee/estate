@@ -81,6 +81,7 @@
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-devtools:2.7.3" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:3.1.5" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:3.1.5" />
+          <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">

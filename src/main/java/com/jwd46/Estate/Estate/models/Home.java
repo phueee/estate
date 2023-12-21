@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,8 +22,10 @@ public class Home {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int homeId;
+
     @Column(name = "home_No")
     private String homeNo;
+
     private String bedRoom;
     private String bathRoom;
     private String area;
@@ -30,10 +35,13 @@ public class Home {
     private String service;
     private int status;
     private boolean active = true;
+//    private LocalDateTime dateTime;
+
     @Lob
     @Column(name = "photo", columnDefinition = "MEDIUMBLOB")
 //    private String photo;
     private String photo;
+
 //    @OneToMany(mappedBy = "home", fetch = FetchType.EAGER)
 //    private Set<User> users;
 
@@ -80,4 +88,6 @@ public class Home {
 
     @OneToMany
     private Set<Payment> payment = new HashSet<>();
+
+
 }
