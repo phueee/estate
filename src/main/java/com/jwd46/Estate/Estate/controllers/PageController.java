@@ -141,9 +141,15 @@ public class PageController {
 //
 
 
-    @GetMapping("usedetail")
-    public  String viewUserDetail(Model model){
-        model.addAttribute("title","userdetail");
+    @GetMapping("/usedetail/view")
+    public  String viewUserDetail(Model model,HttpSession session){
+//        model.addAttribute("title","userdetail");
+        User user=(User) session.getAttribute("user");
+        System.out.println("username"+user.getUserName());
+        System.out.println("username"+user.getUserPhone());
+        System.out.println("username"+user.getUserEmail());
+        System.out.println("username"+user.getUserName());
+        model.addAttribute("user",user);
         return "userdetail.html";
     }
     @GetMapping("Buy")

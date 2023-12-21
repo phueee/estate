@@ -21,7 +21,7 @@
             <th scope="col">Price</th>
             <th scope="col">Type</th>
             <th scope="col">Service</th>
-            <th scope="col">Status</th>
+            <th scope="col" hidden>Status</th>
             <th scope="col">Photo</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -40,10 +40,10 @@
             <td th:text="${home.price}"></td>
             <td th:text="${home.property}"></td>
             <td th:text="${home.service}"></td>
-            <td th:text="${home.status}"></td>
+            <td th:text="${home.status}" hidden></td>
             <!--        <td th:text="${home.photo}"></td>-->
             <td>
-                <img alt="" th:src="'data:photo/jpg;base64,'+${home.photo}" size="100px" width="100px">
+                <img alt="" th:src="'data:photo/**;base64,'+${home.photo}" size="100px" width="100px">
             </td>
             <td><a  th:href="@{adminEdit/home/{homeId}(homeId=${home.homeId})}"><button class="btn btn-primary" type="button">Edit</button></a></td>
             <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"    th:attr="onclick=|deleteId('${home.homeId}')|"  >Delete</button>

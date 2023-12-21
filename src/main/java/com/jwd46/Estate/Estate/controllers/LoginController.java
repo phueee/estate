@@ -34,7 +34,7 @@ public class LoginController {
             return "login";
         }
         else {
-            request.getSession().setAttribute("userId",user);
+            session.setAttribute("user",user);
             request.getSession().setAttribute("userEmail",user.getUserEmail());
             request.getSession().setAttribute("userId",user.getUserId());
 //             session.setAttribute("userEmail",user.getUserEmail());

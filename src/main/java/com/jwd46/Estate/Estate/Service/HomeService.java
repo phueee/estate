@@ -55,5 +55,10 @@ public class HomeService {
     public List<Home> searchByLocation(String location){
         return homeDao.findByLocation(location);
     }
+//
+//    public Home getHomeById(int homeId){
+//        return homeDao.getHomeById(homeId);
+//    }
+
 
 }

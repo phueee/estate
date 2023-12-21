@@ -28,4 +28,7 @@ public interface HomeDao extends JpaRepository<Home,Integer> {
     Home findByHomeId(int homeId);
 
     List<Home> findAllByService(String name);
+
+    @Query(value = "SELECT * FROM homes WHERE home_id=?1", nativeQuery = true)
+    Home getHomeById(int homeId);
 }

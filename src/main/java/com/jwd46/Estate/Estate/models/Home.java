@@ -31,7 +31,7 @@ public class Home {
     private int status;
     private boolean active = true;
     @Lob
-    @Column(name = "photo", columnDefinition = "MEDIUMBLOB")
+    @Column(name = "photo", columnDefinition = "LONGBLOB")
 //    private String photo;
     private String photo;
 //    @OneToMany(mappedBy = "home", fetch = FetchType.EAGER)

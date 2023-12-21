@@ -82,7 +82,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
                             <div class="dropdown-menu rounded-0 m-0"/>
 
-                                <a href="signup" class="dropdown-item" th:if="${session.userEmail!=null}" ><a th:text="${session.userEmail}" onclick="location.href='userdetail'"></a></a>
+                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>
 
                             </div>
                         </div>
@@ -269,7 +269,7 @@
                                     <p>We always ready to help by providing the best service for you.</p>
                                     <p>We believe a good place to live can make your life better.</p>
                                 </div>
-                                <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
+                                <button type="button" class="btn btn-primary py-3 px-4 me-2" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-phone-alt me-2"></i>Call Now</button>
                                 <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
                             </div>
                         </div>
@@ -484,7 +484,40 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 >Hotline</h1><br/>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="text1" class="col-md-2 col-form-label" style="font-size: 14px;color: #0a0a0b">Phone</label>
+                                        <input type="text1" class="form-control" id="text1" value="09965770568" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="text2" class="col-md-2 col-form-label" style="font-size: 14px;color: #0a0a0b">Phone</label>
+                                        <input type="text2" class="form-control" id="text2" value="09252057552" readonly>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="text3" class="col-md-2 col-form-label" style="font-size: 14px;color: #0a0a0b">Phone</label>
+                                        <input type="text3" class="form-control" id="text3" value="09957307178" readonly>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn " data-dismiss="modal" style="background-color: green;color: #d8d8d8">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -495,6 +528,10 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+                <!-- Include Bootstrap JS and Popper.js -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     </div>
 
 </body>
