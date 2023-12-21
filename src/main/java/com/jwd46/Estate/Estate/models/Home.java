@@ -38,7 +38,7 @@ public class Home {
 //    private LocalDateTime dateTime;
 
     @Lob
-    @Column(name = "photo", columnDefinition = "MEDIUMBLOB")
+    @Column(name = "photo", columnDefinition = "LONGBLOB")
 //    private String photo;
     private String photo;
 

@@ -6,24 +6,8 @@
 </head>
 <body>
 <div class="container-col-md-6 offset-md-3">
-    <form th:action="@{/payment}"  method="post" th:object="${home45}">
+    <form th:action="@{/payment/user}"  method="post" th:object="${home45}">
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Buy Detail</h2>
-        <div class="row mb-4">
-            <div class="col-md-2"></div>
-            <label for="userName" class="col-md-2 col-form-label">User Name</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="userName">
-            </div>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col-md-2"></div>
-            <label for="userEmail" class="col-md-2 col-form-label">User Email</label>
-            <div class="col-md-4">
-                <input type="email" class="form-control" id="userEmail" >
-            </div>
-        </div>
-
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="home no" class="col-md-2 col-form-label">Home Number</label>
@@ -70,30 +54,13 @@
                 <input type="text" class="form-control" id="price" th:field="*{price}" disabled>
             </div>
         </div>
-
-
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="date" class="col-md-2 col-form-label">Payment</label>
+            <label for="date" class="col-md-2 col-form-label">Date</label>
             <div class="col-md-4">
-                <select id="inputPayment" class="form-control" required>
-                    <option selected>Type</option>
-                    <option>Wave</option>
-                    <option>K pay</option>
-                </select>
+                <input type="date" class="form-control" id="date" th:value="${currentDate}" disabled >
             </div>
         </div>
-
-
-
-
-                <div class="row mb-4">
-                    <div class="col-md-2"></div>
-                    <label for="date" class="col-md-2 col-form-label">Date</label>
-                    <div class="col-md-4">
-                        <input type="date" class="form-control" id="date" th:value="${currentDate}" disabled >
-                    </div>
-                </div>
 
         <div class="row mb-4">
             <div class="col-md-4"></div>

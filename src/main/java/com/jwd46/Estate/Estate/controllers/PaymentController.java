@@ -97,7 +97,6 @@ public class PaymentController {
         return "payment";
     }
 
-
     @GetMapping("/payment/{userId}/{homeId}")
     public String showPayment(Model model,@PathVariable("userId") int userId,@PathVariable("homeId") int homeId,HttpSession session){
         System.out.println(homeId);

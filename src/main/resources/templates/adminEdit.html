@@ -7,45 +7,45 @@
 <body>
 <div th:replace="adminView::navbar"></div><br>
 <div class="col-md-6 offset-md-3">
-<form action="/home/update" method="post" th:object="${homeBean}" enctype="multipart/form-data">
+<form th:action="@{/home/update}" method="post" th:object="${homeBean}" enctype="multipart/form-data">
     <div>
         <h2 style="text-align: center">Admin Edit</h2>
         <div class="form-group col-md-6">
-            <label for="inputHomeId">Home Id</label>
-            <input type="text" class="form-control" id="inputHomeId" th:field="*{homeId}" readonly >
+            <label for="homeId">Home Id</label>
+            <input type="text" class="form-control" id="homeId" th:field="*{homeId}" name="homeId" readonly >
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputHomeNo">Home Number</label>
-            <input type="text" class="form-control" id="inputHomeNo" th:field="*{homeNo}" readonly>
+            <label for="homeNo">Home Number</label>
+            <input type="text" class="form-control" id="homeNo" th:field="*{homeNo}" name="homeNo" readonly>
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputNo.of.Bedroom">Number of Bedroom</label>
-            <input type="text" class="form-control" id="inputNo.of.Bedroom" th:field="*{bedRoom}">
+            <label for="bedRoom">Number of Bedroom</label>
+            <input type="text" class="form-control" id="bedRoom" th:field="*{bedRoom}" name="bedRoom">
         </div>
         <div class="form-group col-md-6">
-            <label for="inputNo.of.Bathroom">Number of Bathroom</label>
-            <input type="text" class="form-control" id="inputNo.of.Bathroom" th:field="*{bathRoom}">
+            <label for="bathRoom">Number of Bathroom</label>
+            <input type="text" class="form-control" id="bathRoom" th:field="*{bathRoom}" name="bathRoom">
         </div>
         <div class="form-group col-md-6">
-            <label for="inputArea">Area</label>
-            <input type="text" class="form-control" id="inputArea" th:field="*{area}">
-        </div>
-
-        <div class="form-group col-md-6">
-            <label for="inputLocation">Location</label>
-            <input type="text" class="form-control" id="inputLocation" th:field="*{location}">
+            <label for="area">Area</label>
+            <input type="text" class="form-control" id="area" th:field="*{area}" name="area">
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputPrice">Price</label>
-            <input type="text" class="form-control" id="inputPrice" th:field="*{price}">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" th:field="*{location}" name="location">
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputProperty">Home Type</label>
-            <select id="inputProperty" class="form-control"  th:field="*{property}">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" th:field="*{price}" name="price">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="property">Home Type</label>
+            <select id="property" class="form-control"  th:field="*{property}" name="property">
 <!--                <option selected>Type...</option>-->
                 <option value="Appartment">Appartment</option>
                 <option value="Villa">Villa</option>
@@ -55,8 +55,8 @@
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputService">Service</label>
-            <select id="inputService" class="form-control"  th:field="*{service}">
+            <label for="service">Service</label>
+            <select id="service" class="form-control"  th:field="*{service}" name="service">
 <!--                <option selected>Type...</option>-->
                 <option value="Sale">Sale</option>
                 <option value="Rent">Rent</option>
@@ -64,13 +64,8 @@
         </div>
         <div>
             <label for="photo">Photo</label>
-            <input type="file" class="form-control-file" id="photo" th:field="*{photo}">
+            <input type="file" class="form-control-file" id="photo" th:field="*{photo}" accept="image/**" name="photo" multiple>
         </div>
-<!--        <div class="form-group col-md-6">-->
-<!--            <label for="photo">Photo</label>-->
-<!--            <img th:if="${homeBean.photo != null}" th:src="'/photos/' + ${homeBean.homeId}" class="img-thumbnail" />-->
-<!--            <input type="file" class="form-control-file" id="photo" name="photo" />-->
-<!--        </div>-->
 
         <button type="submit" class="btn btn-primary">Update</button>
     </div>
