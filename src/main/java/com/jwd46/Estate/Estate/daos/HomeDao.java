@@ -13,8 +13,8 @@ public interface HomeDao extends JpaRepository<Home,Integer> {
 
     List<Home> findByActiveTrue();
 
-    List<Home> findAllByProperty(String name);
 
+    List<Home> findAllByProperty(String name);
     List<Home> findByService(String name);
 
 //    @Query(value = "SELECT * FROM homes WHERE property=?1 AND location=?2" , nativeQuery = true)
@@ -28,4 +28,6 @@ public interface HomeDao extends JpaRepository<Home,Integer> {
     Home findByHomeId(int homeId);
 
     List<Home> findAllByService(String name);
+
+
 }

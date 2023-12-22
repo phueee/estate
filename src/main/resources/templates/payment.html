@@ -5,17 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/payment/user}"  th:object="${Payment}"  method="post">
+<form th:action="@{/payment}" method="post" th:object="${user}" >
     <div class="container col-md-6 offset-md-3">
         <h2 class="col-md-6 offset-md-3">Payment</h2>
         <div class="form-group col-md-6">
             <label for="inputUserId">UserId</label>
-            <input type="text" class="form-control" id="inputUserId" th:field="${Payment.userId}" >
+            <input type="text" class="form-control" id="inputUserId" th:field="*{userId}" >
         </div>
 
         <div class="form-group col-md-6">
             <label for="inputHomeId" disabled="homeId">HomeId</label>
-            <input type="hidden" class="form-control" id="inputHomeId" th:field="${home.homeId}" >
+            <input type="hidden" class="form-control" id="inputHomeId" th:field="*{home.homeId}" >
         </div>
 
         <div class="form-group col-md-6">
@@ -25,12 +25,12 @@
 
         <div class="form-group col-md-6">
             <label for="inputUserName">UserName</label>
-            <input type="text" class="form-control" id="inputUserName" th:field="${user.userName}">
+            <input type="text" class="form-control" id="inputUserName" th:field="*{userName}">
         </div>
         <div class="form-group col-md-6">
             <label for="inputAmount">Price</label>
 
-            <input type="text" class="form-control" id="inputAmount" th:field="${home.price}">
+            <input type="text" class="form-control" id="inputAmount" th:field="*{home.price}">
         </div>
         <div class="form-group col-md-6">
             <label for="inputDate">Date</label>

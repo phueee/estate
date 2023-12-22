@@ -27,7 +27,7 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/login")
-    public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request){
+    public String showLoginPost(@RequestParam String email, String password, Model model,HttpServletRequest request){
         User user = userService.login(email,password);
         if (user == null) {
             model.addAttribute("error1","error");

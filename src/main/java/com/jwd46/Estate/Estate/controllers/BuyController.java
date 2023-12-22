@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Controller
 public class BuyController {
@@ -24,41 +26,20 @@ public class BuyController {
     HomeDao homeDao;
 
 
-//
-//    @GetMapping("/buy")
-//    public String viewBuy(Model model, HttpSession session){
-////        model.addAttribute("title","Buyview");
-//        User user= (User) session.getAttribute("userEmail");
-//        if(user != null){
-//            return "/service/buy";
-//        }else {
-//            return "login";
-//        }
-//    }
 
 
-//
-//    @GetMapping("/rent")
-//    public String viewRent(Model model, HttpSession session){
-//        User user= (User) session.getAttribute("userEmail");
-//        if(user != null){
-//            return "/service/rent";
-//        }else {
-//            return "login";
-//        }
-//    }
 
     @GetMapping("/rentlogin/{homeId}")
     public String showRent(Model model, @PathVariable("homeId") int homeId, HttpSession session, HttpServletRequest request) {
         Home home = homeDao.findByHomeId(homeId);
 //        session.setAttribute("home45", home);
-        request.getSession().setAttribute("home45",home);
+        request.getSession().setAttribute("home45", home);
         return "rentlogin";
     }
 
 
     @PostMapping("/rentlogin/user")
-    public String showRent(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request) {
+    public String showRent(@RequestParam String email, String password, Model model, HttpSession session, HttpServletRequest request) {
         User user = userService.login(email, password);
 
         if (user == null) {
@@ -67,7 +48,7 @@ public class BuyController {
         } else {
 //            session.setAttribute("userEmail", user.getUserEmail());
 //            Home home = (Home) session.getAttribute("home45");
-            Home home= (Home) request.getSession().getAttribute("home45");
+            Home home = (Home) request.getSession().getAttribute("home45");
             model.addAttribute("homeNo", home.getHomeNo());
             model.addAttribute("bedRoom", home.getBedRoom());
             model.addAttribute("bathRoom", home.getBathRoom());
@@ -90,55 +71,41 @@ public class BuyController {
 
 
     @GetMapping("/buylogin/{homeId}")
-    public String showBuy(Model model, @PathVariable("homeId") int homeId, HttpSession session,HttpServletRequest request) {
-//        System.out.println(homeId);
+    public String showBuy(Model model, @PathVariable("homeId") int homeId, HttpSession session, HttpServletRequest request) {
         Home home = homeDao.findByHomeId(homeId);
-//        System.out.println(home.getHomeId());
-//        session.setAttribute("home45", home);
-        request.getSession().setAttribute("home45",home);
-        return "buylogin";
-    }
-
-//    @PostMapping("/buylogin/user")
-//    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request) {
-//        User user = userService.login(email, password);
-//
-//        if (user == null) {
-//            model.addAttribute("error", "error");
-//            return "buylogin";
-//        } else {
-////            session.setAttribute("userEmail", user.getUserEmail());
-//            Home home= (Home) request.getSession().getAttribute("home45");
-//            model.addAttribute("homeNo", home.getHomeNo());
-//            model.addAttribute("bedRoom", home.getBedRoom());
-//            model.addAttribute("bathRoom", home.getBathRoom());
-//            model.addAttribute("area", home.getArea());
-//            model.addAttribute("location", home.getLocation());
-//            model.addAttribute("price", home.getPrice());
-//            model.addAttribute("currentDate", LocalDate.now());
-//            return "buy";
-//        }
-//
-//
-//    }
-    @PostMapping("/buylogin/user")
-    public String showBuy(@RequestParam String email,String password,HttpServletRequest request,Model model){
-        User user=userService.login(email, password);
-        if (user.equals(user.getUserEmail())){
-//            session.setAttribute("userEmail", user.getUserEmail());
-//            request.getSession().setAttribute("userEmail",user.getUserEmail());
-            Home home= (Home) request.getSession().getAttribute("home45");
-            model.addAttribute("homeNo", home.getHomeNo());
-            model.addAttribute("bedRoom", home.getBedRoom());
-            model.addAttribute("bathRoom", home.getBathRoom());
-            model.addAttribute("area", home.getArea());
-            model.addAttribute("location", home.getLocation());
-            model.addAttribute("price", home.getPrice());
-            model.addAttribute("currentDate", LocalDate.now());
+        if (session.getAttribute("userEmail") != null) {
+            model.addAttribute("home45", home);
+            model.addAttribute("homeId", home.getHomeId());
+            model.addAttribute("currentDate",LocalDate.now());
             return "buy";
-        }else {
-            model.addAttribute("error", "error");
+        } else {
+            session.setAttribute("homeID23",home);
             return "buylogin";
         }
     }
+
+
+
+    @PostMapping("/buylogin/user")
+    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session) {
+        User user = userService.login(email, password);
+        if (user == null) {
+            model.addAttribute("error","error");
+            return "buylogin";
+        }
+        else {
+      Home home=(Home)session.getAttribute("homeID23");
+//      Integer home4=Integer.valueOf(home.getHomeId());
+//      Home home1=homeDao.findByHomeId(home.getHomeId());
+        session.setAttribute("userEmail", user.getUserEmail());
+        session.setAttribute("userId", user.getUserId());
+        return "redirect:/buylogin/" + home.getHomeId();
+
+
+    }
 }
+
+    }
+
+
+

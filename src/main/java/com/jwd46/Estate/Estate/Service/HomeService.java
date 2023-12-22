@@ -8,6 +8,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class HomeService {
 
     @Autowired
     HomeDao homeDao;
+
 
     public void saveHomeToDB(MultipartFile file,String homeNo,String bedroom,String bathroom,String area,String location,String price,String property,String service,String photo){
 
@@ -35,6 +39,8 @@ public class HomeService {
        }
         try {
             home.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
