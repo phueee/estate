@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container-col-md-6 offset-md-3">
-    <form th:action="@{/payment}"  method="post" th:object="${home45}">
+    <form th:action="@{/payment/user}"  method="post" th:object="${home45}">
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Buy Detail</h2>
         <div class="row mb-4">
             <div class="col-md-2"></div>
@@ -54,8 +54,6 @@
                 <input type="text" class="form-control" id="price" th:field="*{price}" disabled>
             </div>
         </div>
-
-
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="date" class="col-md-2 col-form-label">Date</label>

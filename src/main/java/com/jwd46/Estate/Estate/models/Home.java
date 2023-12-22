@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "homes")
 @Data
 public class Home {
@@ -31,13 +29,11 @@ public class Home {
     private String property;
     private String service;
     private int status;
-
     private boolean active = true;
     @Lob
-    @Column(name = "photo", columnDefinition = "MEDIUMBLOB")
+    @Column(name = "photo", columnDefinition = "LONGBLOB")
+//    private String photo;
     private String photo;
-//    private Date currentDate;
-//    private LocalDateTime currentDate;
 //    @OneToMany(mappedBy = "home", fetch = FetchType.EAGER)
 //    private Set<User> users;
 

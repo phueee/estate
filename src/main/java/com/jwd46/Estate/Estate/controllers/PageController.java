@@ -2,6 +2,7 @@ package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.Service.HomeService;
 import com.jwd46.Estate.Estate.daos.HomeDao;
+import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
 import jakarta.servlet.http.HttpSession;
@@ -9,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PageController {
+    @Autowired
+    UserDao userDao;
 @Autowired
      HomeDao homeDao;
 
@@ -111,9 +116,40 @@ public class PageController {
     }
 
 
-    @GetMapping("userdetail")
-    public String viewUserdetail(Model model){
-        model.addAttribute("title","userdetail");
+//    @GetMapping("userdetail")
+//    public ModelAndView viewUserdetail(Model model, HttpSession session) {
+//        User user = (User) session.getAttribute("userId");
+//
+//        if (user == null) {
+//            // Handle the case when the user is not in the session
+//            // Redirect to login or show an error message
+//            return new ModelAndView("redirect:/login");
+//        }
+//
+//        User userFromDao = userDao.findByUserEmail(user.getUserEmail());
+//
+//        if (userFromDao == null) {
+//            // Handle the case when the user is not found in the database
+//            // Redirect to an error page or show an error message
+//            return new ModelAndView("error");
+//        }
+//
+//        model.addAttribute("user", userFromDao);
+//        model.addAttribute("title", "userdetail");
+//        return new ModelAndView("userdetail", "useBean", userFromDao);
+//    }
+//
+
+
+    @GetMapping("/usedetail/view")
+    public  String viewUserDetail(Model model,HttpSession session){
+//        model.addAttribute("title","userdetail");
+        User user=(User) session.getAttribute("user");
+        System.out.println("username"+user.getUserName());
+        System.out.println("username"+user.getUserPhone());
+        System.out.println("username"+user.getUserEmail());
+        System.out.println("username"+user.getUserName());
+        model.addAttribute("user",user);
         return "userdetail.html";
     }
     @GetMapping("Buy")

@@ -24,6 +24,9 @@ public class HomeController {
     HomeDao homeDao;
     @Autowired
     HomeService service;
+
+    @Autowired
+    HomeDao dao;
 //
 //    @GetMapping("/homes")
 //    public String viewHomes (Model model){
@@ -38,9 +41,8 @@ public class HomeController {
 //        return "homes";
 //    }
 
-
-    @GetMapping("/delete/home/{homeId}")
-    public String deleteHome(@PathVariable("homeId") int homeId) {
+    @PostMapping("/delete/home")
+    public String deleteHome(@RequestParam int homeId) {
         homeDao.deleteById(homeId);
         return "redirect:/homes";
 
@@ -62,18 +64,18 @@ public class HomeController {
     }
 
 
-    @PostMapping("/home/update")
-    public String updateHome(Model model,@RequestParam ("file")MultipartFile  file,
-                             @ModelAttribute("homeBean") Home home) throws IOException {
-        home.setStatus(1);
-        byte[] bytes=file.getBytes();
-        String enodedString= Base64.getEncoder().encodeToString(bytes);
-        home.setPhoto(enodedString);
-        homeDao.save(home);
-        model.addAttribute("fileName",enodedString);
-        return "redirect:/homes";
-//        return "redirect:/homes/view";
-    }
+//    @PostMapping("/home/update")
+//    public String updateHome(Model model,@RequestParam ("photo")MultipartFile  photo,
+//                             @ModelAttribute("homeBean") Home home) throws IOException {
+//        home.setStatus(1);
+//        byte[] bytes=photo.getBytes();
+//        String enodedString= Base64.getEncoder().encodeToString(bytes);
+//        home.setPhoto(enodedString);
+//        homeDao.save(home);
+//        model.addAttribute("fileName",enodedString);
+//        return "redirect:/homes";
+////        return "redirect:/homes/view";
+//    }
 
     @GetMapping("/search")
     public String searchHomes() {
@@ -94,5 +96,22 @@ public class HomeController {
         }
         model.addAttribute("homes", homeList);
         return "view";
+    }
+
+    @PostMapping("/home/update")
+    public String updatePage(@RequestParam("homeId") int homeId,@RequestParam("homeNo")String homeNo,@RequestParam("bedRoom")String bedRoom,@RequestParam("bathRoom")String bathRoom,@RequestParam("area")String area,@RequestParam("location")String location,@RequestParam("price")String price,@RequestParam("property")String property,@RequestParam("service")String service,@RequestParam("photo")MultipartFile photo) throws IOException {
+        Home home=dao.getHomeById(homeId);
+        home.setHomeNo(homeNo);
+        home.setBathRoom(bathRoom);
+        home.setBedRoom(bedRoom);
+        home.setPrice(price);
+        home.setArea(area);
+        home.setService(service);
+        home.setProperty(property);
+        byte[] bytes=photo.getBytes();
+        String encodedString=Base64.getEncoder().encodeToString(bytes);
+        home.setPhoto(encodedString);
+        dao.save(home);
+        return "redirect:/homes";
     }
 }
