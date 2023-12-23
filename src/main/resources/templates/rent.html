@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container-col-md-6 offset-md-3" >
-    <form th:action="@{RPayment}" method="post">
+    <form th:action="@{RPayment}" method="post" th:object="${home45}">
 
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Rent Detail</h2>
         <!--        <div class="row mb-4">-->
@@ -24,14 +24,14 @@
             <div class="col-md-2"></div>
             <label for="homeNo" class="col-md-2 col-form-label">Home Number</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeNo"  th:value="${homeNo}" disabled>
+                <input type="text" class="form-control" id="homeNo"  th:field="*{homeNo}" disabled>
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="bedroom" class="col-md-2 col-form-label">Number of Bedroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="bedroom" th:value="${bedRoom}" disabled>
+                <input type="text" class="form-control" id="bedroom" th:field="*{bedRoom}" disabled>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
             <div class="col-md-2"></div>
             <label for="bathroom" class="col-md-2 col-form-label">Number of Bathroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="bathroom" th:value="${bathRoom}" disabled>
+                <input type="text" class="form-control" id="bathroom" th:field="*{bathRoom}" disabled>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
             <div class="col-md-2"></div>
             <label for="homeArea" class="col-md-2 col-form-label">Area</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeArea" th:value="${area}" disabled>
+                <input type="text" class="form-control" id="homeArea" th:field="*{area}" disabled>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
             <div class="col-md-2"></div>
             <label for="homeLocation" class="col-md-2 col-form-label">Location</label>
             <div class="col-md-4">
-                <input type="location" class="form-control" id="homeLocation" th:value="${location}" disabled>
+                <input type="text" class="form-control" id="homeLocation" th:field="*{location}" disabled>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
             <div class="col-md-2"></div>
             <label for="homePrice" class="col-md-2 col-form-label">Price</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homePrice" name="homePrice" th:value="${price}" readonly="true">
+                <input type="text" class="form-control" id="homePrice" name="homePrice" th:field="*{price}" readonly="true">
             </div>
         </div>
 

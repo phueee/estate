@@ -47,8 +47,7 @@ public class AdminController {
         admin.setEmail(email);
         admin.setPassword(password);
 
-        if (admin.getEmail().equals("Phyoke Kya Ml@gmail.com") && admin.getPassword().equals("123123")) {
-//            session.setAttribute("admin", admin);
+        if (admin.getEmail().equals("phyokekyaml@gmail.com") && admin.getPassword().equals("123123")) {
             request.getSession().setAttribute("admin", admin);
 
             return "adminView";
