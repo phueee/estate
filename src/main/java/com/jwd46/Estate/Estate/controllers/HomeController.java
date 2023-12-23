@@ -106,6 +106,7 @@ public class HomeController {
         home.setBedRoom(bedRoom);
         home.setPrice(price);
         home.setArea(area);
+        home.setLocation(location);
         home.setService(service);
         home.setProperty(property);
         home.setLocation(location);

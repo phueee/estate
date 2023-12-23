@@ -30,6 +30,8 @@ public class PageController {
 
     @GetMapping("/index")
     public String viewPage(Model model) {
+
+
         List<Home> homes= homeDao.findAll();
         List<Home> homePreviews = new ArrayList<Home>();
         if (homes.size() > 6) {
@@ -60,7 +62,6 @@ public class PageController {
         List<Home> office= homeDao.findAllByProperty("Office");
         model.addAttribute("homesList", office);
         model.addAttribute("officeCount", office.size());
-
 
         return "index";
     }
@@ -96,7 +97,7 @@ public class PageController {
     }
 
     @GetMapping("office")
-    public String viewOfficd(Model model){
+    public String viewOffice(Model model){
         List<Home> homes=homeDao.findAllByProperty("Office");
         model.addAttribute("homes", homes);
         model.addAttribute("officeCount", homes.size());
