@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 
-<link href="/css/style.css" rel="stylesheet">
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
+    <link href="/css/style.css" rel="stylesheet">
     <a href="/" class="previous">&laquo; Home</a>
     <title>Login Form</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css">
@@ -14,9 +15,7 @@
         <div class="con">
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>
-                <div th:if="${error1}">
-                    <div class="alert alert-danger">Invalid Email or Password</div>
-                </div>
+
                 <p style="color: #FFFFFF">Login to your account</p>
             </header>
 
@@ -71,7 +70,7 @@
                 <button class="log-in" type="submit" onclick="location.href=''"> Log In </button>
                 <br>
                 <p style="color: #FFFFFF">if you don't have an account sing up here</p>
-                <button style="color: #FFFFFF" class="btn block sign-up" onclick="location.href='signup'">Sign Up
+                <button style="color: #FFFFFF" class="btn block sign-up" onclick="location.href='/signup'">Sign Up
 
                     <i  class="fa fa-user-plus" aria-hidden="true"></i>
                 </button>
@@ -86,3 +85,9 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+

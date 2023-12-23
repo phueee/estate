@@ -90,7 +90,7 @@ header p {letter-spacing: 0.05em;}
 .input-item {
     background: #fff;
     color: #333;
-    padding: 14.5px 0px 15px 9px;
+    padding: 15px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
 }
 
@@ -98,22 +98,26 @@ header p {letter-spacing: 0.05em;}
 
 /* Show/hide password Font Icon */
 #eye {
-    background: #fff;
-    color: #111;
+    /*background: #fff;*/
+    /*color: #111;*/
 
     margin: 5.8px 0 0 0;
-    margin-left: -20px;
-    padding: 15px 9px 19px 0px;
+    margin-left: -18px;
+    padding: 16px 5px 19px 0px;
     border-radius: 0px 5px 5px 0px;
 
-    float: right;
+    /*float: right;*/
     position: relative;
-    right: 1%;
-    top: -.2%;
+    right: 3%;
+    top: -.1%;
     z-index: 5;
 
     cursor: pointer;
 }
+.fa-eye, .fa-eye-slash {
+    font-size: 15px; /* Adjust this value to set the desired size */
+}
+
 /* inputs form  */
 input[class="form-input"]{
     width: 240px;
@@ -133,10 +137,10 @@ input[class="form-input"]{
     transition: 0.2s linear;
 
 }
-input[id="txt-input"] {width: 250px;}
-input[id="txt-input1"] {width: 250px;}
-input[id="txt-input2"] {width: 250px;}
-input[id="txt-input3"] {width: 250px;}
+input[id="txt-input"] {width: 240px;}
+input[id="txt-input1"] {width: 240px;}
+input[id="txt-input2"] {width: 240px;}
+input[id="txt-input3"] {width: 240px;}
 /* focus  */
 input:focus {
     transform: translateX(-2px);
@@ -152,7 +156,7 @@ button {
     display: inline-block;
     color: #252537;
 
-    width: 280px;
+    width: 270px;
     height: 50px;
 
     padding: 0 20px;
@@ -212,5 +216,5 @@ button:hover {
     }
 }
 .fa-solid {
-    font-size: 20px;
+    font-size: 14px;
 }

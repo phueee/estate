@@ -35,6 +35,8 @@ public class LoginController {
         }
         else {
             session.setAttribute("user",user);
+            User user1 = (User) session.getAttribute("user");
+            session.setAttribute("userName", user.getUserName());
             request.getSession().setAttribute("userEmail",user.getUserEmail());
             request.getSession().setAttribute("userId",user.getUserId());
 //             session.setAttribute("userEmail",user.getUserEmail());
