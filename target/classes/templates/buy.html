@@ -6,20 +6,36 @@
 </head>
 <body>
 <div class="container-col-md-6 offset-md-3">
-    <form th:action="@{'/payment/' + ${userId} + '/' + ${homeId}}" method="post" >
+    <form th:action="@{/index}"  method="post" th:object="${home}">
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Buy Detail</h2>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="userName" class="col-md-2 col-form-label">User Name</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="userName" th:value="${session.userName}" disabled >
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="userEmail" class="col-md-2 col-form-label">User Email</label>
+            <div class="col-md-4">
+                <input type="email" class="form-control" id="userEmail" th:value="${session.userEmail}" disabled>
+            </div>
+        </div>
+
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="home no" class="col-md-2 col-form-label">Home Number</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="home no" th:value="${homeNo}" disabled>
+                <input type="text" class="form-control" id="home no" th:field="*{homeNo}" disabled>
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="no.of bedroom" class="col-md-2 col-form-label">Number of Bedroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="no.of bedroom" th:value="${bedRoom}" disabled>
+                <input type="text" class="form-control" id="no.of bedroom" th:field="*{bedRoom}" disabled>
             </div>
         </div>
 
@@ -27,7 +43,7 @@
             <div class="col-md-2"></div>
             <label for="no.of bathroom" class="col-md-2 col-form-label">Number of Bathroom</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="no.of bathroom" th:value="${bathRoom}" disabled>
+                <input type="text" class="form-control" id="no.of bathroom" th:field="*{bathRoom}" disabled>
             </div>
         </div>
 
@@ -35,7 +51,7 @@
             <div class="col-md-2"></div>
             <label for="area" class="col-md-2 col-form-label">Area</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="area" th:value="${area}" disabled>
+                <input type="text" class="form-control" id="area" th:field="*{area}" disabled>
             </div>
         </div>
 
@@ -43,7 +59,7 @@
             <div class="col-md-2"></div>
             <label for="location" class="col-md-2 col-form-label">Location</label>
             <div class="col-md-4">
-                <input type="location" class="form-control" id="location" th:value="${location}" disabled>
+                <input type="text" class="form-control" id="location" th:field="*{location}" disabled>
             </div>
         </div>
 
@@ -51,10 +67,22 @@
             <div class="col-md-2"></div>
             <label for="price" class="col-md-2 col-form-label">Price</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="price" th:value="${price}" disabled>
+                <input type="text" class="form-control" id="price" th:field="*{price}" disabled>
             </div>
         </div>
 
+
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="date" class="col-md-2 col-form-label">Payment</label>
+            <div class="col-md-4">
+                <select id="inputPayment" class="form-control" required>
+                    <option selected>Type</option>
+                    <option>Wave</option>
+                    <option>K pay</option>
+                </select>
+            </div>
+        </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
@@ -68,7 +96,7 @@
             <div class="col-md-4"></div>
 
             <div class="col-md-4">
-                <button type="submit" class="btn btn-danger " >Buy</button>
+                <button type="submit" class="btn btn-danger " onclick="location.href=''">Buy</button>
             </div>
 
         </div>
@@ -76,5 +104,7 @@
     </form>
 </div>
 </div>
+
+
 </body>
 </html>

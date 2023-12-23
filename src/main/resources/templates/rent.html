@@ -1,101 +1,94 @@
 <!DOCTYPE html>
-
-<link href="css/style.css" rel="stylesheet">
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
 <head th:replace="adminView::header">
-
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-<div class="container-col-md-6 offset-md-3" >
-    <form th:action="@{RPayment}" method="post">
-
+<div class="container-col-md-6 offset-md-3">
+    <form th:action="@{/index}"  method="post" th:object="${home}">
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Rent Detail</h2>
-        <!--        <div class="row mb-4">-->
-        <!--            <div class="col-md-2"></div>-->
-        <!--            <label for="ID" class="col-md-2 col-form-label">ID</label>-->
-        <!--            <div class="col-md-4">-->
-        <!--                <input type="id" class="form-control"  id="ID" field="Id">-->
-        <!--            </div>-->
-        <!--        </div>-->
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="homeNo" class="col-md-2 col-form-label">Home Number</label>
+            <label for="userName" class="col-md-2 col-form-label">User Name</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeNo"  th:value="${homeNo}" disabled>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-2"></div>
-            <label for="bedroom" class="col-md-2 col-form-label">Number of Bedroom</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="bedroom" th:value="${bedRoom}" disabled>
+                <input type="text" class="form-control" id="userName" th:value="${session.userName}" disabled >
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="bathroom" class="col-md-2 col-form-label">Number of Bathroom</label>
+            <label for="userEmail" class="col-md-2 col-form-label">User Email</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="bathroom" th:value="${bathRoom}" disabled>
+                <input type="email" class="form-control" id="userEmail" th:value="${session.userEmail}" disabled>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="homeArea" class="col-md-2 col-form-label">Area</label>
+            <label for="home no" class="col-md-2 col-form-label">Home Number</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homeArea" th:value="${area}" disabled>
+                <input type="text" class="form-control" id="home no" th:field="*{homeNo}" disabled>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="no.of bedroom" class="col-md-2 col-form-label">Number of Bedroom</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="no.of bedroom" th:field="*{bedRoom}" disabled>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="homeLocation" class="col-md-2 col-form-label">Location</label>
+            <label for="no.of bathroom" class="col-md-2 col-form-label">Number of Bathroom</label>
             <div class="col-md-4">
-                <input type="location" class="form-control" id="homeLocation" th:value="${location}" disabled>
+                <input type="text" class="form-control" id="no.of bathroom" th:field="*{bathRoom}" disabled>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="homePrice" class="col-md-2 col-form-label">Price</label>
+            <label for="area" class="col-md-2 col-form-label">Area</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="homePrice" name="homePrice" th:value="${price}" readonly="true">
+                <input type="text" class="form-control" id="area" th:field="*{area}" disabled>
             </div>
         </div>
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="startDate" class="col-md-2 col-form-label">Start Rent Date</label>
+            <label for="location" class="col-md-2 col-form-label">Location</label>
             <div class="col-md-4">
-                <input type="date" class="form-control" id="startDate" th:value="${currentDate}" disabled>
+                <input type="text" class="form-control" id="location" th:field="*{location}" disabled>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="price" class="col-md-2 col-form-label">Price</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="price" th:field="*{price}" disabled>
             </div>
         </div>
 
 
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="DueDate" class="col-md-2 col-form-label">Due Date</label>
+            <label for="inputPayment" class="col-md-2 col-form-label">Payment</label>
             <div class="col-md-4">
-                <select id="DueDate" class="form-control" >
-                    <option value="3months">3months</option>
-                    <option value="4months">4months</option>
-                    <option value="5months">5months</option>
-                    <option value="6months">6months</option>
+                <select id="inputPayment" class="form-control" required>
+                    <option selected>Type</option>
+                    <option>Wave</option>
+                    <option>K pay</option>
                 </select>
             </div>
         </div>
 
-
-
         <div class="row mb-4">
             <div class="col-md-2"></div>
-            <label for="endDate" class="col-md-2 col-form-label">End Rent Date</label>
+            <label for="date" class="col-md-2 col-form-label">Date</label>
             <div class="col-md-4">
-                <input type="date" class="form-control" id="endDate" name="endDate" th:value="${dateThreeMonthsLater}" disabled>
+                <input type="date" class="form-control" id="date" th:value="${currentDate}" disabled >
             </div>
         </div>
 
@@ -103,48 +96,15 @@
             <div class="col-md-4"></div>
 
             <div class="col-md-4">
-                <button type="button" class="btn btn-danger "  onclick="location.href=''">Rent</button>
+                <button type="submit" class="btn btn-danger " onclick="location.href=''">Buy</button>
             </div>
 
         </div>
 
     </form>
-    <script th:inline="javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            var dueDateSelect = document.getElementById('DueDate');
-            var endDateInput = document.getElementById('endDate');
-            var priceInput = document.getElementById('homePrice');
-
-            dueDateSelect.addEventListener('change', function () {
-                var selectedDueDate = dueDateSelect.value;
-                var currentDate = new Date();
-
-                var dateThreeMonthsLater = new Date(currentDate);
-                dateThreeMonthsLater.setMonth(currentDate.getMonth() + parseInt(selectedDueDate));
-
-                var formattedDate = dateThreeMonthsLater.toISOString().split('T')[0];
-
-                endDateInput.value = formattedDate;
-                var basePrice = priceInput.value.substring(1);
-                priceInput.value = calculatePrice(selectedDueDate,parseInt(basePrice));
-            });
-        });
-
-        function calculatePrice(selectedDueDate,basePrice) {
-            var dueDate = selectedDueDate.charAt(0);
-            var totalPrice = basePrice + (parseInt(dueDate) - 3 )* basePrice;
-
-            return '$' + totalPrice;
-        }
-
-        function calculatePrice1(selectedDueDate,basePrice) {
-            var dueDate = selectedDueDate.charAt(0);
-            var totalPrice = basePrice - (parseInt(dueDate) - 3 )* basePrice;
-
-            return '$' + totalPrice;
-        }
-    </script>
 </div>
-<div th:replace="adminView::footer"></div>
+</div>
+
+
 </body>
 </html>

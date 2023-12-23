@@ -29,6 +29,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
 </head>
 
 <body>
@@ -78,12 +79,23 @@
 
                         <a href="contact" class="nav-item nav-link">Contact</a>
 
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
+                        <div class="nav-item dropdown" th:if="${session.userEmail!=null}">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><img src="img/jennie-1.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%"></a>
                             <div class="dropdown-menu rounded-0 m-0"/>
 
-                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>
-
+<!--                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>-->
+                            <div class="profile-alerts">
+                                <div class="user-details">
+                                    <img src="img/jennie-1.jpeg" alt="" class="avatar">
+                                    <a  href="view"  th:if="${session.userEmail!=null}" ><i class="bi bi-pencil-square" style="color: #0a0a0b"></i></a>
+                                </div>
+                                <div class="alerts">
+<!--                                    <span th:text="${user.userName}"></span>-->
+                                    <div class="alert" th:text="${session.userEmail}"></div>
+                                    <div class="alert">okok</div>
+                                    <div class="alert">koko</div>
+                                </div>
+                            </div>
                             </div>
                         </div>
 
@@ -107,7 +119,7 @@
                     <h1 class="display-5 animated fadeIn mb-4">Find A <span class="text-primary">Perfect Home</span> To Live With Your Family</h1>
 
                     <p class="animated fadeIn mb-4 pb-2"></p>
-                    <a href="signup" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Get Started</a>
+                    <a href="signup" class="btn btn-primary py-3 px-5 me-3 animated fadeIn" th:if="${session.userEmail==null}">Get Started</a>
                 </div>
                 <div class="col-md-6 animated fadeIn">
                     <div class="owl-carousel header-carousel">
