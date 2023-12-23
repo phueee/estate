@@ -26,4 +26,8 @@ public interface  UserDao extends JpaRepository<User,Integer> {
     User findByUserEmail(String userEmail);
  @Query(value = "SELECT * FROM users WHERE user_email=?1",nativeQuery=true)
     User getUserByuserEmail(String email);
+
+
+  @Query(value = "SELECT u.* FROM users u INNER JOIN userhome uh ON u.user_id=uh.user_id WHERE uh.user_id=?1", nativeQuery = true)
+    User getUserByUserHomeId(int id);
 }

@@ -24,6 +24,7 @@ public class LoginController {
     @GetMapping("/login")
     public String showLoginGet(Model model){
         model.addAttribute("title","login");
+
         return "login";
     }
     @PostMapping("/login")
@@ -35,6 +36,8 @@ public class LoginController {
         }
         else {
             session.setAttribute("user",user);
+            User user1 = (User) session.getAttribute("user");
+            session.setAttribute("userName", user.getUserName());
             request.getSession().setAttribute("userEmail",user.getUserEmail());
             request.getSession().setAttribute("userId",user.getUserId());
 //             session.setAttribute("userEmail",user.getUserEmail());

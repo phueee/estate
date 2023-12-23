@@ -56,7 +56,7 @@ public class PaymentController {
     }
 
     @PostMapping("/detail")
-    public String viewDetail(Model model,@RequestParam String userName, @PathVariable("userId") int userId){
+    public String viewDetail(Model model,@RequestParam String userName, @PathVariable int userId){
         User user=userDao.findByUserId(userId);
         Payment payment=new Payment();
         payment.setUser(user);
@@ -74,7 +74,7 @@ public class PaymentController {
 
 
     @PostMapping("/Rdetail")
-    public String viewRdetail(Model model,@RequestParam String userName,@PathVariable("userId") int userId){
+    public String viewRdetail(Model model,@RequestParam String userName,@PathVariable int userId){
         User user=userDao.findByUserId(userId);
         RPayment rpayment=new RPayment();
         rpayment.setUser(user);

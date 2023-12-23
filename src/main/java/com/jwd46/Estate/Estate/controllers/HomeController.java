@@ -108,6 +108,7 @@ public class HomeController {
         home.setArea(area);
         home.setService(service);
         home.setProperty(property);
+        home.setLocation(location);
         byte[] bytes=photo.getBytes();
         String encodedString=Base64.getEncoder().encodeToString(bytes);
         home.setPhoto(encodedString);

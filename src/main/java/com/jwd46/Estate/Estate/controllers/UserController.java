@@ -4,6 +4,7 @@ import com.jwd46.Estate.Estate.Service.UserService;
 import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.Home;
 import com.jwd46.Estate.Estate.models.User;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password) {
+    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password, HttpServletRequest request) {
         User user = new User();
         user.setUserName(name);
         user.setUserEmail(email);
@@ -38,6 +39,7 @@ public class UserController {
         dao.save(user);
         if (user.getUserName().equals("") || user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("")) {
             model.addAttribute("error", "Please fill required informations!");
+            request.getSession().setAttribute("userName",user.getUserName());
             return "signup";
         } else {
             return "login";
