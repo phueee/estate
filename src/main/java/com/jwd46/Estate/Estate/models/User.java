@@ -31,6 +31,10 @@ public class User {
 
     @Column(name = "user_password")
     private String userPassword;
+
+    @Column(name="confirm_password")
+    private String confirmPassword;
+
     private boolean active = true;
 
     @ManyToMany

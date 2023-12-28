@@ -44,7 +44,7 @@
 
 
 <!--                <span toggle="#password-field">-->
-        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye">
+<!--        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye">-->
 
 
 
@@ -72,43 +72,7 @@
 
                     </script></i>
      </span><br>
-                <span class="input-item">
-        <i class="fa fa-key"></i>
-       </span>
-                <span toggle="#password-field">
 
-                <input class="form-input" type="password" placeholder="Comfirm-Password" id="pwd"  name="Password" >
-
-
-                    <!--                <span toggle="#password-field">-->
-        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye">
-
-
-
-                    <script>
-
-                        const eyeIcon = document.getElementById("eye");
-                        const passwordInput = document.getElementById("pwd");
-
-
-                        eyeIcon.addEventListener("click", () => {
-                            // Toggle the type of the password input between "password" and "text"
-                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                        passwordInput.setAttribute("type", type);
-
-                        // Toggle the eye icon class based on the password input type
-                        if (type === "password") {
-                            eyeIcon.classList.remove("fa-eye");
-                            eyeIcon.classList.add("fa-eye-slash");
-                        } else {
-                            eyeIcon.classList.remove("fa-eye-slash");
-                            eyeIcon.classList.add("fa-eye");
-
-                        }
-                        });
-
-                    </script></i>
-     </span>
                 <br>
                  <button class="log-in" type="submit" onclick="location.href=''"> Log In </button>
             <br>

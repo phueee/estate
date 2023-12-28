@@ -35,34 +35,32 @@ public class AdminController {
     @Autowired
     UserDao userDao;
 
-    @GetMapping("/adminlogin")
-    public String viewadminlogin(Model model) {
-        model.addAttribute("title", "AdminLogin");
-        return "adminlogin";
-    }
-
-    @PostMapping("/adminlogin")
-    public String showSignPost(Model model, @RequestParam String email, String password, HttpSession session, HttpServletRequest request) {
-        Admin admin = new Admin();
-        admin.setEmail(email);
-        admin.setPassword(password);
-
-        if (admin.getEmail().equals("phyokekyaml@gmail.com") && admin.getPassword().equals("123123")) {
-            request.getSession().setAttribute("admin", admin);
-
-            return "adminView";
-        }
-    else
-    {
-        return "adminlogin";
-    }
-
-
-    }
-
+//    @GetMapping("/adminlogin")
+//    public String viewadminlogin(Model model) {
+//        model.addAttribute("title", "AdminLogin");
+//        return "signup";
+//    }
+//
+//    @PostMapping("/adminlogin")
+//    public String showSignPost(Model model, @RequestParam String email, String password, HttpSession session, HttpServletRequest request) {
+//        Admin admin = new Admin();
+//        admin.setEmail(email);
+//        admin.setPassword(password);
+//
+//        if (admin.getEmail().equals("phyokekyaml@gmail.com") && admin.getPassword().equals("123123")) {
+//            request.getSession().setAttribute("admin", admin);
+//            request.getSession().setAttribute("adminId",admin.getId());
+//            return "adminView";
+//        }
+//    else
+//    {
+//        return "adminlogin";
+//    }
+//
+//    }
 
 
-        @GetMapping("/adminCreate")
+        @GetMapping("/ adminCreate")
         public String createHome (Model model, HttpServletRequest request){
             model.addAttribute("title", "adminCreate");
             Admin admin = (Admin) request.getSession().getAttribute("admin");
@@ -75,7 +73,7 @@ public class AdminController {
 //        return "adminCreate";
         }
 
-        @RequestMapping("adminView")
+        @RequestMapping("/admin/adminView")
         public String adminView (Model model, HttpServletRequest request){
             model.addAttribute("title", "adminView");
             Admin admin = (Admin) request.getSession().getAttribute("admin");

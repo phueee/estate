@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,27 +24,33 @@ public class UserController {
     @Autowired
     UserDao dao;
 
-
     @GetMapping("/signup")
     public String showSignGet(){
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password, HttpServletRequest request) {
+    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password, String confirmPassword, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         User user = new User();
         user.setUserName(name);
         user.setUserEmail(email);
         user.setUserPhone(phone);
         user.setUserNrc(NRC);
         user.setUserPassword(password);
-        dao.save(user);
-        if (user.getUserName().equals("") || user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("")) {
-            model.addAttribute("error", "Please fill required informations!");
-            request.getSession().setAttribute("userName",user.getUserName());
+        user.setConfirmPassword(confirmPassword);
+        request.getSession().setAttribute("userName",user.getUserName());
+        if (user.getUserName().equals("") || user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("") || user.getConfirmPassword().equals("")) {
+            model.addAttribute("msg1", "msg");
             return "signup";
-        } else {
-            return "login";
+        }else {
+            if (!password.equals(confirmPassword)) {
+                model.addAttribute("showAlert", true);
+                return "signup";
+            } else {
+                // Save the user or perform additional validation/logic
+                dao.save(user);
+                return "redirect:/login";
+            }
         }
     }
 

@@ -1,5 +1,5 @@
 <link href="css/style.css" rel="stylesheet">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <a href="/" class="previous" style="background: #0b2540; color:#FFFFFF;">&laquo; Home</a>
@@ -8,17 +8,26 @@
     <link rel="stylesheet" href="css/login.css">
 
 </head>
+
+
+
 <body>
-<form action=""  method="post">
+<form th:action="@{/signup}"  method="post" id="af-form">
     <div style="margin-top: 50px">
         <div class="con">
 
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Sign Up</h2>
 
+                <div th:if="${msg1}">
+                    <div class="alert alert-danger">Please fill requried information!!!</div>
+                </div>
 
                 <p style="color: #FFFFFF">sign up here if you don't have an account</p>
             </header>
+<!--            <div th:if="${error}">-->
+<!--                <div class="alert alert-danger">Please fill required informations!!!</div>-->
+<!--            </div>-->
 
             <br>
             <div class="field-set">
@@ -53,16 +62,21 @@
 
                 <br>
 
+                <script th:if="${showAlert}">
+                    window.onload=function () {
+                        alert('Password do not match');
+                    }
+                </script>
 
                 <span class="input-item">
         <i class="fa-solid fa-key" style="color: #0a0a0b;"></i>
        </span>
 
-                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
+                <input class="form-input" type="password" placeholder="Password" id="password"  name="password" required>
 
 
                 <span>
-        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
+<!--        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>-->
                        <script>
                         // Get the eye icon and password input element
                         const eyeIcon = document.getElementById("eye");
@@ -86,11 +100,91 @@
                         });
 
                     </script>
-     </span>
+     </span><br>
 
+                               <span class="input-item">
+        <i class="fa fa-key"></i>
+       </span>
+                <span toggle="#password-field">
+
+                <input class="form-input" type="password" placeholder="Confirm-Password" id="confirm_password"  name="confirmPassword" required>
+
+
+                    <!--                <span toggle="#password-field">-->
+<!--        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye">-->
+
+
+
+                    <script>
+
+                        const eyeIcon = document.getElementById("eye");
+                        const passwordInput = document.getElementById("pwd");
+
+
+                        eyeIcon.addEventListener("click", () => {
+                            // Toggle the type of the password input between "password" and "text"
+                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+                        passwordInput.setAttribute("type", type);
+
+                        // Toggle the eye icon class based on the password input type
+                        if (type === "password") {
+                            eyeIcon.classList.remove("fa-eye");
+                            eyeIcon.classList.add("fa-eye-slash");
+                        } else {
+                            eyeIcon.classList.remove("fa-eye-slash");
+                            eyeIcon.classList.add("fa-eye");
+
+                        }
+                        });
+
+                    </script></i>
+
+     </span>
+<!--                <script>-->
+<!--                    document.addEventListener('DOMContentLoaded',function(){-->
+<!--                        var form = document.getElementById('af-form');-->
+<!--                        var errorMessage = document.getElementById('error-message');-->
+<!--                        form.addEventListener('submit',function(event){-->
+<!--                            if (!validateForm()){-->
+<!--                                event.preventDefault();-->
+<!--                            }-->
+<!--                        });-->
+<!--                        function validateForm() {-->
+<!--                            var password=document.getElementById('password').value;-->
+<!--                            var confirmPassword=document.getElementById('confirmPassword').value;-->
+
+<!--                            if(password != confirmPassword){-->
+<!--                                errorMessage.textContent='Password and ConfirmPassword do not match.';-->
+<!--                                return false;-->
+<!--                            }else {-->
+<!--                                errorMessage.textContent = '';-->
+<!--                            }-->
+<!--                            return true;-->
+<!--                    }-->
+<!--                     });-->
+<!--                </script>-->
+
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const passwordInput = document.getElementById('password');
+                        const confirmPasswordInput = document.getElementById('confirm_password');
+                        const errorMessage = document.getElementById('error-message');
+
+                        passwordInput.addEventListener('input', validatePassword);
+                        confirmPasswordInput.addEventListener('input', validatePassword);
+
+                        function validatePassword() {
+                            const password = passwordInput.value;
+                            const confirmPassword = confirmPasswordInput.value;
+
+                            errorMessage.textContent = password === confirmPassword ? '' : 'Password and Confirm Password do not match.';
+                        }
+                    });
+                </script>
 
                 <br>
-                <button type="submit" class="btn btn-danger "style="background: #0d6efd;color:#FFFFFF; " onclick="location.href='/login'">Create</button>
+                <button type="submit" class="btn btn-danger "style="background: #0d6efd;color:#FFFFFF; " onclick="location.href=''">Create</button>
 
             </div>
 
