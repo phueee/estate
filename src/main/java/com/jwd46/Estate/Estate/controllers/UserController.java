@@ -10,11 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -83,6 +87,12 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @GetMapping("/userEdit/user/{userId}")
+    public ModelAndView editPage(@PathVariable("userId") int userId) {
+        User user = dao.findById(userId).orElseThrow();
+        return new ModelAndView("userdetail", "userBean", user);
+    }
+
     //@PostMapping("/delete")
     //public String delete(Model model, @RequestParam String userId){
       //  User user=new User();
@@ -99,6 +109,13 @@ public class UserController {
         user.setActive(false);
         dao.save(user);
         return "redirect:/user";
+    }
+    @PostMapping("/user/update")
+    public String updateUser(@Validated User user, @RequestParam("photo") MultipartFile photo, HttpSession session) throws IOException {
+        int id = (Integer) session.getAttribute("userId");
+        user.setUserId(id);
+        dao.save(user);
+        return "redirect:/index";
     }
 
 

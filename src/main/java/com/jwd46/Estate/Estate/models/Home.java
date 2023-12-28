@@ -32,12 +32,7 @@ public class Home {
     private boolean active = true;
     @Lob
     @Column(name = "photo", columnDefinition = "LONGBLOB")
-//    private String photo;
     private String photo;
-//    @OneToMany(mappedBy = "home", fetch = FetchType.EAGER)
-//    private Set<User> users;
-
-
     @Transient
     private MultipartFile photoFile;
 

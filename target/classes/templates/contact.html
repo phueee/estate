@@ -29,10 +29,11 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
     <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 </head>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 >Hotline</h1><br/>
@@ -101,19 +102,29 @@
 
                 <a href="contact" class="nav-item nav-link">Contact</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i style='font-size:26px' class='fas'>&#xf2bd;</i></a>
+                <div class="nav-item dropdown" th:if="${session.userEmail!=null}">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><img src="img/jennie-1.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%"></a>
                     <div class="dropdown-menu rounded-0 m-0"/>
 
-                    <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>
-
+                    <!--                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>-->
+                    <div class="profile-alerts">
+                        <div class="user-details">
+                            <img src="img/jennie-1.jpeg" alt="" class="avatar">
+                            <a  th:href="@{userEdit/user/{userId}(userId=${session.userId})}"  th:if="${session.userEmail!=null}" ><i class="bi bi-pencil-square" style="color: #0a0a0b"></i></a>
+                        </div>
+                        <div class="alerts">
+                            <!--                                    <span th:text="${user.userName}"></span>-->
+                            <div class="alert" th:text="${session.userName}"></div>
+                            <div class="alert" th:text="${session.userEmail}"></div>
+                            <div class="alert" th:text="${session.userPhone}"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
 
         </div>
 
-
+        </div>
         <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
 
         <div><a href="/logout" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
@@ -242,7 +253,7 @@
     </div>
 </div>
 <div class="modal fade" id="appoinment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
@@ -251,7 +262,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/getAppoinment}">
+                <form th:action="@{/getAppoinment/{userId}(userId=${session.userId})}">
                     <div class="form-group">
                         <h3>Are you sure want to appoinment!</h3>
                     </div>
