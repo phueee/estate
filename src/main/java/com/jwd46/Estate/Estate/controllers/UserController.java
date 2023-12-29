@@ -27,7 +27,6 @@ public class UserController {
     @Autowired
     UserDao dao;
 
-
     @GetMapping("/signup")
     public String showSignGet(){
         return "signup";
@@ -42,7 +41,7 @@ public class UserController {
         user.setUserNrc(NRC);
         user.setUserPassword(password);
         dao.save(user);
-        if (user.getUserName().equals("") || user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("")) {
+        if (user.getUserName().equals("") ||  user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("")) {
             model.addAttribute("error", "Please fill required informations!");
             request.getSession().setAttribute("userName",user.getUserName());
             return "signup";

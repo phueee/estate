@@ -53,7 +53,7 @@
                         <div class="dropdown-menu rounded-0 m-0">
                             <a href="appartment" class="dropdown-item">Appartment</a>
                             <a href="villa" class="dropdown-item">Villa</a>
-                            <a href="home" class="dropdown-item">Home</a>
+                            <a href="home" class="dropdown-item">House</a>
                             <a href="office" class="dropdown-item">Office</a>
 
                         </div>
@@ -111,16 +111,18 @@
                                 <option selected value="Property Type">Property Type</option>
                                 <option value="Appartment">Appartment</option>
                                 <option value="Villa">Villa</option>
-                                <option value="Home">Home</option>
+                                <option value="House">House</option>
                                 <option value="Office">Office</option>
                             </select>
                         </div>
                         <div class="col-md-6" style="margin-left: 25px">
                             <select class="form-select border-0 py-3" name="location">
                                 <option selected value="Location">Location</option>
-                                <option value="New York">New York</option>
-                                <option value="Los Angeles">Los Angeles</option>
-                                <option value="Chicago">Chicago</option>
+                                <option value="Yangon">Yangon</option>
+                                <option value="Mandalay">Mandalay</option>
+                                <option value="Monywa">Monywa</option>
+                                <option value="Naypitaw">Naypitaw</option>
+                                <option value="Taunggyi">Taunggyi</option>
                             </select>
                         </div>
                     </div>
@@ -148,15 +150,15 @@
                 </div>
                 <div class="p-4 pb-0">
                     <h5 class="text-primary mb-3" th:text="${itetstat.index+1}" hidden></h5>
-                    <h5 class="text-primary mb-3" th:text="${list.price}"></h5>
+                    <h5 class="text-primary mb-3" th:text="${list.price}+' '+lakh"></h5>
 
                     <a class="d-block h5 mb-2" href="" th:text="${list.property}" ></a>
                     <p><i class="fa fa-map-marker-alt text-primary me-2"><span th:text="${list.location}" ></span></i></p>
                 </div>
                 <div class="d-flex border-top">
                     <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-black-50 me-2" th:text="${list.area}"></i></small>
-                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-black-50 me-2" th:text="${list.bedRoom}+Bed"></i></small>
-                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-black-50 me-2" th:text="${list.bathRoom}+Bath"></i></small>
+                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-black-50 me-2" th:text="${list.bedRoom}+' '+Bed"></i></small>
+                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-black-50 me-2" th:text="${list.bathRoom}+' '+Bath"></i></small>
                 </div>
             </div>
         </div>
