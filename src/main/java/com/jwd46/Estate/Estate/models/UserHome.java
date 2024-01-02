@@ -6,6 +6,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
+
 @Table(name = "userhome")
 @Data
 public class UserHome {
@@ -22,6 +23,5 @@ public class UserHome {
     @ManyToOne
     @JoinColumn(name = "home_id", referencedColumnName = "homeId")
     private Home home;
-
     private LocalDateTime dateTime;
 }

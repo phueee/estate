@@ -6,10 +6,10 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "userHomeRent")
+
+@Table(name = "userhomerent")
 @Data
 public class UserHomeRent {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,7 +21,6 @@ public class UserHomeRent {
     @ManyToOne
     @JoinColumn(name = "home_id", referencedColumnName = "homeId")
     private Home home;
-
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 }

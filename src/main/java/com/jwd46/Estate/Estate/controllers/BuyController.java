@@ -75,29 +75,29 @@ public class BuyController {
         }
 
     }
-@GetMapping("/buyDetail/{homeId}")
-public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, Model model) {
+    @GetMapping("/buyDetail/{homeId}")
+    public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, Model model) {
 
-    if (session.getAttribute("userEmail") != null) {
-        Home home = homeDao.findByHomeId(homeId);
-        int userId= (Integer) session.getAttribute("userId");
-        User user=userDao.findByUserId(userId);
-        System.out.println(user.getUserName());
-        model.addAttribute("home", home);
-        model.addAttribute("user", user);
-        model.addAttribute("currentDate", LocalDate.now());
+        if (session.getAttribute("userEmail") != null) {
+            Home home = homeDao.findByHomeId(homeId);
+            int userId= (Integer) session.getAttribute("userId");
+            User user=userDao.findByUserId(userId);
+            System.out.println(user.getUserName());
+            model.addAttribute("home", home);
+            model.addAttribute("user", user);
+            model.addAttribute("currentDate", LocalDate.now());
 //        UserHome userHome = new UserHome();
 //        userHome.setHome(home);
 //        userHome.setUser(user);
 //        userHomeDao.save(userHome);
 //        redirectAttributes.addAttribute("homeId", homeId);
 
-        return "buy";
-    } else {
+            return "buy";
+        } else {
 //        session.setAttribute("home", home);
-        return "redirect:/login";
+            return "redirect:/login";
+        }
     }
-}
 
 
 
@@ -109,7 +109,6 @@ public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, M
             return "buylogin";
         } else {
             Home home = (Home) session.getAttribute("home");
-
             if (home != null) {
                 session.setAttribute("userEmail", user.getUserEmail());
                 session.setAttribute("userName", user.getUserName());
@@ -141,7 +140,6 @@ public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, M
         Home home = homeDao.findByHomeId(homeId);
         int userId= (Integer) session.getAttribute("userId");
         User user=userDao.findByUserId(userId);
-//        model.addAttribute("currentDate", LocalDate.now());
         UserHomeRent userHomeRent = new UserHomeRent();
         userHomeRent.setHome(home);
         userHomeRent.setUser(user);

@@ -33,7 +33,7 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
-    @Column(name="confirm_password")
+    @Column(name = "confirm_password")
     private String confirmPassword;
 
     private boolean active = true;
@@ -70,6 +70,7 @@ public class User {
         this.homes=homes;
     }
 
-
+    @OneToMany
+    private Set<Payment> payment = new HashSet<>();
 
     }

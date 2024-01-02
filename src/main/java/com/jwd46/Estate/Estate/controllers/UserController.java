@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class UserController {
@@ -26,6 +27,8 @@ public class UserController {
 
     @Autowired
     UserDao dao;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/signup")
     public String showSignGet(){
@@ -56,7 +59,6 @@ public class UserController {
             }
         }
     }
-
 //    @GetMapping("/user")
 //    public String User(Model model){
 //        List<User> users=dao.findAll();
@@ -94,9 +96,9 @@ public class UserController {
 
     //@PostMapping("/delete")
     //public String delete(Model model, @RequestParam String userId){
-      //  User user=new User();
-        //dao.delete(user);
-        //return "redirect:/user";
+    //  User user=new User();
+    //dao.delete(user);
+    //return "redirect:/user";
 
 
 
@@ -118,6 +120,8 @@ public class UserController {
     }
 
 
+
+
+
+
 }
-
-

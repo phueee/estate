@@ -24,10 +24,11 @@ public class LoginController {
     @GetMapping("/login")
     public String showLoginGet(Model model){
         model.addAttribute("title","login");
+
         return "login";
     }
     @PostMapping("/login")
-    public String showLoginPost(@RequestParam String email, String password, Model model,HttpServletRequest request,HttpSession session ){
+    public String showLoginPost(@RequestParam String email, String password, Model model, HttpSession session,HttpServletRequest request){
         User user = userService.login(email,password);
         if (user == null) {
             model.addAttribute("error1","error");
@@ -35,12 +36,11 @@ public class LoginController {
         }
         else {
             session.setAttribute("user",user);
-//            User user1 = (User) session.getAttribute("user");
+            User user1 = (User) session.getAttribute("user");
             session.setAttribute("userName", user.getUserName());
             session.setAttribute("userPhone", user.getUserPhone());
             request.getSession().setAttribute("userEmail",user.getUserEmail());
             request.getSession().setAttribute("userId",user.getUserId());
-
             return "redirect:/index";
         }
     }

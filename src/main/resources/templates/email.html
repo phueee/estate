@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
+<head th:replace="adminView::header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/send/email/user" method="post" enctype="multipart/form-data">
+    <div class="container col-md-6 offset-md-4">
+
+        <div class="form-group col-md-6">
+            <label for="toEmail">Email</label>
+            <input type="email" class="form-control" id="toEmail" name="toEmail" value="zinnia959704@gmail.com" readonly >
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="subject">Subject:</label>
+            <input type="text" class="form-control" id="subject" name="subject" required >
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="body">Body:</label>
+            <textarea id="body" class="form-control" name="body" style="resize: none" required></textarea><br>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="file">Photo:</label>
+            <input type="file" id="file"  class="form-control" name="file" accept="image/**" multiple><br>
+        </div>
+
+        <button type="submit"  class="btn btn-primary">Send Email</button>
+    </div>
+</form>
+
+
+<div th:replace="adminView::footer"></div>
+</body>
+</html>

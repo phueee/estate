@@ -10,10 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,13 +28,31 @@ public class AppoinmentController {
     @Autowired
     AppoinmentDao appoinmentDao;
 
+
+    @GetMapping("/request")
+    public String Appoinment (Model model){
+        List<Appoinment> appoinments =appoinmentDao.findAll();
+        model.addAttribute("appoinments",  appoinments);
+        return "request";
+    }
+
+    @PostMapping("/request")
+    public String Appoinment(Model model, @RequestParam(required = false) String name){
+        Appoinment appoinment=new Appoinment();
+        appoinment.setName(name);
+        appoinmentDao.save(appoinment);
+        return "redirect:/request";
+    }
+
+
+
     @GetMapping("/getAppoinment")
-    public String showAppoinment(){
+    public String showSignGet(){
         return "appoinment";
     }
 
     @PostMapping("/getAppoinment")
-    public String showSignPost(Model model, @RequestParam String name, String email, String phone , String reason, String comment, LocalDateTime dateTime,HttpServletRequest request) {
+    public String showSignPost(Model model, @RequestParam String name, String email, String phone , String reason, String comment,LocalDateTime dateTime,HttpServletRequest request) {
 
         if (name.equals("") || email.equals("") || phone.equals("") || reason.equals("") || comment.equals("") || dateTime.equals("")) {
             model.addAttribute("error", "Please fill required informations!");
@@ -56,20 +71,20 @@ public class AppoinmentController {
     }
 
 
+//    @PostMapping("/delete/appoinment")
+//    public String deleteAppoinment(@RequestParam int id) {
+//        Appoinment appoinment = appoinmentDao.findById(id).orElseThrow();
+//        appoinment.setActive(false);
+//        appoinmentDao.save(appoinment);
+//        return "redirect:/request";
+//    }
 
-    @GetMapping("/request")
-    public String Appoinment(Model model) {
-        List<Appoinment> appoinments = appoinmentDao.findAll();
-        model.addAttribute("appoinments", appoinments);
-        return "request";
-    }
 
-    @PostMapping("/request")
-    public String Appoinment(Model model, @RequestParam(required = false) String name) {
-        Appoinment appoinment = new Appoinment();
-        appoinment.setName(name);
-        appoinmentDao.save(appoinment);
+    @PostMapping("/delete/appoinment")
+    public String deleteAppoinment(@RequestParam int id) {
+        appoinmentDao.deleteById(id);
         return "redirect:/request";
+
     }
 
 }

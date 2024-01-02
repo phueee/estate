@@ -86,17 +86,17 @@
                         eyeIcon.addEventListener("click", () => {
                             // Toggle the type of the password input between "password" and "text"
                             const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                        passwordInput.setAttribute("type", type);
+                            passwordInput.setAttribute("type", type);
 
-                        // Toggle the eye icon class based on the password input type
-                        if (type === "password") {
-                            eyeIcon.classList.remove("fa-eye");
-                            eyeIcon.classList.add("fa-eye-slash");
-                        } else {
-                            eyeIcon.classList.remove("fa-eye-slash");
-                            eyeIcon.classList.add("fa-eye");
+                            // Toggle the eye icon class based on the password input type
+                            if (type === "password") {
+                                eyeIcon.classList.remove("fa-eye");
+                                eyeIcon.classList.add("fa-eye-slash");
+                            } else {
+                                eyeIcon.classList.remove("fa-eye-slash");
+                                eyeIcon.classList.add("fa-eye");
 
-                        }
+                            }
                         });
 
                     </script>
@@ -106,7 +106,6 @@
         <i class="fa fa-key"></i>
        </span>
                 <span toggle="#password-field">
-
                     <input class="form-input" type="password" placeholder="Confirm-Password" id="confirm_password"  name="confirmPassword" required>
 
 
@@ -124,17 +123,17 @@
                         eyeIcon.addEventListener("click", () => {
                             // Toggle the type of the password input between "password" and "text"
                             const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                        passwordInput.setAttribute("type", type);
+                            passwordInput.setAttribute("type", type);
 
-                        // Toggle the eye icon class based on the password input type
-                        if (type === "password") {
-                            eyeIcon.classList.remove("fa-eye");
-                            eyeIcon.classList.add("fa-eye-slash");
-                        } else {
-                            eyeIcon.classList.remove("fa-eye-slash");
-                            eyeIcon.classList.add("fa-eye");
+                            // Toggle the eye icon class based on the password input type
+                            if (type === "password") {
+                                eyeIcon.classList.remove("fa-eye");
+                                eyeIcon.classList.add("fa-eye-slash");
+                            } else {
+                                eyeIcon.classList.remove("fa-eye-slash");
+                                eyeIcon.classList.add("fa-eye");
 
-                        }
+                            }
                         });
 
                     </script></i>
@@ -182,7 +181,6 @@
                         }
                     });
                 </script>
-
                 <br>
                 <button type="submit" class="btn btn-danger "style="background: #0d6efd;color:#FFFFFF; " onclick="location.href=''">Create</button>
 

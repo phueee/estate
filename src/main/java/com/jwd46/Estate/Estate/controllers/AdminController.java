@@ -46,64 +46,55 @@ public class AdminController {
         Admin admin = new Admin();
         admin.setEmail(email);
         admin.setPassword(password);
+        if (admin.getEmail().equals("Phyoke Kya Ml@gmail.com") && admin.getPassword().equals("123123")) {
+//            session.setAttribute("admin", admin);
+            request.getSession().setAttribute("admin",admin);
 
-        if (admin.getEmail().equals("phyokekyaml@gmail.com") && admin.getPassword().equals("123123")) {
-            request.getSession().setAttribute("admin", admin);
-            request.getSession().setAttribute("adminId",admin.getId());
-            return "adminView";
+            return "redirect:/homes";
+        } else {
+            return "adminlogin";
         }
-    else
-    {
-        model.addAttribute("error3","error");
-        return "adminlogin";
-    }
+
 
     }
 
-        @GetMapping("/adminCreate")
-        public String createHome (Model model, HttpServletRequest request){
-            model.addAttribute("title", "adminCreate");
-            Admin admin = (Admin) request.getSession().getAttribute("admin");
+    @GetMapping("/adminCreate")
+    public String createHome(Model model, HttpServletRequest request) {
+        model.addAttribute("title", "adminCreate");
+        Admin admin = (Admin) request.getSession().getAttribute("admin");
 
-            if (admin != null) {
-                return "adminCreate";
-            } else {
-                return "redirect:/";
-            }
+        if (admin != null) {
+            return "adminCreate";
+        } else {
+            return "redirect:/";
+        }
 //        return "adminCreate";
+    }
+
+    @RequestMapping("adminView")
+    public String adminView(Model model, HttpServletRequest request) {
+        model.addAttribute("title", "adminView");
+        Admin admin= (Admin) request.getSession().getAttribute("admin");
+
+        if (admin != null) {
+            return "adminView";
+        } else {
+            return "redirect:/";
         }
 
-        @RequestMapping("/adminView")
-        public String adminView (Model model, HttpServletRequest request){
-            model.addAttribute("title", "adminView");
-            Admin admin = (Admin) request.getSession().getAttribute("admin");
+    }
 
-            if (admin != null) {
-                return "adminView";
-            } else {
-                return "redirect:/";
-            }
-
-        }
-
-        @GetMapping("/homes")
-        public String viewHomes (Model model, HttpServletRequest request){
-            Admin admin = (Admin) request.getSession().getAttribute("admin");
-            if (admin == null) {
-                return "redirect:/";
-            } else {
-                List<Home> homes = homeDao.findAll();
-                List<Home> listHome = new ArrayList<>();
-                model.addAttribute("homes", listHome);
-                for (Home home : homes) {
-                    if (home.isActive() == true) {
-                        listHome.add(home);
-                    }
-                }
-                return "homes";
+    @GetMapping("/homes")
+    public String viewHomes(HttpServletRequest request,Model model) {
+        List<Home> homes = homeDao.findAll();
+        List<Home> listHome = new ArrayList<>();
+        model.addAttribute("homes", listHome);
+        for (Home home : homes){
+            if(home.isActive()==true){
+                listHome.add(home);
             }
         }
-
+        return "homes";
 //        Admin admin = (Admin) session.getAttribute("admin");
 //        if (admin == null) {
 //            return "redirect:/";
@@ -111,14 +102,17 @@ public class AdminController {
 //
 //            return "homes";
 //        }
+    }
 
 
-        @PostMapping("/adminCreate")
-        public String viewHomesDetail (@RequestParam MultipartFile file, String homeNo, String bedRoom, String
-        bathRoom, String area, String location, String price, String property, String service, String photo){
-            homeService.saveHomeToDB(file, homeNo, bedRoom, bathRoom, area, location, price, property, service, photo);
-            return "redirect:/homes";
-        }
+
+
+
+   @PostMapping("/adminCreate")
+   public String viewHomesDetail(@RequestParam MultipartFile file, String homeNo, String bedRoom, String bathRoom, String area,String location,String price,String property,String service,String photo) {
+       homeService.saveHomeToDB(file,homeNo,bedRoom,bathRoom,area,location,price,property,service,photo);
+       return "redirect:/homes";
+   }
 //
 
 //    @RequestMapping("/user")
@@ -145,5 +139,4 @@ public class AdminController {
 //            return "redirect:/";
 //        }
 //    }
-    }
-
+}

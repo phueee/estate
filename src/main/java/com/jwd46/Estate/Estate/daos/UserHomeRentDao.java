@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserHomeRentDao extends JpaRepository<UserHomeRent,Integer> {
-
 }
