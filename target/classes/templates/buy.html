@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/buy.css" rel="stylesheet">
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
 <head th:replace="adminView::header">
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
+<a href="/view" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
+
 <div class="container-col-md-6 offset-md-3">
     <form th:action="@{/payment/{homeId}}"  th:object="${home}">
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Buy Detail</h2>

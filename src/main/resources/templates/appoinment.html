@@ -1,28 +1,32 @@
 <!DOCTYPE html>
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin.css">
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
 <head th:replace="adminView::header">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form onsubmit="return validateDates()"  th:action="@{/getAppoinment}" method="post" >
+<a href="/view" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
+
+<form onsubmit="return validateDates()"  th:action="@{/index}" >
     <div class="container col-md-6 offset-md-3">
         <h2 class="col-md-6 offset-md-3">Appoinment</h2>
         <div class="row mb-4">
-            <label for="inputName">Name</label>
-            <input type="text" class="form-control" id="inputName" name="name" required >
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required >
         </div>
         <div class="row mb-4">
-            <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail"  name="email" required >
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email"  name="email" required >
         </div>
         <div class="row mb-4">
-            <label for="inputPhone">Phone</label>
-            <input type="text" class="form-control" id="inputPhone"  name="phone" required>
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone"  name="phone" required>
         </div>
         <div class="row mb-4">
-            <label for="inputPayment">Reason for appointment</label>
-            <select id="inputPayment" class="form-control"  name="reason" required>
+            <label for="reason">Reason for appointment</label>
+            <select id="reason" class="form-control"  name="reason" required>
                 <option selected>Sale</option>
                 <option>Buy</option>
                 <option>Rent</option>
@@ -30,16 +34,17 @@
         </div>
 
         <div class="row mb-4">
-            <label for="exampleFormControlTextarea1">Additional comments</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment"></textarea>
+            <label for="comment">Additional comments</label>
+            <textarea class="form-control" id="comment" rows="3" name="comment"></textarea>
         </div>
+        <div style="color: crimson" id="alert-Message" class="alert-Message"></div>
         <div class="row mb-4">
-            <label for="inputDate"> Date</label>
-            <input type="datetime-local" class="form-control" id="inputDate"  name="dateTime" required>
+            <label for="dateTime"> Date</label>
+            <input type="Date" class="form-control" id="dateTime"  required name="dateTime" >
         </div>
 
 
-        <button type="submit" class="btn btn-primary" >Save Appoinment</button>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 15px" >Save Appoinment</button>
     </div>
 </form>
 
@@ -52,14 +57,26 @@
         var currentDate = new Date();
         currentDate.setHours(0, 0, 0, 0); // Reset time to start of the day
 
-        var startDate = new Date(document.getElementById('inputDate').value);
+        var startDate=document.getElementById("dateTime").value;
+        var alertMessage=document.getElementById("alert-Message");
 
-        if (startDate < currentDate) {
-            alert('Start date cannot be earlier than the current date.');
+        var startDateObj=new Date(startDate);
+
+        if(startDateObj < currentDate){
+            alertMessage.innerHTML="Start date cannot be earlier than the current date.";
             return false;
         }
-
+        alertMessage.innerHTML="";
         return true;
+
+        // var startDate = new Date(document.getElementById('inputDate').value);
+        //
+        // if (startDate < currentDate) {
+        //     alert('Start date cannot be earlier than the current date.');
+        //     return false;
+        // }
+        //
+        // return true;
     }
 </script>
 
