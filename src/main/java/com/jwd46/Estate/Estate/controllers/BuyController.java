@@ -71,23 +71,23 @@ public class BuyController {
 
 
 
-
-@GetMapping("/buylogin/{homeId}")
-public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, Model model) {
-    Home home = homeDao.findByHomeId(homeId);
-
-    if (session.getAttribute("userEmail") != null) {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("home", home);
-        model.addAttribute("user", user);
-        model.addAttribute("currentDate", LocalDate.now());
-        return "buy";
-    } else {
-        session.setAttribute("home", home);
-        return "buylogin";
-    }
-}
-
+//
+//@GetMapping("/buylogin/{homeId}")
+//public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, Model model) {
+//    Home home = homeDao.findByHomeId(homeId);
+//
+//    if (session.getAttribute("userEmail") != null) {
+//        User user = (User) session.getAttribute("user");
+//        model.addAttribute("home", home);
+//        model.addAttribute("user", user);
+//        model.addAttribute("currentDate", LocalDate.now());
+//        return "buy";
+//    } else {
+//        session.setAttribute("home", home);
+//        return "buylogin";
+//    }
+//}
+//
 //    @PostMapping("/buylogin/user")
 //    public String showBuy(@RequestParam String email, String password, Model model, HttpSession session) {
 //        User user = userService.login(email, password);
@@ -102,8 +102,11 @@ public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, M
 //        }
 //    }
 
+
+
+
     @GetMapping("/buyDetail/{homeId}")
-    public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+    public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, Model model) {
 
         if (session.getAttribute("userEmail") != null) {
             Home home = homeDao.findByHomeId(homeId);
@@ -128,27 +131,26 @@ public String showBuy(@PathVariable("homeId") int homeId, HttpSession session, M
 
 
 
-    @PostMapping("/buyNow")
+    @PostMapping("/buylogin/user")
     public String showBuy(@RequestParam String email, String password, Model model, HttpSession session) {
-    User user = userService.login(email, password);
+        User user = userService.login(email, password);
 
-    if (user == null) {
-        return "buylogin";
-    } else {
-        Home home = (Home) session.getAttribute("home");
-
-        if (home != null) {
-            session.setAttribute("userEmail", user.getUserEmail());
-            session.setAttribute("userName", user.getUserName());
-
-            return "redirect:/buylogin/" + home.getHomeId();
-        } else {
-            // Handle the case where home is null
+        if (user == null) {
             return "buylogin";
+        } else {
+            Home home = (Home) session.getAttribute("home");
+
+            if (home != null) {
+                session.setAttribute("userEmail", user.getUserEmail());
+                session.setAttribute("userName", user.getUserName());
+
+                return "redirect:/buylogin/" + home.getHomeId();
+            } else {
+                // Handle the case where home is null
+                return "buylogin";
+            }
         }
     }
-}
-
 
 
 

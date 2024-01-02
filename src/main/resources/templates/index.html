@@ -33,6 +33,16 @@
 </head>
 
 <body>
+<script th:if="${success}">
+    window.onload=function () {
+        alert("Email was sent successfully!")
+    }
+</script>
+<script th:if="${error}">
+    window.onload=function () {
+        alert("Email wasn't sent properly, Please try again!")
+    }
+</script>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -541,7 +551,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form th:action="@{/getAppoinment/{userId}(userId=${session.userId})}">
+                                <form th:action="@{/getAppoinment}">
                                     <div class="form-group">
                                         <h3>Are you sure want to appoinment!</h3>
                                     </div>
