@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<link href="/css/style.css" rel="stylesheet">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="adminView::header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div th:replace="adminView::navbar"></div><br>
+<h2 class="col-md-6 offset-md-3" align="center">Appoinment</h2>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead style="background: #081c30;color:white;">
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">User Name</th>
+            <th scope="col">User Email</th>
+            <th scope="col">User Phone</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Date Time</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appoinment ,itetstat:${appoinments}">
+            <td> <span th:text="${itetstat.index+1}"></span></td>
+            <td th:text="${appoinment.name}"></td>
+            <td th:text="${appoinment.email}"></td>
+            <td th:text="${appoinment.phone}"></td>
+            <td th:text="${appoinment.reason}"></td>
+            <td th:text="${appoinment.comment}"></td>
+            <td th:text="${appoinment.dateTime}"></td>
+            <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"    th:attr="onclick=|deleteId('${appoinment.id}')|"  >Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/delete/appoinment}" method="post">
+                    <div class="form-group">
+                        <h3>Are you sure want to delete!</h3>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="id" name="id">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function deleteId(value) {
+            document.getElementById('id').value = value;
+        }
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var recipient = button.data('whatever'); // Extract info from data-* attributes
+            var modal = $(this);
+            modal.find('.modal-title').text(' Warning !!! ');
+            modal.find('.modal-body #recipient-name').val(recipient);
+        });
+    </script>
+
+
+<div th:replace="adminView::footer"></div>
+</body>
+</html>
