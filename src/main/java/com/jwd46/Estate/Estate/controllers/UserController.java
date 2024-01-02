@@ -33,20 +33,27 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password, HttpServletRequest request) {
+    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String NRC, String password, String confirmPassword, HttpServletRequest request) {
         User user = new User();
         user.setUserName(name);
         user.setUserEmail(email);
         user.setUserPhone(phone);
         user.setUserNrc(NRC);
         user.setUserPassword(password);
-        dao.save(user);
-        if (user.getUserName().equals("") ||  user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("")) {
-            model.addAttribute("error", "Please fill required informations!");
-            request.getSession().setAttribute("userName",user.getUserName());
+        user.setConfirmPassword(confirmPassword);
+        request.getSession().setAttribute("userName",user.getUserName());
+        if (user.getUserName().equals("") || user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("") || user.getConfirmPassword().equals("")) {
+            model.addAttribute("msg1", "msg");
             return "signup";
-        } else {
-            return "login";
+        }else {
+            if (!password.equals(confirmPassword)) {
+                model.addAttribute("showAlert", true);
+                return "signup";
+            } else {
+                // Save the user or perform additional validation/logic
+                dao.save(user);
+                return "redirect:/login";
+            }
         }
     }
 

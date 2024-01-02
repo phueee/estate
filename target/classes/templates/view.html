@@ -143,9 +143,9 @@
                 <div class="position-relative overflow-hidden">
                     <a href=""> <img alt="" th:src="'data:photo/jpg;base64,'+${list.photo}" height="300px" width="600px"></a>
                     <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3" th:text="${list.service}"></div>
-                    <a th:if="${list.service=='Sale'}" th:href="@{/buylogin/{homeId}(homeId=${list.homeId})}"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Buy Now</div></a>
+                    <a th:if="${list.service=='Sale'}" th:href="@{/buyDetail/{homeId}(homeId=${list.homeId})}"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Buy Now</div></a>
                     <!-- <a href=""> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" th:else>Sold Out</div></a> -->
-                    <a th:href="@{/rentlogin/{homeId}(homeId=${list.homeId})}" th:unless="${list.service=='Sale'}" > <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Rent Now</div></a>
+                    <a th:href="@{/rentDetail/{homeId}(homeId=${list.homeId})}" th:unless="${list.service=='Sale'}" > <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Rent Now</div></a>
                     <a href="" th:unless="${list.status==1}"> <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Sold Out</div></a>
                 </div>
                 <div class="p-4 pb-0">
