@@ -1,30 +1,74 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/html">
+<head th:replace="adminView::header">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
 </head>
 <body>
+<div class="container-col-md-6 offset-md-4">
+    <h1>Your Profile </h1>
 
-<div align="center">
-    <h1>Your Profile</h1>
-
-<!--    <form   method="post">-->
-<!--        <span>Name :</span><span th:text="${user.userName}"></span><br/>-->
-<!--        <span>Email :</span><span th:text="${user.userEmail}"></span><br/>-->
-<!--        <span>Phone Number :</span><span th:text="${user.userPhone}"></span><br/>-->
-<!--        <span>NRC :</span><span th:text="${user.userNrc}"></span><br/>-->
-<!--        <span>Name :</span><span ></span><br/>-->
-<!--        <span>Email :</span><span ></span><br/>-->
-<!--        <span>Phone Number :</span><span ></span><br/>-->
-<!--        <span>NRC :</span><span ></span><br/>-->
-        <!-- Add form fields or buttons as needed -->
-  ID : <span th:text="${user.userId}"></span>
- Name :  <span th:text="${user.userName}"></span>
-  Phone : <span th:text="${user.userPhone}"></span>
+    <!--    <form   method="post">-->
+    <!--        <span>Name :</span><span th:text="${user.userName}"></span><br/>-->
+    <!--        <span>Email :</span><span th:text="${user.userEmail}"></span><br/>-->
+    <!--        <span>Phone Number :</span><span th:text="${user.userPhone}"></span><br/>-->
+    <!--        <span>NRC :</span><span th:text="${user.userNrc}"></span><br/>-->
+    <!--        <span>Name :</span><span ></span><br/>-->
+    <!--        <span>Email :</span><span ></span><br/>-->
+    <!--        <span>Phone Number :</span><span ></span><br/>-->
+    <!--        <span>NRC :</span><span ></span><br/>-->
+    <!-- Add form fields or buttons as needed -->
+    <!--  ID : <span th:text="${user.userId}"></span>-->
+    <!-- Name :  <span th:text="${user.userName}"></span>-->
+    <!--  Phone : <span th:text="${user.userPhone}"></span>-->
 
 
-<!--    </form-->
+    <!--    </form-->
+
+
+    <form th:action="@{/user/update}" method="post" th:object="${userBean}" enctype="multipart/form-data">
+        <div class="container">
+
+            <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" th:field="*{userName}" name="name"  >
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" th:field="*{userEmail}" name="email" >
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" th:field="*{userPhone}" name="phone">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nrc">NRC</label>
+                <input type="text" class="form-control" id="nrc" th:field="*{userNrc}" name="nrc">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" th:field="*{userPassword}" name="password">
+            </div>
+
+            <!--            <div class="form-group col-md-6">-->
+            <!--                <label for="password1">Confirm Password</label>-->
+            <!--                <input type="text" class="form-control" id="password1" th:field="*{password}" name="password">-->
+            <!--            </div>-->
+
+
+            <div>
+                <label for="photo">Photo</label>
+                <input type="file" class="form-control-file" id="photo"  accept="image/**" name="photo" multiple>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
 </div>
+
+<div th:replace="adminView::footer"></div>
 </body>
 </html>

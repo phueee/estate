@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 
@@ -19,5 +21,10 @@ public class Appoinment {
     private String reason;
     private String comment;
     private LocalDateTime dateTime;
+    private boolean active = true;
+
+    @OneToMany
+    private Set<User> user = new HashSet<>();
+
 
 }

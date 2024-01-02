@@ -50,7 +50,7 @@ public class AdminController {
 //            session.setAttribute("admin", admin);
             request.getSession().setAttribute("admin",admin);
 
-            return "adminView";
+            return "redirect:/homes";
         } else {
             return "adminlogin";
         }

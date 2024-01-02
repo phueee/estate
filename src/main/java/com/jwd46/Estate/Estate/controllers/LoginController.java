@@ -38,12 +38,9 @@ public class LoginController {
             session.setAttribute("user",user);
             User user1 = (User) session.getAttribute("user");
             session.setAttribute("userName", user.getUserName());
+            session.setAttribute("userPhone", user.getUserPhone());
             request.getSession().setAttribute("userEmail",user.getUserEmail());
             request.getSession().setAttribute("userId",user.getUserId());
-//             session.setAttribute("userEmail",user.getUserEmail());
-//           Cookie loginCookie= new Cookie("userEmail",email);
-//           loginCookie.setMaxAge(30*60);
-//           response.addCookie(loginCookie);
             return "redirect:/index";
         }
     }
