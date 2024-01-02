@@ -14,3 +14,9 @@
     height: 300px;
     width: 300px;
 }
+.fixed-button {
+    position: fixed;
+    bottom: 40px;
+    right: 40px; /* Adjust this value to move the button horizontally */
+    z-index: 999;
+}
