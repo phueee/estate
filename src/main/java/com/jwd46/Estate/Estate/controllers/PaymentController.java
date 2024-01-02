@@ -28,18 +28,6 @@ public class PaymentController {
     @Autowired
     RPaymentDao rPaymentDao;
 
-//    @GetMapping("payment")
-//    public String viewPayment(Model model, @PathVariable("userId") int userId, @PathVariable("homeId") int homeId, HttpSession session, Payment payment, HttpServletRequest request){
-//        model.addAttribute("title","Payment");
-//        User user=userDao.findByUserId(userId);
-//        payment.setUser(user);
-//        Home home=homeDao.findByHomeId(homeId);
-//        payment.setHome(home);
-//        model.addAttribute("Payment",new Payment());
-//        request.getSession().getAttribute("userId");
-//        paymentDao.save(payment);
-//        return "payment";
-//    }
 
     @GetMapping("Rpayment")
     public String viewRPayment(Model model){
@@ -82,55 +70,56 @@ public class PaymentController {
         return "redirect:/Rdetails";
 
     }
-//    okok
-
-    @PostMapping("/payment")
-    public String viewPayment(Model model, @PathVariable("userId") int userId, @PathVariable("homeId") int homeId, HttpSession session, Payment payment, HttpServletRequest request){
-        model.addAttribute("title","Payment");
-        User user=userDao.findByUserId(userId);
-        payment.setUser(user);
-        Home home=homeDao.findByHomeId(homeId);
-        payment.setHome(home);
-        model.addAttribute("Payment",new Payment());
-        request.getSession().getAttribute("userId");
-        paymentDao.save(payment);
-        return "payment";
-    }
-
-    @GetMapping("/payment/{userId}/{homeId}")
-    public String showPayment(Model model,@PathVariable("userId") int userId,@PathVariable("homeId") int homeId,HttpSession session){
-        System.out.println(homeId);
-        int id = Integer.parseInt("homeId");
-        System.out.println(id);
-        System.out.print("This is output here");
-        Home home=homeDao.findByHomeId(homeId);
-        session.setAttribute("home45",home);
-        System.out.println(userId);
-        User user=userDao.findByUserId(userId);
-        session.setAttribute("user12",user);
-        return "payment";
-    }
 
 
-    @PostMapping("/payment/user")
-    public String showPayment(Model model, HttpSession session, @ModelAttribute("Payment") Payment payment, HttpServletRequest request){
-        Home home=(Home) session.getAttribute("home45");
+//    @PostMapping("/payment")
+//    public String viewPayment(Model model, @PathVariable("userId") int userId, @PathVariable("homeId") int homeId, HttpSession session, Payment payment, HttpServletRequest request){
+//        model.addAttribute("title","Payment");
+//        User user=userDao.findByUserId(userId);
+//        payment.setUser(user);
+//        Home home=homeDao.findByHomeId(homeId);
+//        payment.setHome(home);
+//        model.addAttribute("Payment",new Payment());
+//        request.getSession().getAttribute("userId");
+//        paymentDao.save(payment);
+//        return "payment";
+//    }
 
-        model.addAttribute("homeId",home.getHomeId());
-        model.addAttribute("homeNo",home.getHomeNo());
-        model.addAttribute("price",home.getPrice());
-        User user=(User) session.getAttribute("user12");
-        model.addAttribute("user", user);
-        model.addAttribute("userId",user.getUserId());
-        model.addAttribute("name",user.getUserName());
-        payment.setUser(user);
-        payment.setHome(home);
-        request.getSession().getAttribute("userId");
-        model.addAttribute("Payment",new Payment());
-        paymentDao.save(payment);
-        return "redirect:/index" ;
-    }
 
+//    @GetMapping("/payment/{userId}/{homeId}")
+//    public String showPayment(Model model,@PathVariable("userId") int userId,@PathVariable("homeId") int homeId,HttpSession session){
+//        System.out.println(homeId);
+//        int id = Integer.parseInt("homeId");
+//        System.out.println(id);
+//        System.out.print("This is output here");
+//        Home home=homeDao.findByHomeId(homeId);
+//        session.setAttribute("home45",home);
+//        System.out.println(userId);
+//        User user=userDao.findByUserId(userId);
+//        session.setAttribute("user12",user);
+//        return "payment";
+//    }
+//
+//
+//    @PostMapping("/payment/user")
+//    public String showPayment(Model model, HttpSession session, @ModelAttribute("Payment") Payment payment, HttpServletRequest request){
+//        Home home=(Home) session.getAttribute("home45");
+//
+//        model.addAttribute("homeId",home.getHomeId());
+//        model.addAttribute("homeNo",home.getHomeNo());
+//        model.addAttribute("price",home.getPrice());
+//        User user=(User) session.getAttribute("user12");
+//        model.addAttribute("user", user);
+//        model.addAttribute("userId",user.getUserId());
+//        model.addAttribute("name",user.getUserName());
+//        payment.setUser(user);
+//        payment.setHome(home);
+//        request.getSession().getAttribute("userId");
+//        model.addAttribute("Payment",new Payment());
+//        paymentDao.save(payment);
+//        return "redirect:/index" ;
+//    }
+//
 
 
 

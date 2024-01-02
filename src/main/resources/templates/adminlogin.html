@@ -14,7 +14,11 @@
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>
 
-                <p style="color: #FFFFFF">Login to your account</p>
+                <p style="color: #FFFFFF">Login to your account</p><br>
+
+                <div th:if="${error3}">
+                    <div class="alert alert-danger">Invalid Email or Password</div>
+                </div>
             </header>
 
             <br>

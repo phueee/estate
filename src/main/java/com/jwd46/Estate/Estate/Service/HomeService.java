@@ -1,6 +1,8 @@
 package com.jwd46.Estate.Estate.Service;
 
+import com.jwd46.Estate.Estate.daos.AppoinmentDao;
 import com.jwd46.Estate.Estate.daos.HomeDao;
+import com.jwd46.Estate.Estate.models.Appoinment;
 import com.jwd46.Estate.Estate.models.Home;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 
@@ -20,7 +23,8 @@ public class HomeService {
     @Autowired
     HomeDao homeDao;
 
-
+    @Autowired
+    AppoinmentDao appoinmentDao;
     public void saveHomeToDB(MultipartFile file,String homeNo,String bedroom,String bathroom,String area,String location,String price,String property,String service,String photo){
 
        Home home=new Home();
@@ -66,5 +70,16 @@ public class HomeService {
 //        return homeDao.getHomeById(homeId);
 //    }
 
+    public void saveAppointment(String name, String email, String phone, String reason, String comment, LocalDateTime dateTime){
+
+        Appoinment appoinment=new Appoinment();
+        appoinment.setName(name);
+        appoinment.setEmail(email);
+        appoinment.setPhone(phone);
+        appoinment.setReason(reason);
+        appoinment.setComment(comment);
+        appoinment.setDateTime(dateTime);
+        appoinmentDao.save(appoinment);
+    }
 
 }

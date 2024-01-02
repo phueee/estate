@@ -30,71 +30,43 @@ public class AppoinmentController {
     UserService userService;
     @Autowired
     AppoinmentDao appoinmentDao;
-//
-//    @GetMapping("/getAppoinment")
-//    public String showBuy(Model model, HttpSession session, HttpServletRequest request) {
-//        if (session.getAttribute("userEmail") != null) {
-//            model.addAttribute("currentDate", LocalDate.now());
-//            return "appoinment";
-//        } else {
-//            return "login";
-//        }
-//
-//    }
 
+    @GetMapping("/getAppoinment")
+    public String showAppoinment(){
+        return "appoinment";
+    }
 
-    @GetMapping("/getAppoinment/{userId}")
-    public String showAppoinment(@PathVariable("userId") int userId, HttpSession session, Model model, @RequestParam(required = false) String name, String email, String phone, String reason, String comment, LocalDateTime dateTime) {
-        User user = dao.findByUserId(userId);
-        Appoinment appoinment=new Appoinment();
-        appoinment.setName(name);
-        appoinment.setEmail(email);
-        appoinment.setPhone(phone);
-        appoinment.setReason(reason);
-        appoinment.setComment(comment);
-        appoinment.setDateTime(dateTime);
-        if (session.getAttribute("userEmail") != null) {
-            model.addAttribute("user", user);
-            appoinmentDao.save(appoinment);
+    @PostMapping("/getAppoinment")
+    public String showSignPost(Model model, @RequestParam String name, String email, String phone , String reason, String comment, LocalDateTime dateTime,HttpServletRequest request) {
+
+        if (name.equals("") || email.equals("") || phone.equals("") || reason.equals("") || comment.equals("") || dateTime.equals("")) {
+            model.addAttribute("error", "Please fill required informations!");
             return "appoinment";
         } else {
-            session.setAttribute("user", user);
-            return "login";
+            Appoinment appoinment = new Appoinment();
+            appoinment.setName(name);
+            appoinment.setEmail(email);
+            appoinment.setPhone(phone);
+            appoinment.setReason(reason);
+            appoinment.setComment(comment);
+            appoinment.setDateTime(dateTime);
+            appoinmentDao.save(appoinment);
+            return "index";
         }
     }
 
-//    @PostMapping("/getAppoinment/{userId}")
-//    public String showAppoinment(HttpSession session, Model model, @RequestParam(required = false) String name, String email,String password, String phone, String reason, String comment, LocalDateTime dateTime) {
-//        User user = userService.login(email, password);
-//        if (user == null) {
-//            return "login";
-//        } else {
-//
-//            session.setAttribute("userEmail",user.getUserEmail());
-//            session.setAttribute("userName",user.getUserName());
-//            Appoinment appoinment = new Appoinment();
-//            appoinment.setName(name);
-//            appoinment.setEmail(email);
-//            appoinment.setPhone(phone);
-//            appoinment.setReason(reason);
-//            appoinment.setComment(comment);
-//            appoinment.setDateTime(dateTime);
-//            appoinmentDao.save(appoinment);
-//            return "redirect:/appoinment";
-//        }
-//    }
 
 
     @GetMapping("/request")
-    public String Appoinment (Model model){
-        List<Appoinment> appoinments =appoinmentDao.findAll();
-        model.addAttribute("appoinments",  appoinments);
+    public String Appoinment(Model model) {
+        List<Appoinment> appoinments = appoinmentDao.findAll();
+        model.addAttribute("appoinments", appoinments);
         return "request";
     }
 
     @PostMapping("/request")
-    public String Appoinment(Model model, @RequestParam(required = false) String name){
-        Appoinment appoinment=new Appoinment();
+    public String Appoinment(Model model, @RequestParam(required = false) String name) {
+        Appoinment appoinment = new Appoinment();
         appoinment.setName(name);
         appoinmentDao.save(appoinment);
         return "redirect:/request";
