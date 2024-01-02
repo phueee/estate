@@ -33,14 +33,18 @@
 </head>
 
 <body>
-    <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
+<script th:if="${success}">
+    window.onload=function () {
+        alert("Email was sent successfully!")
+    }
+</script>
+<script th:if="${error}">
+    window.onload=function () {
+        alert("Email wasn't sent properly, Please try again!")
+    }
+</script>
+
+
 
 
         <!-- Navbar Start -->
@@ -86,7 +90,7 @@
 <!--                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>-->
                             <div class="profile-alerts">
                                 <div class="user-details">
-                                    <img src="img/jennie-1.jpeg" alt="" class="avatar">
+<!--                                    <img src="img/pf.jpg" alt="" class="avatar">-->
                                     <a  th:href="@{userEdit/user/{userId}(userId=${session.userId})}"  th:if="${session.userEmail!=null}" ><i class="bi bi-pencil-square" style="color: #0a0a0b"></i></a>
                                 </div>
                                 <div class="alerts">

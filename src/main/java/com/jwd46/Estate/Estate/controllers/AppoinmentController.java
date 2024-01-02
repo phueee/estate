@@ -5,7 +5,6 @@ import com.jwd46.Estate.Estate.daos.AppoinmentDao;
 import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.Appoinment;
 import com.jwd46.Estate.Estate.models.User;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -99,5 +96,13 @@ public class AppoinmentController {
         appoinmentDao.save(appoinment);
         return "redirect:/request";
     }
+    @PostMapping("/delete/appoinment")
+    public String deleteAppoinment(@RequestParam int id) {
+        appoinmentDao.deleteById(id);
+        return "redirect:/request";
+
+    }
+
+
 
 }
