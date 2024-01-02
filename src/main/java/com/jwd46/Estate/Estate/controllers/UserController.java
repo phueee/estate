@@ -96,9 +96,9 @@ public class UserController {
 
     //@PostMapping("/delete")
     //public String delete(Model model, @RequestParam String userId){
-      //  User user=new User();
-        //dao.delete(user);
-        //return "redirect:/user";
+    //  User user=new User();
+    //dao.delete(user);
+    //return "redirect:/user";
 
 
 
@@ -125,5 +125,3 @@ public class UserController {
 
 
 }
-
-

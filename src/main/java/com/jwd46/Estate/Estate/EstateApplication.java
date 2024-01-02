@@ -1,7 +1,7 @@
 package com.jwd46.Estate.Estate;
 
 import com.jwd46.Estate.Estate.Service.EmailService;
-import jakarta.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
