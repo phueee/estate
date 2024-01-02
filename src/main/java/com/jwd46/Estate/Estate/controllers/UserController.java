@@ -30,7 +30,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
     @GetMapping("/signup")
     public String showSignGet(){
         return "signup";
@@ -45,7 +44,7 @@ public class UserController {
         user.setUserNrc(NRC);
         user.setUserPassword(password);
         dao.save(user);
-        if (user.getUserName().equals("") || user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("")) {
+        if (user.getUserName().equals("") ||  user.getUserEmail().equals("") || user.getUserPhone().equals("") || user.getUserNrc().equals("") || user.getUserPassword().equals("")) {
             model.addAttribute("error", "Please fill required informations!");
             request.getSession().setAttribute("userName",user.getUserName());
             return "signup";
@@ -83,6 +82,12 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @GetMapping("/userEdit/user/{userId}")
+    public ModelAndView editPage(@PathVariable("userId") int userId) {
+        User user = dao.findById(userId).orElseThrow();
+        return new ModelAndView("userdetail", "userBean", user);
+    }
+
     //@PostMapping("/delete")
     //public String delete(Model model, @RequestParam String userId){
       //  User user=new User();
@@ -99,6 +104,13 @@ public class UserController {
         user.setActive(false);
         dao.save(user);
         return "redirect:/user";
+    }
+    @PostMapping("/user/update")
+    public String updateUser(@Validated User user, @RequestParam("photo") MultipartFile photo, HttpSession session) throws IOException {
+        int id = (Integer) session.getAttribute("userId");
+        user.setUserId(id);
+        dao.save(user);
+        return "redirect:/index";
     }
 
 

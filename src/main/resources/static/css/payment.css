@@ -1,0 +1,16 @@
+.payment-container {
+    display: flex; /* Use flexbox to create a flexible container */
+    justify-content: space-around; /* Adjust as needed (space-between, space-evenly, etc.) */
+    margin: 20px; /* Add margin for spacing */
+
+}
+
+.payment-method {
+    text-align: center; /* Center text within each payment method */
+    margin: 50px;
+}
+
+.payment-method img {
+    height: 300px;
+    width: 300px;
+}

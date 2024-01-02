@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -33,16 +33,6 @@
 </head>
 
 <body>
-<script th:if="${success}">
-    window.onload=function () {
-        alert("Email was sent successfully!")
-    }
-</script>
-<script th:if="${error}">
-    window.onload=function () {
-        alert("Email wasn't sent properly, Please try again!")
-    }
-</script>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -58,9 +48,9 @@
         <div class="container-fluid nav-bar bg-transparent">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
 
-                        <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
+                <a href="adminlogin" th:if="${session.userEmail==null}"> <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;"></a>
 
-                  <a href="adminlogin">  <h1 class="m-0 text-primary">Phyoke Kya Ml</h1></a>
+                    <h1 class="m-0 text-primary">Phyoke Kya Ml</h1>
 
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -97,12 +87,12 @@
                             <div class="profile-alerts">
                                 <div class="user-details">
                                     <img src="img/jennie-1.jpeg" alt="" class="avatar">
-                                    <a th:href="@{userEdit/user/{userId}(userId=${session.userId})}"  th:if="${session.userEmail!=null}" ><i class="bi bi-pencil-square" style="color: #0a0a0b"></i></a>
+                                    <a  th:href="@{userEdit/user/{userId}(userId=${session.userId})}"  th:if="${session.userEmail!=null}" ><i class="bi bi-pencil-square" style="color: #0a0a0b"></i></a>
                                 </div>
                                 <div class="alerts">
 <!--                                    <span th:text="${user.userName}"></span>-->
                                     <div class="alert" th:text="${session.userName}"></div>
-                                    <div class="alert"th:text="${session.userEmail}"></div>
+                                    <div class="alert" th:text="${session.userEmail}"></div>
                                     <div class="alert" th:text="${session.userPhone}"></div>
                                 </div>
                             </div>
@@ -292,7 +282,8 @@
                                     <p>We believe a good place to live can make your life better.</p>
                                 </div>
                                 <button type="button" class="btn btn-primary py-3 px-4 me-2" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-phone-alt me-2"></i>Call Now</button>
-                                <button type="button" class="btn btn-primary py-3 px-4 me-2" data-toggle="modal" data-target="#appoinment" ><i class="fa fa-phone-alt me-2"></i>Get Appoinment</button>                    </div>
+                                <button type="button" class="btn btn-primary py-3 px-4 me-2" data-toggle="modal" data-target="#appoinment" ><i class="fa fa-phone-alt me-2"></i>Get Appoinment</button>
+                            
                             </div>
                         </div>
                     </div>
@@ -540,33 +531,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="appoinment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form th:action="@{/getAppoinment/{userId}(userId=${session.userId})}">
+                                    <div class="form-group">
+                                        <h3>Are you sure want to appoinment!</h3>
+                                    </div>
 
-
-            <div class="modal fade" id="appoinment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog  modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form th:action="@{/getAppoinment/{userId}(userId=${session.userId})}">
-                                <div class="form-group">
-                                    <h3>Are you sure want to appoinment!</h3>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Confirm</button>
-                                </div>
-                            </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

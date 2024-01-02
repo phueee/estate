@@ -170,5 +170,10 @@ public class PageController {
         model.addAttribute("title", "Rent");
         return "service/Rent.html";
     }
+    @GetMapping("qrcode")
+    public String viewQrCode(Model model){
+        return "qrcode.html";
+    }
+
 
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +33,18 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
     private boolean active = true;
+
+//    @Lob
+//    @Column(name = "photo", columnDefinition = "LONGBLOB")
+//    private String photo;
+//    @Transient
+//    private MultipartFile photoFile;
+//    public MultipartFile getPhotoFile() {
+//        return this.photoFile;
+//    }
+//    public void setPhotoFile(MultipartFile photoFile) {
+//        this.photoFile = photoFile;
+//    }
 
     @ManyToMany
     @JoinTable(

@@ -1,11 +1,15 @@
 <!DOCTYPE html>
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin.css">
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
 <head th:replace="adminView::header">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form onsubmit="return validateDates()"  th:action="@{/getAppoinment}" method="post" >
+<a href="/view" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
+
+<form onsubmit="return validateDates()"  th:action="@{/index}" >
     <div class="container col-md-6 offset-md-3">
         <h2 class="col-md-6 offset-md-3">Appoinment</h2>
         <div class="row mb-4">
@@ -36,11 +40,11 @@
         <div style="color: crimson" id="alert-Message" class="alert-Message"></div>
         <div class="row mb-4">
             <label for="dateTime"> Date</label>
-            <input type="datetime-local" class="form-control" id="dateTime"  required name="dateTime" >
+            <input type="Date" class="form-control" id="dateTime"  required name="dateTime" >
         </div>
 
 
-        <button type="submit" class="btn btn-primary"  >Save Appoinment</button>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 15px" >Save Appoinment</button>
     </div>
 </form>
 
