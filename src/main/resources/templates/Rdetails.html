@@ -18,21 +18,24 @@
 
             <th scope="col">Home No</th>
             <th scope="col">User Name</th>
+            <th scope="col">User Email</th>
+            <th scope="col">User Phone</th>
             <th scope="col">Amount</th>
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
-            <th scope="col">Payment</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="rpayment ,itetstat:${rPayments}">
+        <tr th:each="rPayment ,itetstat:${rPayments}">
             <td> <span th:text="${itetstat.index+1}"></span></td>
-            <td th:text="${rpayment.homeNo}"></td>
-            <td th:text="${rpayment.userName}"></td>
-            <td th:text="${rpayment.price}"></td>
-            <td th:text="${rpayment.startdate}"></td>
-            <td th:text="${rpayment.enddate}"></td>
-            <td th:text="${rpayment.payment}"></td>
+            <td th:text="${rPayment.home.homeNo}"></td>
+            <td th:text="${rPayment.user.userName}"></td>
+            <td th:text="${rPayment.user.userEmail}"></td>
+            <td th:text="${rPayment.user.userPhone}"></td>
+            <td th:text="${rPayment.home.price}"></td>
+            <td th:text="${rPayment.startDate}"></td>
+            <td th:text="${rPayment.endDate}"></td>
+
         </tr>
         </tbody>
     </table>

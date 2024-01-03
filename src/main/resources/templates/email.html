@@ -1,13 +1,16 @@
 <!DOCTYPE html>
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin.css">
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
 <head th:replace="adminView::header">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<a href="/qrcode" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
 <form action="/send/email/user" method="post" enctype="multipart/form-data">
+    <h1 align="center" style="color: #0a0a0b;font-size: 40px">Send invoice to admin</h1>
     <div class="container col-md-6 offset-md-4">
-
         <div class="form-group col-md-6">
             <label for="toEmail">Email</label>
             <input type="email" class="form-control" id="toEmail" name="toEmail" value="zinnia959704@gmail.com" readonly >
