@@ -66,6 +66,7 @@ public class AppoinmentController {
             appoinment.setComment(comment);
             appoinment.setDateTime(dateTime);
             appoinmentDao.save(appoinment);
+            model.addAttribute("appoinment",appoinment);
             return "index";
         }
     }
