@@ -1,7 +1,10 @@
 package com.jwd46.Estate.Estate.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.NonNull;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,22 +21,32 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+
+//    @NotNull(message = "Name must not be Empty!")
     @Column(name = "user_name")
     private String userName;
 
+//    @NotNull(message = "Email must not be Empty!")
     @Column(name = "user_email")
     private String userEmail;
 
+//    @NotNull(message = "Phone must not be Empty!")
     @Column(name = "user_phone")
     private String userPhone;
 
+//    @NotNull(message = "NRC must not be Empty!")
     @Column(name = "user_nrc")
     private String userNrc;
 
+//    @Size(min = 8, max = 30, message = "Password must be between 8 to 30 characters!")
     @Column(name = "user_password")
     private String userPassword;
 
-    @Column(name = "confirm_password")
+//    @Column(name = "confirm_password")
+//    @Size(min = 8, max = 30, message = "Password must be between 8 to 30 characters!")
+//    private String confirmPassword;
+
+    @Transient
     private String confirmPassword;
 
     private boolean active = true;
@@ -70,7 +83,6 @@ public class User {
         this.homes=homes;
     }
 
-    @OneToMany
-    private Set<Payment> payment = new HashSet<>();
+
 
     }

@@ -12,18 +12,19 @@
 
 
 <body>
-<form th:action="@{/signup}"  method="post" id="af-form">
+<form th:action="@{/signup}" method="post" id="af-form">
+
     <div style="margin-top: 50px">
         <div class="con">
 
             <header class="head-form">
-                <h2 style="color: #FFFFFF">Sign Up</h2>
-
-                <div th:if="${msg1}">
-                    <div class="alert alert-danger">Please fill requried information!!!</div>
-                </div>
-
-                <p style="color: #FFFFFF">sign up here if you don't have an account</p>
+                <h2 style="color: #FFFFFF">Sign Up</h2><br>
+<!--                <div style="color: red" th:if="${msg1}">Please fill all the information!!!</div>-->
+<!--                <div style="color: red" th:if="${passwordLength}">Password must be between 8 to 20 characters!!!</div>-->
+                <p style="color: #FFFFFF">sign up here if you don't have an account</p><br>
+                <div style="color: red" th:if="${msg1}">Please fill all the information!!!</div>
+                <div style="color: red" th:if="${passwordLength}">Password must be between 8 to 20 characters!!!</div>
+                <div style="color: red" th:if="${showAlert}">Password and ConfirmPassword do not match!!!</div>
             </header>
             <!--            <div th:if="${error}">-->
             <!--                <div class="alert alert-danger">Please fill required informations!!!</div>-->
@@ -36,44 +37,46 @@
            <i class="fa fa-user-circle"></i>
          </span>
 
-                <input class="form-input" id="txt-input" type="text" placeholder="Name" name="name" required>
-
+                <input class="form-input" id="txt-input" type="text" placeholder="Name" name="name" >
+<!--                <span style="color: red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>-->
                 <br>
                 <span class="input-item">
               <i class="fa-solid fa-envelope" style="color: #0f0f10;"></i>
                 </span>
 
-                <input class="form-input" id="txt-input1" type="text" placeholder="Email" name="email" required>
+                <!-- Example for userEmail field -->
+                <input class="form-input" id="txt-input1" type="text" placeholder="Email" name="email" >
+<!--                <span style="color: red" th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}"></span>-->
 
                 <br>
 
                 <span class="input-item">
                     <i class="fa-solid fa-phone-volume" style="color: #19191a;"></i>
          </span>
-                <input class="form-input" id="txt-input2" type="text" placeholder="Phone No" name="phone" required>
-
+                <input class="form-input" id="txt-input2" type="text" placeholder="Phone No" name="phone" >
+<!--                <span style="color: red" th:if="${#fields.hasErrors('userPhone')}" th:errors="*{userPhone}"></span>-->
                 <br>
 
                 <span class="input-item">
     <i class="fa-solid fa-address-card" style="color: #1d1e20;"></i>
                 </span>
 
-                <input class="form-input" id="txt-input3" type="text" placeholder="NRC" name="NRC" required>
-
+                <input class="form-input" id="txt-input3" type="text" placeholder="NRC" name="NRC" >
+<!--                <span style="color: red" th:if="${#fields.hasErrors('userNrc')}" th:errors="*{userNrc}"></span>-->
                 <br>
 
-                <script th:if="${showAlert}">
-                    window.onload=function () {
-                        alert('Password do not match');
-                    }
-                </script>
+<!--                <script th:if="${showAlert}">-->
+<!--                    window.onload=function () {-->
+<!--                        alert('Password do not match');-->
+<!--                    }-->
+<!--                </script>-->
 
                 <span class="input-item">
         <i class="fa-solid fa-key" style="color: #0a0a0b;"></i>
        </span>
 
-                <input class="form-input" type="password" placeholder="Password" id="password"  name="password" required>
-
+                <input class="form-input" type="password" placeholder="Password" id="password"  name="password">
+<!--                <span style="color: red" th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}"></span>-->
 
                 <span>
 <!--        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>-->
@@ -106,8 +109,9 @@
         <i class="fa fa-key"></i>
        </span>
                 <span toggle="#password-field">
-                    <input class="form-input" type="password" placeholder="Confirm-Password" id="confirm_password"  name="confirmPassword" required>
+                   <input class="form-input" type="password" placeholder="Confirm-Password" id="confirm_password" name="confirmPassword" >
 
+                    <!--                <span style="color: red" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>-->
 
                     <!--                <span toggle="#password-field">-->
                     <!--        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye">-->

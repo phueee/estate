@@ -34,7 +34,8 @@ public class AdminController {
     HomeService homeService;
     @Autowired
     UserDao userDao;
-
+    @Autowired
+    AdminDao adminDao;
     @GetMapping("/adminlogin")
     public String viewadminlogin(Model model) {
         model.addAttribute("title", "AdminLogin");
@@ -46,16 +47,12 @@ public class AdminController {
         Admin admin = new Admin();
         admin.setEmail(email);
         admin.setPassword(password);
-        if (admin.getEmail().equals("Phyoke Kya Ml@gmail.com") && admin.getPassword().equals("123123")) {
-//            session.setAttribute("admin", admin);
+        if (admin.getEmail().equals("phyokekyaml@gmail.com") && admin.getPassword().equals("123123")) {
             request.getSession().setAttribute("admin",admin);
-
             return "redirect:/homes";
         } else {
             return "adminlogin";
         }
-
-
     }
 
     @GetMapping("/adminCreate")
@@ -68,7 +65,6 @@ public class AdminController {
         } else {
             return "redirect:/";
         }
-//        return "adminCreate";
     }
 
     @RequestMapping("adminView")

@@ -23,8 +23,8 @@ public class Appoinment{
     private LocalDateTime dateTime;
     private boolean active = true;
 
-    @OneToMany
-    private Set<User> user = new HashSet<>();
+//    @OneToMany
+//    private Set<User> user = new HashSet<>();
 
 
 }

@@ -107,8 +107,10 @@
                     </div>
 
 
-                    <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
+                <a href="/signup" class="btn btn-primary px-3 d-none d-lg-flex m-lg-3" th:if="${session.userEmail==null}">Sign Up</a>
+            </nav>
                 </div>
+
                 <div><a href="/logout" class="btn btn-primary px-2 d-none d-lg-flex" th:if="${session.userEmail!=null}">Log Out</a></div>
             </nav>
         </div>
