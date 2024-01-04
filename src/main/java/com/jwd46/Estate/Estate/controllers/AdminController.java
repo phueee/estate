@@ -135,4 +135,11 @@ public class AdminController {
 //            return "redirect:/";
 //        }
 //    }
+
+
+
+    @GetMapping("/adminEmail")
+    public  String sendEmail(){
+        return "adminEmail";
+    }
 }

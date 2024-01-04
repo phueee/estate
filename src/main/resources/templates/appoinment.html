@@ -9,7 +9,7 @@
 <body>
 <a href="/index" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
 
-<form onsubmit="return validateDates()"  th:action="@{/index}" >
+<form onsubmit="return validateDates()"  th:action="@{/getAppoinment}" method="post">
     <div class="container col-md-6 offset-md-3">
         <h2 class="col-md-6 offset-md-3">Appoinment</h2>
         <div class="row mb-4">
@@ -22,7 +22,7 @@
         </div>
         <div class="row mb-4">
             <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone"  name="phone" required>
+            <input type="number" class="form-control" id="phone"  name="phone" required>
         </div>
         <div class="row mb-4">
             <label for="reason">Reason for appointment</label>
