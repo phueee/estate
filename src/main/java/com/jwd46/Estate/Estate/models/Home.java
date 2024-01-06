@@ -73,6 +73,5 @@ public class Home {
         this.users = users;
     }
 
-    @OneToMany
-    private Set<Payment> payment = new HashSet<>();
+
 }

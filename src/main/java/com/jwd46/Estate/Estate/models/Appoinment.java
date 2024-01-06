@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Table(name = "appoinment")
 @Data
-public class Appoinment {
+public class Appoinment{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,6 +23,8 @@ public class Appoinment {
     private LocalDateTime dateTime;
     private boolean active = true;
 
+//    @OneToMany
+//    private Set<User> user = new HashSet<>();
 
 
 }
