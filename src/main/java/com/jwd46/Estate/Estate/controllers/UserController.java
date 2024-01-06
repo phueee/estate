@@ -83,6 +83,7 @@ public class UserController {
 
     }
 
+
     @PostMapping("/user")
     public String User(Model model, @RequestParam String userName){
         User user=new User();

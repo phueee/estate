@@ -1,7 +1,6 @@
 package com.jwd46.Estate.Estate.daos;
 
 import com.jwd46.Estate.Estate.models.Home;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -31,4 +30,5 @@ public interface HomeDao extends JpaRepository<Home,Integer> {
 
     @Query(value = "SELECT * FROM homes WHERE home_id=?1", nativeQuery = true)
     Home getHomeById(int homeId);
+
 }

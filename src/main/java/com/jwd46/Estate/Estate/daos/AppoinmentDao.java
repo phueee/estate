@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AppoinmentDao extends JpaRepository<Appoinment,Integer> {
-        Appoinment findById(int id);
+
 }

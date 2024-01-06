@@ -174,4 +174,9 @@ public class PageController {
         return "homedetails.html";
     }
 
+    @GetMapping("qrcode")
+    public String viewQrCode(Model model){
+        return "qrcode.html";
+    }
+
 }

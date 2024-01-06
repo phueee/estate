@@ -2,19 +2,22 @@ package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.Service.HomeService;
 import com.jwd46.Estate.Estate.daos.HomeDao;
+import com.jwd46.Estate.Estate.daos.PaymentDao;
+import com.jwd46.Estate.Estate.daos.RPaymentDao;
 import com.jwd46.Estate.Estate.models.Home;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import com.jwd46.Estate.Estate.models.Payment;
+import com.jwd46.Estate.Estate.models.RPayment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.HttpSessionRequiredException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -24,6 +27,12 @@ public class HomeController {
     HomeDao homeDao;
     @Autowired
     HomeService service;
+
+    @Autowired
+    RPaymentDao rPaymentDao;
+
+    @Autowired
+    PaymentDao paymentDao;
 
     @Autowired
     HomeDao dao;
@@ -43,7 +52,12 @@ public class HomeController {
 
     @PostMapping("/delete/home")
     public String deleteHome(@RequestParam int homeId) {
-        homeDao.deleteById(homeId);
+        Home home=homeDao.findByHomeId(homeId);
+        RPayment rentPayment=rPaymentDao.findByHome(home);
+        Payment buyPayment=paymentDao.findByHome(home);
+        homeDao.delete(home);
+        rPaymentDao.delete(rentPayment);
+        paymentDao.delete(buyPayment);
         return "redirect:/homes";
 
     }

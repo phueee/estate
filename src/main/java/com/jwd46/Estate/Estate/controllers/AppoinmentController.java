@@ -3,18 +3,17 @@ package com.jwd46.Estate.Estate.controllers;
 import com.jwd46.Estate.Estate.Service.UserService;
 import com.jwd46.Estate.Estate.daos.AppoinmentDao;
 import com.jwd46.Estate.Estate.daos.UserDao;
+import com.jwd46.Estate.Estate.models.Admin;
 import com.jwd46.Estate.Estate.models.Appoinment;
-import com.jwd46.Estate.Estate.models.User;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,10 +29,16 @@ public class AppoinmentController {
 
 
     @GetMapping("/request")
-    public String Appoinment (Model model){
-        List<Appoinment> appoinments =appoinmentDao.findAll();
-        model.addAttribute("appoinments",  appoinments);
-        return "request";
+    public String Appoinment (Model model,HttpServletRequest request){
+        Admin admin= (Admin) request.getSession().getAttribute("admin");
+        if(admin != null){
+            List<Appoinment> appoinments =appoinmentDao.findAll();
+            model.addAttribute("appoinments",  appoinments);
+            return "request";
+        }else {
+            return "redirect:/";
+        }
+
     }
 
     @PostMapping("/request")
