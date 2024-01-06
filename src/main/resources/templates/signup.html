@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <link href="css/style.css" rel="stylesheet">
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <a href="/" class="previous" style="background: #0b2540; color:#FFFFFF;">&laquo; Home</a>
+    <a href="/" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 20px">&laquo; Back</a>
     <title>SignUp Form</title>
 
     <link rel="stylesheet" href="css/login.css">
@@ -12,18 +13,19 @@
 
 
 <body>
-<form th:action="@{/signup}"  method="post" id="af-form">
-    <div style="margin-top: 50px">
+<form th:action="@{/signup}" method="post" id="af-form" >
+
+    <div style="margin-top: 30px">
         <div class="con">
 
-            <header class="head-form">
-                <h2 style="color: #FFFFFF">Sign Up</h2>
-
-                <div th:if="${msg1}">
-                    <div class="alert alert-danger">Please fill requried information!!!</div>
-                </div>
-
-                <p style="color: #FFFFFF">sign up here if you don't have an account</p>
+            <header class="head-form" style="margin-bottom: 20px">
+                <h2 style="color: #FFFFFF">Sign Up</h2><br>
+                <!--                <div style="color: red" th:if="${msg1}">Please fill all the information!!!</div>-->
+                <!--                <div style="color: red" th:if="${passwordLength}">Password must be between 8 to 20 characters!!!</div>-->
+                <p style="color: #FFFFFF">sign up here if you don't have an account</p><br>
+                <div style="color: red" th:if="${msg1}">Please fill all the information!!!</div>
+                <div style="color: red" th:if="${passwordLength}">Password must be between 8 to 20 characters!!!</div>
+                <div style="color: red" th:if="${showAlert}">Password and ConfirmPassword do not match!!!</div>
             </header>
             <!--            <div th:if="${error}">-->
             <!--                <div class="alert alert-danger">Please fill required informations!!!</div>-->
@@ -36,168 +38,98 @@
            <i class="fa fa-user-circle"></i>
          </span>
 
-                <input class="form-input" id="txt-input" type="text" placeholder="Name" name="name" required>
-
+                <input class="form-input" id="txt-input" type="text" placeholder="Name" name="name" >
+                <!--                <span style="color: red" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>-->
                 <br>
                 <span class="input-item">
               <i class="fa-solid fa-envelope" style="color: #0f0f10;"></i>
                 </span>
 
-                <input class="form-input" id="txt-input1" type="text" placeholder="Email" name="email" required>
+                <!-- Example for userEmail field -->
+                <input class="form-input" id="txt-input1" type="text" placeholder="Email" name="email" >
+                <!--                <span style="color: red" th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}"></span>-->
 
                 <br>
 
                 <span class="input-item">
                     <i class="fa-solid fa-phone-volume" style="color: #19191a;"></i>
          </span>
-                <input class="form-input" id="txt-input2" type="number" placeholder="Phone No" name="phone" required>
-
+                <input class="form-input" id="txt-input2" type="text" placeholder="Phone No" name="phone" >
+                <!--                <span style="color: red" th:if="${#fields.hasErrors('userPhone')}" th:errors="*{userPhone}"></span>-->
                 <br>
 
                 <span class="input-item">
     <i class="fa-solid fa-address-card" style="color: #1d1e20;"></i>
                 </span>
 
-                <input class="form-input" id="txt-input3" type="text" placeholder="NRC" name="NRC" required>
-
+                <input class="form-input" id="txt-input3" type="text" placeholder="NRC" name="NRC" >
+                <!--                <span style="color: red" th:if="${#fields.hasErrors('userNrc')}" th:errors="*{userNrc}"></span>-->
                 <br>
 
-                <script th:if="${showAlert}">
-                    window.onload=function () {
-                        alert('Password do not match');
-                    }
-                </script>
-
-                <span class="input-item">
-        <i class="fa-solid fa-key" style="color: #0a0a0b;"></i>
-       </span>
-
-                <input class="form-input" type="password" placeholder="Password" id="password"  name="password" required>
-
-
-                <span>
-<!--        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>-->
-                       <script>
-                        // Get the eye icon and password input element
-                        const eyeIcon = document.getElementById("eye");
-                        const passwordInput = document.getElementById("pwd");
-
-                        // Add click event listener to the eye icon
-                        eyeIcon.addEventListener("click", () => {
-                            // Toggle the type of the password input between "password" and "text"
-                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                            passwordInput.setAttribute("type", type);
-
-                            // Toggle the eye icon class based on the password input type
-                            if (type === "password") {
-                                eyeIcon.classList.remove("fa-eye");
-                                eyeIcon.classList.add("fa-eye-slash");
-                            } else {
-                                eyeIcon.classList.remove("fa-eye-slash");
-                                eyeIcon.classList.add("fa-eye");
-
-                            }
-                        });
-
-                    </script>
-     </span><br>
-
-                <span class="input-item">
-        <i class="fa fa-key"></i>
-       </span>
-                <span toggle="#password-field">
-                    <input class="form-input" type="password" placeholder="Confirm-Password" id="confirm_password"  name="confirmPassword" required>
-
-
-                    <!--                <span toggle="#password-field">-->
-                    <!--        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye">-->
-
-
-
-                    <script>
-
-                        const eyeIcon = document.getElementById("eye");
-                        const passwordInput = document.getElementById("pwd");
-
-
-                        eyeIcon.addEventListener("click", () => {
-                            // Toggle the type of the password input between "password" and "text"
-                            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                            passwordInput.setAttribute("type", type);
-
-                            // Toggle the eye icon class based on the password input type
-                            if (type === "password") {
-                                eyeIcon.classList.remove("fa-eye");
-                                eyeIcon.classList.add("fa-eye-slash");
-                            } else {
-                                eyeIcon.classList.remove("fa-eye-slash");
-                                eyeIcon.classList.add("fa-eye");
-
-                            }
-                        });
-
-                    </script></i>
-
-     </span>
-                <!--                <script>-->
-                <!--                    document.addEventListener('DOMContentLoaded',function(){-->
-                <!--                        var form = document.getElementById('af-form');-->
-                <!--                        var errorMessage = document.getElementById('error-message');-->
-                <!--                        form.addEventListener('submit',function(event){-->
-                <!--                            if (!validateForm()){-->
-                <!--                                event.preventDefault();-->
-                <!--                            }-->
-                <!--                        });-->
-                <!--                        function validateForm() {-->
-                <!--                            var password=document.getElementById('password').value;-->
-                <!--                            var confirmPassword=document.getElementById('confirmPassword').value;-->
-
-                <!--                            if(password != confirmPassword){-->
-                <!--                                errorMessage.textContent='Password and ConfirmPassword do not match.';-->
-                <!--                                return false;-->
-                <!--                            }else {-->
-                <!--                                errorMessage.textContent = '';-->
-                <!--                            }-->
-                <!--                            return true;-->
+                <!--                <script th:if="${showAlert}">-->
+                <!--                    window.onload=function () {-->
+                <!--                        alert('Password do not match');-->
                 <!--                    }-->
-                <!--                     });-->
                 <!--                </script>-->
 
+                <span class="input-item">
+                    <i class="fa fa-key"></i>
+                </span>
+
+                <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
+
+                <span toggle="#password-field">
+                    <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
+                </span><br>
+
+                <span class="input-item">
+                    <i class="fa fa-key"></i>
+                </span>
+
+                <input class="form-input" type="password" placeholder="Confirm-Password" id="confirm_password" name="confirmPassword">
+
+                <span toggle="#confirm-password-field"style="margin-left: -25px" >
+                    <i class="fa fa-eye" aria-hidden="true" type="button" id="confirm-eye"></i>
+                </span>
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        const passwordInput = document.getElementById('password');
+                        const passwordInput = document.getElementById('pwd');
                         const confirmPasswordInput = document.getElementById('confirm_password');
-                        const errorMessage = document.getElementById('error-message');
+                        const eyeIcon = document.getElementById('eye');
+                        const confirmEyeIcon = document.getElementById('confirm-eye');
 
-                        passwordInput.addEventListener('input', validatePassword);
-                        confirmPasswordInput.addEventListener('input', validatePassword);
+                        eyeIcon.addEventListener("click", togglePasswordVisibility.bind(null, passwordInput, eyeIcon));
+                        confirmEyeIcon.addEventListener("click", togglePasswordVisibility.bind(null, confirmPasswordInput, confirmEyeIcon));
 
-                        function validatePassword() {
-                            const password = passwordInput.value;
-                            const confirmPassword = confirmPasswordInput.value;
+                        function togglePasswordVisibility(input, icon) {
+                            const type = input.getAttribute("type") === "password" ? "text" : "password";
+                            input.setAttribute("type", type);
 
-                            errorMessage.textContent = password === confirmPassword ? '' : 'Password and Confirm Password do not match.';
+                            if (type === "password") {
+                                icon.classList.remove("fa-eye");
+                                icon.classList.add("fa-eye-slash");
+                            } else {
+                                icon.classList.remove("fa-eye-slash");
+                                icon.classList.add("fa-eye");
+                            }
                         }
                     });
                 </script>
+
                 <br>
                 <button type="submit" class="btn btn-danger "style="background: #0d6efd;color:#FFFFFF; " onclick="location.href=''">Create</button>
 
             </div>
 
-
-
-
-
-            <button class="to-login" onclick="location.href='/login'">Do you already have an acc?</button>
-
-
-
         </div>
-    </div>
 
+    </div>
 </form>
+<div align="center" style="margin-top: 20px;height: 100px;margin-bottom: 80px">
+    <button style="margin: 20px;margin-bottom: 80px" class="to-login" onclick="location.href='/login'">Do you already have an acc?</button>
+</div>
+
 <script src="https://kit.fontawesome.com/df7b367b21.js" crossorigin="anonymous"></script>
 </body>
 </html>

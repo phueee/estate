@@ -34,7 +34,7 @@
             <td th:text="${appoinment.reason}"></td>
             <td th:text="${appoinment.comment}"></td>
             <td th:text="${appoinment.dateTime}"></td>
-            <td><a th:href="@{/adminEmail}"><button class="btn btn-primary" type="button">Confirm</button></a></td>
+            <td><a th:href="@{/adminEmail/{id}(id=${appoinment.id})}"><button class="btn btn-primary" type="button">Confirm</button></a></td>
 
             <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"    th:attr="onclick=|deleteId('${appoinment.id}')|"  >Delete</button>
             </td>

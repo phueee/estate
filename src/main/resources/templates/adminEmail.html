@@ -8,12 +8,12 @@
 </head>
 <body>
 <a href="/" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
-<form action="/send/email/user" method="post" enctype="multipart/form-data">
+<form action="/send/email/admin" method="post" th:object="${appointmentBean}" enctype="multipart/form-data" >
     <h1 align="center" style="color: #0a0a0b;font-size: 40px">Send to user</h1>
     <div class="container col-md-6 offset-md-4">
         <div class="form-group col-md-6">
             <label for="toEmail">Email</label>
-            <input type="email" class="form-control" id="toEmail" name="toEmail" readonly >
+            <input type="email" class="form-control" id="toEmail" th:value="*{email}" name="toEmail"  readonly >
         </div>
 
         <div class="form-group col-md-6">

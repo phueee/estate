@@ -1,5 +1,6 @@
 package com.jwd46.Estate.Estate.Service;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.jwd46.Estate.Estate.daos.AppoinmentDao;
 import com.jwd46.Estate.Estate.daos.UserDao;
 import com.jwd46.Estate.Estate.models.Appoinment;
@@ -18,8 +19,17 @@ public class UserService {
     AppoinmentDao appoinmentDao;
 
     public User login(String email, String password) {
+        User user=userDao.findByUserEmail(email);
+        if (user!=null){
+            if (user.getUserEmail().equals(email) && BCrypt.verifyer().verify(password.toCharArray(),user.getUserPassword()).verified){
+                return user;
+            }else {
+                return null;
+            }
+        }else {
+            return null;
+        }
 
-        return userDao.findByEmailAndPassword(email, password);
     }
 
     public void deleteUser(int userId){

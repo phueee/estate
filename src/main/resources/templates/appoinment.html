@@ -9,20 +9,21 @@
 <body>
 <a href="/index" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
 
-<form onsubmit="return validateDates()"  th:action="@{/getAppoinment}" method="post">
+<form onsubmit="return validateAndMask();" th:action="@{/getAppoinment}" method="post">
     <div class="container col-md-6 offset-md-3">
         <h2 class="col-md-6 offset-md-3">Appoinment</h2>
         <div class="row mb-4">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" required >
         </div>
+        <div id="alert-Message1" style="color: red;"></div>
         <div class="row mb-4">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email"  name="email" required >
         </div>
         <div class="row mb-4">
             <label for="phone">Phone</label>
-            <input type="number" class="form-control" id="phone"  name="phone" required>
+            <input type="tel" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number"class="form-control" id="phone"  name="phone" required>
         </div>
         <div class="row mb-4">
             <label for="reason">Reason for appointment</label>
@@ -57,28 +58,41 @@
         var currentDate = new Date();
         currentDate.setHours(0, 0, 0, 0); // Reset time to start of the day
 
-        var startDate=document.getElementById("dateTime").value;
-        var alertMessage=document.getElementById("alert-Message");
+        var startDate = document.getElementById("dateTime").value;
+        var alertMessage = document.getElementById("alert-Message");
 
-        var startDateObj=new Date(startDate);
+        var startDateObj = new Date(startDate);
 
-        if(startDateObj < currentDate){
-            alertMessage.innerHTML="Start date cannot be earlier than the current date.";
+        if (startDateObj < currentDate) {
+            alertMessage.innerHTML = "Start date cannot be earlier than the current date.";
             return false;
         }
-        alertMessage.innerHTML="";
-        return true;
 
-        // var startDate = new Date(document.getElementById('inputDate').value);
-        //
-        // if (startDate < currentDate) {
-        //     alert('Start date cannot be earlier than the current date.');
-        //     return false;
-        // }
-        //
-        // return true;
+        alertMessage.innerHTML = "";
+        return true;
+    }
+
+    function maskPhoneNumber(phoneNumber) {
+        const visibleDigits = Math.max(0, phoneNumber.length - 4);
+        const masked = phoneNumber.substring(0, visibleDigits).replace(/\d/g, '*');
+        const lastFourDigits = phoneNumber.substring(visibleDigits);
+        return masked + lastFourDigits;
+    }
+
+    function validateAndMask() {
+        var isDateValid = validateDates();
+
+        if (isDateValid) {
+            const phoneNumberInput = document.getElementById("phone");
+            phoneNumberInput.value = maskPhoneNumber(phoneNumberInput.value);
+
+            return true;
+        }
+
+        return false;
     }
 </script>
+
 
 
 <div th:replace="adminView::footer"></div>

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
     @Table(name = "Rpayments")
@@ -26,6 +24,8 @@ import java.util.Set;
     private LocalDateTime endDate;
     private LocalDateTime dueDate;
     private String basePrice;
-    private double price;
+    private String price;
+
 
     }
+

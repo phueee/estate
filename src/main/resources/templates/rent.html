@@ -15,7 +15,7 @@
 
 <div class="container-col-md-6 offset-md-3">
 
-    <form th:action="@{/Rpayment/{homeId}(homeId=${homeId})}"  th:object="${home}">
+    <form th:action="@{/Rpayment/{homeId}(homeId=${homeId})}"  th:object="${home}" method="post">
         <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Rent Detail</h2>
         <div class="row mb-4">
             <div class="col-md-2"></div>
@@ -79,21 +79,6 @@
                 <input type="text" class="form-control" id="homePrice" name="homePrice" th:field="*{price}" readonly="true">
             </div>
         </div>
-
-
-        <div class="row mb-4">
-            <div class="col-md-2"></div>
-            <label for="inputPayment" class="col-md-2 col-form-label">Payment</label>
-            <div class="col-md-4">
-                <select id="inputPayment" class="form-control" required>
-                    <option selected>Type</option>
-                    <option>Wave</option>
-                    <option>K pay</option>
-                    <option>Others</option>
-                </select>
-            </div>
-        </div>
-
         <div class="row mb-4">
             <div class="col-md-2"></div>
             <label for="date" class="col-md-2 col-form-label"> Start Date</label>
@@ -106,7 +91,7 @@
             <div class="col-md-2"></div>
             <label for="DueDate" class="col-md-2 col-form-label">Due Date</label>
             <div class="col-md-4">
-                <select id="DueDate" class="form-control" >
+                <select id="DueDate" class="form-control" name="due_date" >
                     <option value="3months">3months</option>
                     <option value="4months">4months</option>
                     <option value="5months">5months</option>

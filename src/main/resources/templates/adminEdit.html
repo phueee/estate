@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/html">
+<link rel="stylesheet" href="/css/admin.css">
 <head th:replace="adminView::header">
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
 <div th:replace="adminView::navbar"></div><br>
@@ -10,7 +12,7 @@
 <form th:action="@{/home/update}" method="post" th:object="${homeBean}" enctype="multipart/form-data">
     <div>
         <h2 style="text-align: center">Admin Edit</h2>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6" hidden>
             <label for="homeId">Home Id</label>
             <input type="text" class="form-control" id="homeId" th:field="*{homeId}" name="homeId" readonly >
         </div>
@@ -74,7 +76,7 @@
             <input type="file" class="form-control-file" id="photo" th:field="*{photo}" accept="image/**" name="photo" multiple>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button>
     </div>
 </form>
 </div>

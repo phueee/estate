@@ -21,7 +21,7 @@
 .user-details {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10pxpx;
 }
 
 .avatar {
@@ -37,7 +37,7 @@
 }
 
 .alerts {
-    padding-top: 10px;
+    padding-top: 5pxpx;
 }
 
 .alert {

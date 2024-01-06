@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <link href="css/style.css" rel="stylesheet">
-    <a th:href="@{/}" class="previous" style="margin-left: 20px;margin-top: 20px;border-radius: 10px;">&laquo; Home</a>
-    <title>login form</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link href="/css/style.css" rel="stylesheet">
+    <a th:href="@{/}" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 8px">&laquo; Back</a>
+    <title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 
 </head>
 <body>
 
 <div class="overlay">
-
     <form th:action="@{/login}" method="post">
         <div class="con">
             <header class="head-form">
                 <h2 style="color: #FFFFFF">Log In Here</h2>
-                <div th:if="${error1}">
-                    <div class="alert alert-danger">Invalid Email or Password</div>
-                </div>
+                <!--                <div th:if="${error1}">-->
+                <!--                    <div class="alert alert-danger">Invalid Email or Password</div>-->
+                <!--                </div>-->
+                <!--                <div style="color: red" th:if="${error1}">Invalid Email or Password!!!</div>-->
+                <div style="color: red" th:if="${error1}">Invalid Email or Password!!!</div>
                 <p style="color: #FFFFFF">Login to your account</p>
             </header>
 
             <br>
-
             <div class="field-set">
 
                 <!--   user name -->
                 <span class="input-item">
            <i class="fa fa-user-circle"></i>
          </span>
-
                 <!--   user name Input-->
                 <input class="form-input" id="txt-input" type="text" placeholder="@Email" name="email">
 
@@ -38,15 +37,12 @@
                 <span class="input-item">
         <i class="fa fa-key"></i>
        </span>
+
+                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password">
+
+
                 <span toggle="#password-field">
-
-                <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" >
-
-
-<!--                <span toggle="#password-field">-->
-        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye">
-
-
+        <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
 
                     <script>
 
@@ -57,33 +53,34 @@
                         eyeIcon.addEventListener("click", () => {
                             // Toggle the type of the password input between "password" and "text"
                             const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                        passwordInput.setAttribute("type", type);
+                            passwordInput.setAttribute("type", type);
 
-                        // Toggle the eye icon class based on the password input type
-                        if (type === "password") {
-                            eyeIcon.classList.remove("fa-eye");
-                            eyeIcon.classList.add("fa-eye-slash");
-                        } else {
-                            eyeIcon.classList.remove("fa-eye-slash");
-                            eyeIcon.classList.add("fa-eye");
+                            // Toggle the eye icon class based on the password input type
+                            if (type === "password") {
+                                eyeIcon.classList.remove("fa-eye");
+                                eyeIcon.classList.add("fa-eye-slash");
+                            } else {
+                                eyeIcon.classList.remove("fa-eye-slash");
+                                eyeIcon.classList.add("fa-eye");
 
-                        }
+                            }
                         });
 
-                    </script></i>
-     </span><br>
+                    </script>
+     </span>
 
 
-                 <button class="log-in" type="submit" onclick="location.href=''"> Log In </button>
-            <br>
+                <br>
+                <button class="log-in" type="submit" onclick="location.href=''"> Log In </button>
+
 <!--                <p style="color: #FFFFFF">if you don't have an account sing up here</p>-->
-<!--            <button style="color: #FFFFFF" class="btn block sign-up" onclick="location.href='/signup'">Sign Up-->
+<!--                <button style="color: #FFFFFF" class="btn block sign-up" onclick="location.href='/signup'">Sign Up-->
 
-<!--                <i  class="fa fa-user-plus" aria-hidden="true"></i>-->
-<!--            </button>-->
+<!--                    <i  class="fa fa-user-plus" aria-hidden="true"></i>-->
+<!--                </button>-->
 
+            </div>
         </div>
-</div>
 
     </form>
 
@@ -92,9 +89,3 @@
 </div>
 </body>
 </html>
-
-
-
-
-
-
