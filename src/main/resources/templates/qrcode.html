@@ -9,8 +9,9 @@
 </head>
 <body>
 <div>
-<h1 align="center" style="color: #0a0a0b;font-size: 40px">Payment</h1>
-<a href="/view" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 10px">&laquo; Back</a>
+    <h1 align="center" style="color: #0a0a0b;font-size: 40px">Payment</h1>
+    <h3 align="center">You must send invoice to our admin email !!!</h3>
+    <button type="button" class="btn btn-primary py-2 px-4 me-1" data-toggle="modal" data-target="#back" style="margin-left: 20px" ><i class="fa fa-phone-alt me-1"></i>Back</button>
 </div>
 <div class="payment-container">
     <div class="payment-method">
@@ -28,7 +29,7 @@
         <h1 style="font-size: 25px">If you want to pay in cash</h1>
         <button type="button" class="btn btn-primary py-3 px-4 me-2" data-toggle="modal" data-target="#appoinment" ><i class="fa fa-phone-alt me-2"></i>Get Appoinment</button>
     </div>
-
+    <a href="/email" class="btn btn-success fixed-button" style="background-color: #081c30">Send invoice to admin &raquo;</a>
 </div>
 <div class="modal fade" id="appoinment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered">
@@ -61,8 +62,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-</div>
-<a href="/email" class="btn btn-success fixed-button" style="background-color: #081c30">Send invoice to admin &raquo;</a>
+    </div>
+<div class="modal fade" id="back" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Notice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/}">
+                    <div class="form-group">
+                        <h3>You must send invoice to our admin email !!!</h3>
+                    </div>
+
+                    <div class="modal-footer">
+<!--                        <button  type="submit" class="btn" style="background-color: cornflowerblue;color: #d8d8d8" onclick="redirectIfConditionMet()">Are you sure want to Back!</button>-->
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function redirectIfConditionMet() {
+            var shouldRedirect = /*[[${someCondition}]]*/ true;
+
+            if (shouldRedirect) {
+                window.location.href = '/';
+            }
+        }
+        /*]]>*/
+    </script>
+
 
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<link href="/css/style.css" rel="stylesheet">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="adminView::header">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div th:replace="adminView::navbar"></div><br>
+<h2 class="col-md-6 offset-md-3" align="center">Delete Rent Detail</h2>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead style="background: #081c30;color:white;">
+        <tr>
+            <th scope="col">No</th>
+
+            <th scope="col">Home No</th>
+            <th scope="col">User Name</th>
+            <th scope="col">User Email</th>
+            <th scope="col">User Phone</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rPayment ,itetstat:${rPayments}">
+            <td> <span th:text="${itetstat.index+1}"></span></td>
+            <td th:text="${rPayment.home.homeNo}"></td>
+            <td th:text="${rPayment.user.userName}"></td>
+            <td th:text="${rPayment.user.userEmail}"></td>
+            <td th:text="${rPayment.user.userPhone}"></td>
+            <td th:text="${rPayment.price}"></td>
+            <td th:text="${rPayment.startDate}"></td>
+            <td th:text="${rPayment.endDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:replace="adminView::footer"></div>
+</div>
+</body>
+</html>

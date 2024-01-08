@@ -1,3 +1,4 @@
+
 package com.jwd46.Estate.Estate.controllers;
 
 import com.jwd46.Estate.Estate.Service.UserService;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,12 +38,44 @@ public class PaymentController {
     UserService userService;
 
 
+//    @GetMapping("/detail")
+//    public String viewDetail(Model model,HttpServletRequest request) {
+//        Admin admin= (Admin) request.getSession().getAttribute("admin");
+//        if(admin != null){
+//            List<Payment> payments = paymentDao.findAll();
+//            model.addAttribute("payments", payments);
+//            return "details";
+//        }else {
+//            return "redirect:/";
+//        }
+//
+//    }
+//
+//    @PostMapping("/detail")
+//    public String viewDetail(Model model, @RequestParam String userName, @PathVariable int userId) {
+//        User user = userDao.findByUserId(userId);
+//        Payment payment = new Payment();
+//        payment.setUser(user);
+//        paymentDao.save(payment);
+//        return "redirect:/details";
+//
+//    }
+
+
+
+
     @GetMapping("/detail")
-    public String viewDetail(Model model,HttpServletRequest request) {
+    public String Detail (Model model,HttpServletRequest request){
         Admin admin= (Admin) request.getSession().getAttribute("admin");
         if(admin != null){
-            List<Payment> payments = paymentDao.findAll();
-            model.addAttribute("payments", payments);
+            List<Payment> payments=paymentDao.findAll();
+            List<Payment> listPayment = new ArrayList<>();
+            for (Payment payment : payments){
+                if(payment.isActive()==true){
+                    listPayment.add(payment);
+                }
+            }
+            model.addAttribute("payments",  listPayment);
             return "details";
         }else {
             return "redirect:/";
@@ -49,40 +83,71 @@ public class PaymentController {
 
     }
 
+
     @PostMapping("/detail")
-    public String viewDetail(Model model, @RequestParam String userName, @PathVariable int userId) {
-        User user = userDao.findByUserId(userId);
-        Payment payment = new Payment();
-        payment.setUser(user);
+    public String Detail(Model model, @RequestParam LocalDateTime dateTime){
+        Payment payment=new Payment();
+        payment.setDateTime(dateTime);
         paymentDao.save(payment);
         return "redirect:/details";
-
     }
 
+
+
+
+//
+//    @GetMapping("/Rdetail")
+//    public String viewRDetail(Model model, HttpServletRequest request) {
+//        Admin admin= (Admin) request.getSession().getAttribute("admin");
+//        if (admin != null){
+//            List<RPayment> rPayments = rPaymentDao.findAll();
+//            model.addAttribute("rPayments", rPayments);
+//            return "Rdetails";
+//        }else {
+//            return "redirect:/";
+//        }
+//
+//
+//    }
+//
+//
+//    @PostMapping("/Rdetail")
+//    public String viewRdetail(Model model, @RequestParam String userName, @PathVariable int userId) {
+//        User user = userDao.findByUserId(userId);
+//        RPayment rPayment = new RPayment();
+//        rPayment.setUser(user);
+//        rPaymentDao.save(rPayment);
+//        return "redirect:/Rdetails";
+//
+//    }
+
     @GetMapping("/Rdetail")
-    public String viewRDetail(Model model, HttpServletRequest request) {
+    public String RDetail (Model model,HttpServletRequest request){
         Admin admin= (Admin) request.getSession().getAttribute("admin");
-        if (admin != null){
-            List<RPayment> rPayments = rPaymentDao.findAll();
-            model.addAttribute("rPayments", rPayments);
+        if(admin != null){
+            List<RPayment> rPayments=rPaymentDao.findAll();
+            List<RPayment> rPaymentList = new ArrayList<>();
+            for (RPayment rPayment : rPayments){
+                if(rPayment.isActive()==true){
+                    rPaymentList.add(rPayment);
+                }
+            }
+            model.addAttribute("rPayments",  rPaymentList);
             return "Rdetails";
         }else {
             return "redirect:/";
         }
 
-
     }
-
-
     @PostMapping("/Rdetail")
-    public String viewRdetail(Model model, @RequestParam String userName, @PathVariable int userId) {
-        User user = userDao.findByUserId(userId);
-        RPayment rPayment = new RPayment();
-        rPayment.setUser(user);
+    public String RDetail(Model model, @RequestParam LocalDateTime endDate){
+        RPayment rPayment=new RPayment();
+        rPayment.setEndDate(endDate);
         rPaymentDao.save(rPayment);
         return "redirect:/Rdetails";
-
     }
+
+
 
 
     @GetMapping("/rentDetail/{homeId}")
@@ -166,7 +231,6 @@ public class PaymentController {
             }
         }
     }
-
     @GetMapping("/payment/{homeId}")
     public String payment(@PathVariable("homeId") int homeId, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         Home home = homeDao.findByHomeId(homeId);
@@ -221,20 +285,101 @@ public class PaymentController {
 
 
 
-    @PostMapping("/delete/Rdetail")
-    public String deleteDetail(@RequestParam int id) {
-        rPaymentDao.deleteById(id);
-        return "redirect:/Rdetail";
+//    @PostMapping("/delete/Rdetail")
+//    public String deleteDetail(@RequestParam int id) {
+//        rPaymentDao.deleteById(id);
+//        return "redirect:/Rdetail";
+//
+//    }
 
+
+
+    @PostMapping("/delete/Rdetail")
+    public String deleteRdetail(@RequestParam int id) {
+        RPayment rPayment = rPaymentDao.findById(id).orElseThrow();
+        rPayment.setActive(false);
+        rPaymentDao.save(rPayment);
+        return "redirect:/Rdetail";
     }
+
+
+
+//
+//    @PostMapping("/delete/detail")
+//    public String deleteRDetail(@RequestParam int id) {
+//        paymentDao.deleteById(id);
+//        return "redirect:/detail";
+//
+//    }
 
 
     @PostMapping("/delete/detail")
-    public String deleteRDetail(@RequestParam int id) {
-        paymentDao.deleteById(id);
-        return "redirect:/detail";
+    public String deletedetail(@RequestParam int id) {
+        Payment payment = paymentDao.findById(id).orElseThrow();
+        payment.setActive(false);
+        paymentDao.save(payment);
+        return "redirect:/Rdetail";
+    }
+
+
+
+
+    @GetMapping("/Deletedetail")
+    public String DeleteDetail (Model model,HttpServletRequest request){
+        Admin admin= (Admin) request.getSession().getAttribute("admin");
+        if(admin != null){
+            List<Payment> payments=paymentDao.findAll();
+            List<Payment> listPayment = new ArrayList<>();
+            for (Payment payment : payments){
+                if(payment.isActive()==false){
+                    listPayment.add(payment);
+                }
+            }
+            model.addAttribute("payments",  listPayment);
+            return "deleteDetail";
+        }else {
+            return "redirect:/";
+        }
+
+    }
+ @PostMapping("/Deletedetail")
+    public String DeleteDetail(Model model, @RequestParam LocalDateTime dateTime){
+        Payment payment=new Payment();
+        payment.setDateTime(dateTime);
+        paymentDao.save(payment);
+        return "redirect:/deleteDetail";
+    }
+
+    @GetMapping("/DeleteRdetail")
+    public String DeleteRDetail (Model model,HttpServletRequest request){
+        Admin admin= (Admin) request.getSession().getAttribute("admin");
+        if(admin != null){
+            List<RPayment> rPayments=rPaymentDao.findAll();
+            List<RPayment> rPaymentList = new ArrayList<>();
+            for (RPayment rPayment : rPayments){
+                if(rPayment.isActive()==false){
+                    rPaymentList.add(rPayment);
+                }
+            }
+            model.addAttribute("rPayments",  rPaymentList);
+            return "deleteRDetail";
+        }else {
+            return "redirect:/";
+        }
 
     }
 
 
+    @PostMapping("/DeleteRdetail")
+    public String DeleteRDetail(Model model, @RequestParam LocalDateTime endDate){
+        RPayment rPayment=new RPayment();
+        rPayment.setEndDate(endDate);
+        rPaymentDao.save(rPayment);
+        return "redirect:/deleteRDetail";
+    }
+
+
+
 }
+
+

@@ -48,7 +48,7 @@ public class AdminController {
         Admin admin = new Admin();
         admin.setEmail(email);
         admin.setPassword(password);
-        if (admin.getEmail().equals("phyokekyaml@gmail.com") && admin.getPassword().equals("123123")) {
+        if (admin.getEmail().equals("zawphyoaung2637@gmail.com") && admin.getPassword().equals("12345678")) {
             request.getSession().setAttribute("admin", admin);
             return "redirect:/homes";
         } else {

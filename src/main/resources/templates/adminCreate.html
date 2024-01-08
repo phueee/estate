@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
 <head th:replace="adminView::header">
@@ -8,29 +9,41 @@
 <body>
 <div th:replace="adminView::navbar"></div><br>
 <div>
-    <form th:action="@{/adminCreate}" method="post" enctype="multipart/form-data" modelAttribute="home">
+    <form  id="homeCreateForm"  th:action="@{/adminCreate}" method="post" enctype="multipart/form-data" modelAttribute="home" onsubmit="return validateForm()">
         <div class="container col-md-6 offset-md-3">
             <h2 class="col-md-6 offset-md-3" align="center" style="font-size: 50px">Home Create</h2>
-
             <div class="form-group col-md-6">
+                <div id="errorMessages1" class="text-danger"></div>
                 <label for="homeNo" style="font-size: 18px;color: #0a0a0b">Home Number</label>
                 <input type="text" class="form-control" id="homeNo" name="homeNo">
+                <span class="error-message" style="color: red;"></span>
             </div>
 
+            <!-- Repeat the above structure for other form fields -->
             <div class="form-group col-md-6">
+                <div id="errorMessages2" class="text-danger"></div>
                 <label for="bedRoom" style="font-size: 18px;color: #0a0a0b">Number of Bedroom</label>
                 <input type="text" class="form-control" id="bedRoom" name="bedRoom">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="bathRoom" style="font-size: 18px;color: #0a0a0b">Number of Bathroom</label>
-                <input type="text" class="form-control" id="bathRoom" name="bathRoom">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="area" style="font-size: 18px;color: #0a0a0b">Area</label>
-                <input type="text" class="form-control" id="area" name="area">
+                <span class="error-message" style="color: red;"></span>
             </div>
 
             <div class="form-group col-md-6">
+                <div id="errorMessages3" class="text-danger"></div>
+                <label for="bathRoom" style="font-size: 18px;color: #0a0a0b">Number of Bathroom</label>
+                <input type="text" class="form-control" id="bathRoom" name="bathRoom">
+                <span class="error-message" style="color: red;"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div id="errorMessages4" class="text-danger"></div>
+                <label for="area" style="font-size: 18px;color: #0a0a0b">Area</label>
+                <input type="text" class="form-control" id="area" name="area">
+                <span class="error-message" style="color: red;"></span>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group col-md-6">
+                <div id="errorMessages5" class="text-danger"></div>
                 <label for="location" style="font-size: 18px;color: #0a0a0b">Location</label>
                 <select id="location" class="form-control" name="location">
                     <option selected>Yangon</option>
@@ -41,40 +54,111 @@
                 </select>
             </div>
 
+            <!-- Price -->
             <div class="form-group col-md-6">
+                <div id="errorMessages6" class="text-danger"></div>
                 <label for="price" style="font-size: 18px;color: #0a0a0b">Price</label>
                 <input type="text" class="form-control" id="price" name="price">
+                <span class="error-message" style="color: red;"></span>
             </div>
 
+            <!-- Home Type -->
             <div class="form-group col-md-6">
+                <div id="errorMessages7" class="text-danger"></div>
                 <label for="property" style="font-size: 18px;color: #0a0a0b">Home type</label>
                 <select id="property" class="form-control" name="property">
-                    <option selected>Type...</option>
-                    <option>Appartment</option>
+                    <option selected>Appartment</option>
                     <option>Villa</option>
                     <option>House</option>
                     <option>Office</option>
                 </select>
             </div>
 
+            <!-- Service Type -->
             <div class="form-group col-md-6">
+                <div id="errorMessages8" class="text-danger"></div>
                 <label for="service" style="font-size: 18px;color: #0a0a0b">Service</label>
                 <select id="service" class="form-control" name="service">
-                    <option selected>Type...</option>
-                    <option>Sale</option>
+                    <option selected>Sale</option>
                     <option>Rent</option>
                 </select>
             </div>
 
+            <!-- Photo -->
             <div class="form-group">
+                <div id="errorMessages9" class="text-danger"></div>
                 <label for="photo" style="font-size: 18px;color: #0a0a0b">Photo</label>
                 <input type="file" id="photo"  name="file" class="form-control-file">
+                <span class="error-message" style="color: red;"></span>
             </div>
 
             <button type="submit" class="btn btn-primary" style="margin-bottom: 30px">Create</button>
         </div>
     </form>
-</div>
+</div><script>
+    function validateForm() {
+        var homeNo = document.getElementById('homeNo').value;
+        var bedRoom = document.getElementById('bedRoom').value;
+        var bathRoom = document.getElementById('bathRoom').value;
+        var area = document.getElementById('area').value;
+        var location = document.getElementById('location').value;
+        var price = document.getElementById('price').value;
+        var property = document.getElementById('property').value;
+        var service = document.getElementById('service').value;
+        var photo = document.getElementById('photo').value;
+
+
+        var errorMessages = [];
+
+        if (homeNo.trim() === '') {
+            errorMessages.push('Please enter Home Number.');
+        }
+
+        if (bedRoom.trim() === '') {
+            errorMessages.push('Please enter Number of Bedrooms.');
+        }
+
+        if (bathRoom.trim() === '') {
+            errorMessages.push('Please enter Number of Bathrooms.');
+        }
+
+        if (area.trim() === '') {
+            errorMessages.push('Please enter area');
+        }
+
+        if (location.trim() === '') {
+            errorMessages.push('Please enter location.');
+        }
+        if (price.trim() === '') {
+            errorMessages.push('Please enter price.');
+        }
+        if (property.trim() === '') {
+            errorMessages.push('Please enter property.');
+        }
+        if (service.trim() === '') {
+            errorMessages.push('Please enter service.');
+        }
+        if (photo.trim() === '') {
+            errorMessages.push('Please enter photo.');
+        }
+
+        // Display error messages
+        for (var i = 1; i <= 9; i++) {
+            var errorMessageContainer = document.getElementById('errorMessages' + i);
+            errorMessageContainer.innerHTML = '';
+        }
+
+        if (errorMessages.length > 0) {
+            for (var i = 0; i < errorMessages.length; i++) {
+                var errorMessageContainer = document.getElementById('errorMessages' + (i + 1));
+                errorMessageContainer.innerHTML = '<p class="text-danger">' + errorMessages[i] + '</p>';
+            }
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
+</script>
 
 <div th:replace="adminView::footer"></div>
 </body>

@@ -69,13 +69,14 @@
                     <a href="contact" class="nav-item nav-link">Contact</a>
 
                     <div class="nav-item dropdown" th:if="${session.userEmail!=null}">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><img src="img/jennie-1.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%"></a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><img src="img/Pf4.JPG" alt="" style="width: 30px;height: 30px;border-radius: 50%"></a>
                         <div class="dropdown-menu rounded-0 m-0"/>
 
                         <!--                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>-->
                         <div class="profile-alerts">
                             <div class="user-details">
-                                <img src="img/jennie-1.jpeg" alt="" class="avatar">
+<!--                                <img src="img/jennie-1.jpeg" alt="" class="avatar">-->
+                                <span style="size: 3px">Profile edit</span>
                                 <a  th:href="@{userEdit/user/{userId}(userId=${session.userId})}"  th:if="${session.userEmail!=null}" ><i class="bi bi-pencil-square" style="color: #0a0a0b"></i></a>
                             </div>
                             <div class="alerts">
@@ -152,12 +153,16 @@
                 <div class="p-4 pb-0">
                     <h5 class="text-primary mb-3" th:text="${itetstat.index+1}" hidden></h5>
                     <h5 class="text-primary mb-3" th:text="${list.price}+' '+lakh"></h5>
+                    <h1 style="font-size: 16px" th:if="${list.service=='Rent'}">for 3 months</h1>
+                    <h1 style="font-size: 16px" th:if="${list.service=='Sale'}">.</h1>
+
+                    <!--                    <h5 th:if="${list.service=='Rent'}" class="text-primary mb-3" th:text="${list.price}+' '+lakh only for 3 months"></h5>-->
 
                     <a class="d-block h5 mb-2" href="" th:text="${list.property}" ></a>
                     <p><i class="fa fa-map-marker-alt text-primary me-2"><span th:text="${list.location}" ></span></i></p>
                 </div>
                 <div class="d-flex border-top">
-                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-black-50 me-2" th:text="${list.area}"></i></small>
+                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-black-50 me-2" th:text="${list.area}+' '+sqft"></i></small>
                     <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-black-50 me-2" th:text="${list.bedRoom}+' '+Bed"></i></small>
                     <small class="flex-fill text-center py-2"><i class="fa fa-bath text-black-50 me-2" th:text="${list.bathRoom}+' '+Bath"></i></small>
                 </div>

@@ -103,13 +103,14 @@
                 <a href="contact" class="nav-item nav-link">Contact</a>
 
                 <div class="nav-item dropdown" th:if="${session.userEmail!=null}">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><img src="img/jennie-1.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%"></a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><img src="img/Pf4.JPG" alt="" style="width: 30px;height: 30px;border-radius: 50%"></a>
                     <div class="dropdown-menu rounded-0 m-0"/>
 
                     <!--                                <a  class="dropdown-item" th:if="${session.userEmail!=null}" th:text="${session.userEmail}" href="/usedetail/view"></a>-->
                     <div class="profile-alerts">
                         <div class="user-details">
-                            <img src="img/jennie-1.jpeg" alt="" class="avatar">
+<!--                            <img src="img/jennie-1.jpeg" alt="" class="avatar">-->
+                            <span style="size: 3px">Profile edit</span>
                             <a  th:href="@{userEdit/user/{userId}(userId=${session.userId})}"  th:if="${session.userEmail!=null}" ><i class="bi bi-pencil-square" style="color: #0a0a0b"></i></a>
                         </div>
                         <div class="alerts">
@@ -163,21 +164,21 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <h1 class="mb-3">Our Team</h1>
+            <h1 class="mb-3">Agents</h1>
             <p><h3>We always ready to help by providing the best service for you</h3></p>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item rounded overflow-hidden">
                     <div class="position-relative">
-                        <img class="img-fluid" src="img/jennie-1.jpeg" height="400" width="400" alt="">
+                        <img class="img-fluid" src="img/testimonial-1.jpg" height="400" width="400" alt="">
                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                             <a class="btn btn-square mx-1" href="https://www.facebook.com/phue.sone.961?mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                    <div class="text-center p-4 mt-3"><h5 class="fw-bold mb-0">Phue Sone</h5>
+                    <div class="text-center p-4 mt-3"><h5 class="fw-bold mb-0">Daw Thidar</h5>
                         <small>Designation</small>
                     </div>
                 </div>
@@ -185,7 +186,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item rounded overflow-hidden">
                     <div class="position-relative">
-                        <img class="img-fluid" src="img/eminem.jpg" height="400" width="400" alt="">
+                        <img class="img-fluid" src="img/testimonial-2.jpg" height="400" width="400" alt="">
                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                             <a class="btn btn-square mx-1" href="https://www.facebook.com/profile.php?id=100048800690861&mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -193,7 +194,7 @@
                         </div>
                     </div>
                     <div class="text-center p-4 mt-3">
-                        <h5 class="fw-bold mb-0">Zaw Phyo Aung</h5>
+                        <h5 class="fw-bold mb-0">U Aung Aung</h5>
                         <small>Designation</small>
                     </div>
                 </div>
@@ -201,7 +202,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="team-item rounded overflow-hidden">
                     <div class="position-relative">
-                        <img class="img-fluid" src="img/taylor.jpeg" height="400" width="400" alt="">
+                        <img class="img-fluid" src="img/testimonial-4.jpg" height="400" width="400" alt="">
                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                             <a class="btn btn-square mx-1" href="https://www.facebook.com/su.s.zaw.967?mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -209,7 +210,7 @@
                         </div>
                     </div>
                     <div class="text-center p-4 mt-3">
-                        <h5 class="fw-bold mb-0">Su Sandi Zaw</h5>
+                        <h5 class="fw-bold mb-0">Daw Thiri</h5>
                         <small>Designation</small>
                     </div>
                 </div>
@@ -217,7 +218,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                 <div class="team-item rounded overflow-hidden">
                     <div class="position-relative">
-                        <img class="img-fluid" src="img/bruno.jpg" height="400" width="400" alt="">
+                        <img class="img-fluid" src="img/testimonial-3.jpg" height="400" width="400" alt="">
                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
                             <a class="btn btn-square mx-1" href="https://www.facebook.com/profile.php?id=100081825695160&mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -225,7 +226,7 @@
                         </div>
                     </div>
                     <div class="text-center p-4 mt-3">
-                        <h5 class="fw-bold mb-0">Paing Ye Oo</h5>
+                        <h5 class="fw-bold mb-0">U Tun Tun</h5>
                         <small>Designation</small>
                     </div>
                 </div>

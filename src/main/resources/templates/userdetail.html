@@ -18,66 +18,142 @@
 
 
 <div class="container-col-md-6 offset-md-3" style="margin-top: 30px" >
-
-    <!--    <form   method="post">-->
-    <!--        <span>Name :</span><span th:text="${user.userName}"></span><br/>-->
-    <!--        <span>Email :</span><span th:text="${user.userEmail}"></span><br/>-->
-    <!--        <span>Phone Number :</span><span th:text="${user.userPhone}"></span><br/>-->
-    <!--        <span>NRC :</span><span th:text="${user.userNrc}"></span><br/>-->
-    <!--        <span>Name :</span><span ></span><br/>-->
-    <!--        <span>Email :</span><span ></span><br/>-->
-    <!--        <span>Phone Number :</span><span ></span><br/>-->
-    <!--        <span>NRC :</span><span ></span><br/>-->
-    <!-- Add form fields or buttons as needed -->
-    <!--  ID : <span th:text="${user.userId}"></span>-->
-    <!-- Name :  <span th:text="${user.userName}"></span>-->
-    <!--  Phone : <span th:text="${user.userPhone}"></span>-->
-
-
-    <!--    </form-->
-
-
-    <form th:action="@{/user/update}" method="post" th:object="${userBean}" enctype="multipart/form-data">
+    <form th:action="@{/user/update}" method="post" th:object="${userBean}" enctype="multipart/form-data" onsubmit="return validateForm()">
         <div class="container">
+            <div style="color: crimson" id="alert-Message" class="alert-Message"></div>
 
             <div class="form-group col-md-6">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" th:field="*{userName}" name="name"  >
+                <input type="text" class="form-control" id="name" th:field="*{userName}" name="name">
+                <div style="color: crimson" id="alert-Message1" class="alert-Message"></div>
             </div>
 
             <div class="form-group col-md-6">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" th:field="*{userEmail}" name="email" >
+                <input type="email" class="form-control" id="email" th:field="*{userEmail}" name="email" readonly>
+                <div style="color: crimson" id="alert-Message2" class="alert-Message"></div>
             </div>
 
             <div class="form-group col-md-6">
                 <label for="phone">Phone</label>
-                <input type="text" class="form-control" id="phone" th:field="*{userPhone}" name="phone">
+                <input type="text" class="form-control" id="phone" th:field="*{userPhone}" name="phone" minlength="7" maxlength="11"  oninput="validatePhoneInput(this)">
+                <div style="color: crimson" id="alert-Message3" class="alert-Message"></div>
+                <span id="error"></span>
             </div>
+
             <div class="form-group col-md-6">
                 <label for="nrc">NRC</label>
-                <input type="text" class="form-control" id="nrc" th:field="*{userNrc}" name="nrc">
+                <input type="text" class="form-control" id="nrc" th:field="*{userNrc}" name="nrc" readonly>
+                <div style="color: crimson" id="alert-Message4" class="alert-Message"></div>
             </div>
-            <div class="form-group col-md-6">
+
+            <div class="form-group col-md-6" hidden>
                 <label for="password">Password</label>
                 <input type="text" class="form-control" id="password" th:field="*{userPassword}" name="password">
+                <div style="color: crimson" id="alert-Message5" class="alert-Message"></div>
             </div>
 
-            <!--            <div class="form-group col-md-6">-->
-            <!--                <label for="password1">Confirm Password</label>-->
-            <!--                <input type="text" class="form-control" id="password1" th:field="*{password}" name="password">-->
-            <!--            </div>-->
-
-
-<!--            <div>-->
-<!--                <label for="photo">Photo</label>-->
-<!--                <input type="file" class="form-control-file" id="photo"  accept="image/**" name="photo" multiple>-->
-<!--            </div>-->
-
-            <button type="submit" class="btn btn-primary" style="margin-top: 10px;margin-left: 18px">Update</button>
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left: 18px">Update</button>
         </div>
     </form>
 </div>
+<script>
+
+
+
+    function validateForm() {
+        var userName = document.getElementById('name').value;
+        var userEmail = document.getElementById('email').value;
+        var userPhone = document.getElementById('phone').value;
+        var userNrc = document.getElementById('nrc').value;
+
+        clearErrorMessages();
+
+        if (userName === '') {
+            showError('alert-Message1', 'Please enter your name.');
+            return false;
+        }
+
+        if (userEmail === '') {
+            showError('alert-Message2', 'Please enter your email.');
+            return false;
+        }
+
+        if (userPhone === '') {
+            showError('alert-Message3', 'Please enter your phone number.');
+            return false;
+        }
+
+        if (userNrc === '') {
+            showError('alert-Message4', 'Please enter your NRC.');
+            return false;
+        }
+
+        return true;
+    }
+
+    function showError(elementId, message) {
+        var alertMessage = document.getElementById(elementId);
+        alertMessage.innerHTML = message;
+    }
+
+    function clearErrorMessages() {
+        for (var i = 1; i <= 5; i++) {
+            var alertMessage = document.getElementById('alert-Message' + i);
+            alertMessage.innerHTML = '';
+        }
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('af-form');
+        var errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault();
+            }
+        });
+
+        function validateForm() {
+            var email = document.getElementById('email').value.trim();
+            if (!validateEmail(email)) {
+                errorMessage.textContent = 'Invalid email format.';
+                return false;
+            }
+            return true;
+        }
+    });
+    function validatePhoneInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        if (input.value.length < 7) {
+
+            document.getElementById("error").innerText = "Phone number must be at least 7 digits.";
+        } else {
+            document.getElementById("error").innerText = "";
+        }
+    }
+    var phoneMask = new Inputmask("999-999-9999");
+    phoneMask.mask(document.getElementById("phone"));
+
+    function validateEmail(email) {
+        var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+
+
+    function checkForm(form) {
+        var phone = document.getElementById("phone").value;
+        var alertMessage=document.getElementById("alert-message")
+        if (phone.length < 7) {
+            alertMessage.innerHTML=("Phone number must be at least 7 digits.");
+            return false;
+        }
+        return true;
+    }
+</script>
 
 <div th:replace="adminView::footer"></div>
 </body>

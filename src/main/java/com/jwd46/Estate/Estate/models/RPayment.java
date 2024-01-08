@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
     private LocalDateTime dueDate;
     private String basePrice;
     private String price;
+    private boolean active = true;
 
 
     }

@@ -29,40 +29,40 @@ public class AppoinmentController {
 
 
     @GetMapping("/request")
-    public String Appoinment (Model model,HttpServletRequest request){
-        Admin admin= (Admin) request.getSession().getAttribute("admin");
-        if(admin != null){
-            List<Appoinment> appoinments =appoinmentDao.findAll();
-            model.addAttribute("appoinments",  appoinments);
+    public String Appoinment(Model model, HttpServletRequest request) {
+        Admin admin = (Admin) request.getSession().getAttribute("admin");
+        if (admin != null) {
+            List<Appoinment> appoinments = appoinmentDao.findAll();
+            model.addAttribute("appoinments", appoinments);
             return "request";
-        }else {
+        } else {
             return "redirect:/";
         }
 
     }
 
     @PostMapping("/request")
-    public String Appoinment(Model model, @RequestParam(required = false) String name){
-        Appoinment appoinment=new Appoinment();
+    public String Appoinment(Model model, @RequestParam(required = false) String name) {
+        Appoinment appoinment = new Appoinment();
         appoinment.setName(name);
         appoinmentDao.save(appoinment);
         return "redirect:/request";
     }
 
 
-
     @GetMapping("/getAppoinment")
-    public String showSignGet(){
+    public String showSignGet() {
         return "appoinment";
     }
 
     @PostMapping("/getAppoinment")
-    public String showSignPost(Model model, @RequestParam String name, String email, String phone , String reason, String comment,LocalDateTime dateTime,HttpServletRequest request) {
+    public String showSignPost(Model model, @RequestParam String name, String email, String phone, String reason, String comment, LocalDateTime dateTime, HttpServletRequest request) {
 
-        if (name.equals("") || email.equals("") || phone.equals("") || reason.equals("") || comment.equals("") || dateTime.equals("")) {
+        if (name.equals("")|| email.equals("")|| phone.equals("") || reason.equals("")||
+        comment.equals("") || dateTime.equals("")){
             model.addAttribute("error", "Please fill required informations!");
             return "appoinment";
-        } else {
+        } else{
             Appoinment appoinment = new Appoinment();
             appoinment.setName(name);
             appoinment.setEmail(email);
@@ -71,7 +71,7 @@ public class AppoinmentController {
             appoinment.setComment(comment);
             appoinment.setDateTime(dateTime);
             appoinmentDao.save(appoinment);
-            model.addAttribute("appoinment",appoinment);
+            model.addAttribute("appoinment", appoinment);
             return "index";
         }
     }

@@ -24,20 +24,20 @@
 
         <div class="form-group col-md-6">
             <label for="bedRoom">Number of Bedroom</label>
-            <input type="text" class="form-control" id="bedRoom" th:field="*{bedRoom}" name="bedRoom">
+            <input type="text" class="form-control" id="bedRoom" th:field="*{bedRoom}" name="bedRoom" required>
         </div>
         <div class="form-group col-md-6">
             <label for="bathRoom">Number of Bathroom</label>
-            <input type="text" class="form-control" id="bathRoom" th:field="*{bathRoom}" name="bathRoom">
+            <input type="text" class="form-control" id="bathRoom" th:field="*{bathRoom}" name="bathRoom" required>
         </div>
         <div class="form-group col-md-6">
             <label for="area">Area</label>
-            <input type="text" class="form-control" id="area" th:field="*{area}" name="area">
+            <input type="text" class="form-control" id="area" th:field="*{area}" name="area" required>
         </div>
 
         <div class="form-group col-md-6">
             <label for="location">Location</label>
-            <select id="location" class="form-control"  th:field="*{location}" name="location">
+            <select id="location" class="form-control"  th:field="*{location}" name="location" required>
                 <!--                <option selected>Type...</option>-->
                 <option value="Yangon">Yangon</option>
                 <option value="Mandalay">Mandalay</option>
@@ -49,12 +49,12 @@
 
         <div class="form-group col-md-6">
             <label for="price">Price</label>
-            <input type="text" class="form-control" id="price" th:field="*{price}" name="price">
+            <input type="text" class="form-control" id="price" th:field="*{price}" name="price" required>
         </div>
 
         <div class="form-group col-md-6">
             <label for="property">Home Type</label>
-            <select id="property" class="form-control"  th:field="*{property}" name="property">
+            <select id="property" class="form-control"  th:field="*{property}" name="property" required>
 <!--                <option selected>Type...</option>-->
                 <option value="Appartment">Appartment</option>
                 <option value="Villa">Villa</option>
@@ -65,7 +65,7 @@
 
         <div class="form-group col-md-6">
             <label for="service">Service</label>
-            <select id="service" class="form-control"  th:field="*{service}" name="service">
+            <select id="service" class="form-control"  th:field="*{service}" name="service" required>
 <!--                <option selected>Type...</option>-->
                 <option value="Sale">Sale</option>
                 <option value="Rent">Rent</option>
@@ -73,7 +73,7 @@
         </div>
         <div>
             <label for="photo">Photo</label>
-            <input type="file" class="form-control-file" id="photo" th:field="*{photo}" accept="image/**" name="photo" multiple>
+            <input type="file" class="form-control-file" id="photo" th:field="*{photo}" accept="image/**" name="photo" multiple required>
         </div>
 
         <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Update</button>

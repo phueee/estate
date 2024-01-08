@@ -105,7 +105,7 @@ public class EmailController {
         }catch (Exception e){
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("error",true);
-            return "redirect:/email";
+            return "redirect:/index";
         }
     }
     @Transactional

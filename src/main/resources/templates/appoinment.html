@@ -9,7 +9,7 @@
 <body>
 <a href="/index" class="previous" style="background: #0b2540; color:#FFFFFF;margin-left: 20px;border-radius: 20px;margin-top: 30px">&laquo; Back</a>
 
-<form onsubmit="return validateAndMask();" th:action="@{/getAppoinment}" method="post">
+<form onsubmit="return validateDates();" th:action="@{/getAppoinment}" method="post" id="af-form">
     <div class="container col-md-6 offset-md-3">
         <h2 class="col-md-6 offset-md-3">Appoinment</h2>
         <div class="row mb-4">
@@ -19,12 +19,20 @@
         <div id="alert-Message1" style="color: red;"></div>
         <div class="row mb-4">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email"  name="email" required >
+            <input type="email" class="form-control" id="email"  name="email" oninput="validateEmail(email)" >
         </div>
+
+        <!--        <div class="row mb-4">-->
+        <!--            <label for="phone">Phone</label>-->
+        <!--            <input type="tel" id="phone" name="phone" class="form-control" oninput="validatePhoneInput(this)">-->
+        <!--        </div>-->
+
         <div class="row mb-4">
             <label for="phone">Phone</label>
-            <input type="tel" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number"class="form-control" id="phone"  name="phone" required>
+            <input type="tel" id="phone" name="phone" class="form-control" minlength="7" maxlength="11" oninput="validatePhoneInput(this)">
+            <div style="color: crimson" id="alert-Message23" class="alert-Message"></div>
         </div>
+
         <div class="row mb-4">
             <label for="reason">Reason for appointment</label>
             <select id="reason" class="form-control"  name="reason" required>
@@ -38,21 +46,63 @@
             <label for="comment">Additional comments</label>
             <textarea class="form-control" id="comment" rows="3" name="comment"></textarea>
         </div>
-        <div style="color: crimson" id="alert-Message" class="alert-Message"></div>
+
         <div class="row mb-4">
             <label for="dateTime"> Date</label>
             <input type="datetime-local" class="form-control" id="dateTime"  required name="dateTime" >
+            <div style="color: crimson" id="alert-Message" class="alert-Message"></div>
         </div>
 
-
         <button type="submit" class="btn btn-primary" style="margin-bottom: 15px" >Save Appoinment</button>
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('af-form');
+            var errorMessage = document.getElementById('error-message');
+
+            form.addEventListener('submit', function (event) {
+                if (!validateForm()) {
+                    event.preventDefault();
+                }
+            });
+        }
+        // Additional code for phone masking (you might want to remove this if not needed)
+    </script>
+
+
+
     </div>
 </form>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+...<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('af-form');
+        var errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault();
+            }
+        });
+
+        function validateForm() {
+            var email = document.getElementById('email').value.trim();
+            if (!validateEmail(email)) {
+                errorMessage.textContent = 'Invalid email format.';
+                return false;
+            }
+            return true;
+        }
+    });
+    function validateEmail(email) {
+        var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return re.test(String(email).toLowerCase());
+    }
+</script>
 <script>
     function validateDates() {
         var currentDate = new Date();
@@ -68,31 +118,33 @@
             return false;
         }
 
-        alertMessage.innerHTML = "";
-        return true;
-    }
+        var phone = document.getElementById("phone").value;
+        var alertMessagePhone = document.getElementById("alert-Message23");
 
-    function maskPhoneNumber(phoneNumber) {
-        const visibleDigits = Math.max(0, phoneNumber.length - 4);
-        const masked = phoneNumber.substring(0, visibleDigits).replace(/\d/g, '*');
-        const lastFourDigits = phoneNumber.substring(visibleDigits);
-        return masked + lastFourDigits;
-    }
-
-    function validateAndMask() {
-        var isDateValid = validateDates();
-
-        if (isDateValid) {
-            const phoneNumberInput = document.getElementById("phone");
-            phoneNumberInput.value = maskPhoneNumber(phoneNumberInput.value);
-
-            return true;
+        if (phone.length < 7) {
+            alertMessagePhone.innerHTML = "Phone number must be at least 7 digits.";
+            return false;
         }
 
-        return false;
+        alertMessage.innerHTML = ""; // Reset date error message
+        alertMessagePhone.innerHTML = ""; // Reset phone number error message
+        return true; // Both date and phone number validations passed
+    }
+
+    var phoneMask = new Inputmask("999-999-9999");
+    phoneMask.mask(document.getElementById("phone"));
+
+    function validatePhoneInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+
+        var alertMessagePhone = document.getElementById("alert-Message23");
+        if (input.value.length < 7) {
+            alertMessagePhone.innerHTML = "Phone number must be at least 7 digits.";
+        } else {
+            alertMessagePhone.innerHTML = "";
+        }
     }
 </script>
-
 
 
 <div th:replace="adminView::footer"></div>

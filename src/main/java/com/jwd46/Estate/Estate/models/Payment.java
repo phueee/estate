@@ -21,4 +21,5 @@ public class Payment {
     @JoinColumn(name = "home_id", referencedColumnName = "homeId")
     private Home home;
     private LocalDateTime dateTime;
+    private boolean active = true;
 }

@@ -13,7 +13,7 @@
 
 
 <body>
-<form th:action="@{/signup}" method="post" id="af-form" >
+<form th:action="@{/signup}" method="post" id="af-form" onsubmit="return checkForm(this);">
 
     <div style="margin-top: 30px">
         <div class="con">
@@ -54,10 +54,10 @@
                 <span class="input-item">
                     <i class="fa-solid fa-phone-volume" style="color: #19191a;"></i>
          </span>
-                <input class="form-input" id="txt-input2" type="text" placeholder="Phone No" name="phone" >
+                <input class="form-input" id="txt-input2" type="tel" placeholder="Phone No" name="phone" oninput="validatePhoneInput(this)">
                 <!--                <span style="color: red" th:if="${#fields.hasErrors('userPhone')}" th:errors="*{userPhone}"></span>-->
                 <br>
-
+                <div style="color: crimson" id="alert-Message23" class="alert-Message"></div>
                 <span class="input-item">
     <i class="fa-solid fa-address-card" style="color: #1d1e20;"></i>
                 </span>
@@ -115,7 +115,33 @@
                             }
                         }
                     });
+                    function validatePhoneInput(input) {
+                        input.value = input.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+
+                        var alertMessagePhone = document.getElementById("alert-Message23");
+                        if (input.value.length < 7) {
+                            alertMessagePhone.innerHTML = "Phone number must be at least 7 digits.";
+                        } else {
+                            alertMessagePhone.innerHTML = "";
+                        }
+                    }
+
+                    var phoneMask=new Inputmask("999-999-999");
+                    phoneMask.mask(document.getElementById("phone"));
                 </script>
+                <script>
+                    function checkForm(form) {
+                        var phone=document.getElementById("value").value;
+                        var alertMessage=document.getElementById("alert-Message")
+                        if(phone.length < 7){
+                            alertMessage.innerHTML=("Password must be at least 7 digits.");
+                            return false;
+                        }
+                        return true;
+                    }
+
+                </script>
+
 
                 <br>
                 <button type="submit" class="btn btn-danger "style="background: #0d6efd;color:#FFFFFF; " onclick="location.href=''">Create</button>
@@ -126,6 +152,29 @@
 
     </div>
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('af-form');
+        var errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault();
+            }
+        });
+
+        function validateForm() {
+            var email = document.getElementById('email').value.trim();
+            if (!validateEmail(email)) {
+                errorMessage.textContent = 'Invalid email format.';
+                return false;
+            }
+            return true;
+        }
+
+    });
+
+</script>
 <div align="center" style="margin-top: 20px;height: 100px;margin-bottom: 80px">
     <button style="margin: 20px;margin-bottom: 80px" class="to-login" onclick="location.href='/login'">Do you already have an acc?</button>
 </div>

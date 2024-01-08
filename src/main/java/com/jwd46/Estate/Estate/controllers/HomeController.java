@@ -50,17 +50,31 @@ public class HomeController {
 //        return "homes";
 //    }
 
-    @PostMapping("/delete/home")
-    public String deleteHome(@RequestParam int homeId) {
-        Home home=homeDao.findByHomeId(homeId);
-        RPayment rentPayment=rPaymentDao.findByHome(home);
-        Payment buyPayment=paymentDao.findByHome(home);
-        homeDao.delete(home);
+//    @PostMapping("/delete/home")
+//    public String deleteHome(@RequestParam int homeId) {
+//        Home home=homeDao.findByHomeId(homeId);
+//        RPayment rentPayment=rPaymentDao.findByHome(home);
+//        Payment buyPayment=paymentDao.findByHome(home);
+//        homeDao.delete(home);
+//        rPaymentDao.delete(rentPayment);
+//        paymentDao.delete(buyPayment);
+//        return "redirect:/homes";
+//
+//    }
+@PostMapping("/delete/home")
+public String deleteHome(@RequestParam int homeId) {
+    Home home=homeDao.findByHomeId(homeId);
+    RPayment rentPayment=rPaymentDao.findByHome(home);
+    Payment buyPayment=paymentDao.findByHome(home);
+    if(rentPayment != null){
         rPaymentDao.delete(rentPayment);
+    }if(buyPayment != null){
         paymentDao.delete(buyPayment);
-        return "redirect:/homes";
-
     }
+    homeDao.delete(home);
+    return "redirect:/homes";
+
+}
 
 //    @GetMapping("/delete/home/{homeId}")
 //    public String deleteHome(@PathVariable("homeId") int homeId) {
